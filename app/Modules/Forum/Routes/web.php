@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('forum')->group(function() {
-    Route::get('/', 'ForumController@index');
+    Route::get('/', 'HomeController@index');
 });
