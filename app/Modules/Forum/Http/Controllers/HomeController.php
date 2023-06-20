@@ -6,6 +6,6 @@ class HomeController extends ForumController
 {
     public function index()
     {
-        return view('forum::test');
+        return view('forum::index');
     }
 }
