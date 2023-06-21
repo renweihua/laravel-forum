@@ -36,6 +36,8 @@
     <link href="./dist/css/tabler-payments.min.css?1685973381" rel="stylesheet"/>
     <link href="./dist/css/tabler-vendors.min.css?1685973381" rel="stylesheet"/>
     <link href="./dist/css/demo.min.css?1685973381" rel="stylesheet"/>
+
+    <link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         @import url('https://rsms.me/inter/inter.css');
         :root {
@@ -47,6 +49,13 @@
     </style>
     {{-- Laravel Mix - CSS File --}}
     {{-- <link rel="stylesheet" href="{{ mix('css/forum.css') }}"> --}}
+    <script>
+        function loadErrorImg(){
+            var img = event.srcElement;
+            img.src="/logo.jpg";
+            img.onerror = null; //控制不要一直跳动
+        }
+    </script>
 </head>
 <body >
 <script src="./dist/js/demo-theme.min.js?1685973381"></script>
@@ -56,6 +65,7 @@
     @include('forum::layouts.navbars.sidebar')
     <div class="page-wrapper">
         <!-- Page header -->
+        @yield('page-header')
         <div class="page-header d-print-none">
             <div class="container-xl">
                 <div class="row g-2 align-items-center">
