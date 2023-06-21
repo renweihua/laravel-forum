@@ -1,7 +1,9 @@
 {
     "name": "User",
     "alias": "user",
-    "description": "",
+    "description": "`会员服务`模块。",
+    "version": "v1.0.0",
+    "author": "小丑路人",
     "keywords": [],
     "priority": 0,
     "providers": [

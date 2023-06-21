@@ -1,13 +1,13 @@
 {
-    "name": "Forum",
-    "alias": "forum",
-    "description": "论坛基础模块。",
+    "name": "Comment",
+    "alias": "comment",
+    "description": "`评论`模块。",
     "version": "v1.0.0",
     "author": "小丑路人",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "App\\Modules\\Forum\\Providers\\ForumServiceProvider"
+        "App\\Modules\\Comment\\Providers\\CommentServiceProvider"
     ],
     "aliases": {},
     "files": [],
