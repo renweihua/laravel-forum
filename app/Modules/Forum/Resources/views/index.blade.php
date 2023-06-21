@@ -26,41 +26,21 @@
                                     创建于 {{ $dynamic->time_formatting }}
                                 </div>
                                 <div class="col-auto">
-                                    <span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                          title="浏览量">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                             stroke-linecap="round" stroke-linejoin="round"><path stroke="none"
-                                                                                                  d="M0 0h24v24H0z"
-                                                                                                  fill="none"/><circle
-                                                cx="12" cy="12" r="2"/><path
-                                                d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"/></svg>
+                                    <span title="浏览量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                        <i class="fa fa-eye"></i>
                                         {{ $dynamic->cache_extends['reads_num'] }}
                                     </span>
-                                    <a href="javascript:;" class="link-secondary">
-                                        <button class="switch-icon" data-bs-toggle="switch-icon">
-                                            <span class="switch-icon-a text-muted">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
-                                            </span>
-                                            <span class="switch-icon-b text-red">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
-                                            </span>
-                                        </button>
+                                    <span title="浏览量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                        <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
                                         {{ $dynamic->cache_extends['praises_count'] }}
-                                    </a>
-                                    <a href="javascript:;" class="link-secondary">
-                                        <button class="switch-icon" data-bs-toggle="switch-icon">
-                                            <span class="switch-icon-a text-muted">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
-                                            </span>
-                                            <span class="switch-icon-b text-red">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
-                                            </span>
-                                        </button>
+                                    </span>
+                                        <span title="浏览量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                        <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
                                         {{ $dynamic->cache_extends['collections_count'] }}
-                                    </a>
-                                    <a style="text-decoration:none;" href="javascript:;" class="ms-3 text-muted cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                    </span>
+                                    <a style="text-decoration:none;" href="javascript:;" class="text-muted cursor-pointer">
                                         <i class="fa fa-commenting-o"></i>
+                                        <i class="fa fa-comments"></i>
                                         <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
                                     </a>
                                 </div>
