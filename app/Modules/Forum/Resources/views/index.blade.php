@@ -12,9 +12,11 @@
                                     <img src="{{ $dynamic->dynamic_cover }}" class="rounded" alt="{{ $dynamic->dynamic_title }}" width="40" height="40" onerror="loadErrorImg();" />
                                 </div>
                                 <div class="col">
-                                    <span class="badge d-none d-lg-inline-block">
-                                        {{ $dynamic->topic->topic_name }}
-                                    </span>
+                                    @if($dynamic->topic)
+                                        <span class="badge d-none d-lg-inline-block">
+                                            {{ $dynamic->topic->topic_name }}
+                                        </span>
+                                    @endif
                                     <a href="/{{ $dynamic->dynamic_id }}" class="text-reset">
                                         {{ $dynamic->dynamic_title }}
                                     </a>
@@ -48,6 +50,9 @@
                         </div>
                     @endforeach
                 @endif
+                <div class="mt-2">
+                    {!! $dynamics->links() !!}
+                </div>
             </div>
         </div>
     </div>
