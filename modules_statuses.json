@@ -1,5 +1,6 @@
 {
     "Forum": true,
     "User": true,
-    "Comment": true
+    "Comment": true,
+    "Topic": true
 }

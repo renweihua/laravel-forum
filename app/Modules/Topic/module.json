@@ -1,0 +1,16 @@
+{
+    "name": "Topic",
+    "alias": "topic",
+    "description": "`话题`模块。",
+    "version": "v1.0.0",
+    "author": "小丑路人",
+    "uninstall": false,
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "App\\Modules\\Topic\\Providers\\TopicServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
