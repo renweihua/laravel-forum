@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Forum\Entities;
+namespace App\Models\User\Entities;
 
 use App\Exceptions\HttpStatus\SuccessRequestException;
 use App\Models\Model;

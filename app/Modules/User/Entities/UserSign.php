@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Forum\Entities;
+namespace App\Models\User\Entities;
 
 use App\Models\Model;
 use App\Models\MonthModel;
