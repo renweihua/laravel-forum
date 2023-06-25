@@ -22,6 +22,7 @@ class Dynamic extends Model
         if(!isset($this->attributes['created_time'])) return '';
         return formatting_timestamp($this->attributes['created_time'], false);
     }
+
     public function getLastTimeFormattingAttribute($value)
     {
         if(!isset($this->attributes['updated_time'])) return '';

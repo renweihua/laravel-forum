@@ -17,7 +17,7 @@
                                             {{ $dynamic->topic->topic_name }}
                                         </span>
                                     @endif
-                                    <a href="/{{ $dynamic->dynamic_id }}" class="text-reset">
+                                    <a href="{{ route('dynamic.show', ['dynamic_id' => $dynamic->dynamic_id]) }}" class="text-reset">
                                         {{ $dynamic->dynamic_title }}
                                     </a>
                                     <div class="text-secondary">
@@ -63,7 +63,7 @@
                 <div class="card">
                     <div class="row row-0">
                         <div class="col-auto">
-                            <img src="./static/tracks/c976bfc96d5e44820e553a16a6097cd02a61fd2f.jpg" class="rounded-start" alt="Shape of You" width="80" height="80">
+                            <img src="/static/tracks/c976bfc96d5e44820e553a16a6097cd02a61fd2f.jpg" class="rounded-start" alt="Shape of You" width="80" height="80">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -80,7 +80,7 @@
                 <div class="card">
                     <div class="row row-0">
                         <div class="col-auto">
-                            <img src="./static/tracks/c9a8350feee77e9345eec4155cddc96694803d1a.jpg" class="rounded-start" alt="Alone" width="80" height="80">
+                            <img src="/static/tracks/c9a8350feee77e9345eec4155cddc96694803d1a.jpg" class="rounded-start" alt="Alone" width="80" height="80">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -97,7 +97,7 @@
                 <div class="card">
                     <div class="row row-0">
                         <div class="col-auto">
-                            <img src="./static/tracks/fe4ee21d30450829e5b172e806b3c1e14ca1e5f3.jpg" class="rounded-start" alt="Langrennsfar" width="80" height="80">
+                            <img src="/static/tracks/fe4ee21d30450829e5b172e806b3c1e14ca1e5f3.jpg" class="rounded-start" alt="Langrennsfar" width="80" height="80">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -114,7 +114,7 @@
                 <div class="card">
                     <div class="row row-0">
                         <div class="col-auto">
-                            <img src="./static/tracks/f4e96086f44c4dff1758b1fc1338cd88c1b5ce9c.jpg" class="rounded-start" alt="Skibidi - Romantic Edition" width="80" height="80">
+                            <img src="/static/tracks/f4e96086f44c4dff1758b1fc1338cd88c1b5ce9c.jpg" class="rounded-start" alt="Skibidi - Romantic Edition" width="80" height="80">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -131,7 +131,7 @@
                 <div class="card">
                     <div class="row row-0">
                         <div class="col-auto">
-                            <img src="./static/tracks/73f4938130140174efb1cc0a82ececb277e40932.jpg" class="rounded-start" alt="Miracle" width="80" height="80">
+                            <img src="/static/tracks/73f4938130140174efb1cc0a82ececb277e40932.jpg" class="rounded-start" alt="Miracle" width="80" height="80">
                         </div>
                         <div class="col">
                             <div class="card-body">
@@ -148,7 +148,7 @@
                 <div class="card">
                     <div class="row row-0">
                         <div class="col-auto">
-                            <img src="./static/tracks/cfb2a532996512eff95c4b0d566d067384aaa441.jpg" class="rounded-start" alt="Different World (feat. CORSAK)" width="80" height="80">
+                            <img src="/static/tracks/cfb2a532996512eff95c4b0d566d067384aaa441.jpg" class="rounded-start" alt="Different World (feat. CORSAK)" width="80" height="80">
                         </div>
                         <div class="col">
                             <div class="card-body">

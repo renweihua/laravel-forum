@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://preview.tabler.io/static/og.png">
     <meta property="og:description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
     <!-- CSS files -->
-    <link href="./dist/css/tabler.min.css?1685973381" rel="stylesheet"/>
-    <link href="./dist/css/tabler-flags.min.css?1685973381" rel="stylesheet"/>
-    <link href="./dist/css/tabler-payments.min.css?1685973381" rel="stylesheet"/>
-    <link href="./dist/css/tabler-vendors.min.css?1685973381" rel="stylesheet"/>
-    <link href="./dist/css/demo.min.css?1685973381" rel="stylesheet"/>
+    <link href="/dist/css/tabler.min.css?1685973381" rel="stylesheet"/>
+    <link href="/dist/css/tabler-flags.min.css?1685973381" rel="stylesheet"/>
+    <link href="/dist/css/tabler-payments.min.css?1685973381" rel="stylesheet"/>
+    <link href="/dist/css/tabler-vendors.min.css?1685973381" rel="stylesheet"/>
+    <link href="/dist/css/demo.min.css?1685973381" rel="stylesheet"/>
 
     <link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
@@ -58,7 +58,7 @@
     </script>
 </head>
 <body >
-<script src="./dist/js/demo-theme.min.js?1685973381"></script>
+<script src="/dist/js/demo-theme.min.js?1685973381"></script>
 <div class="page">
     <!-- Navbar -->
     @include('forum::layouts.navbars.navbar')
@@ -66,17 +66,6 @@
     <div class="page-wrapper">
         <!-- Page header -->
         @yield('page-header')
-        <div class="page-header d-print-none">
-            <div class="container-xl">
-                <div class="row g-2 align-items-center">
-                    <div class="col">
-                        <h2 class="page-title">
-                            Music components
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Page body -->
         <div class="page-body">
             <div class="container-xl">
