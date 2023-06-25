@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Forum\UserMoney;
 use App\Models\Model;
