@@ -57,3 +57,22 @@ if ( !function_exists('get_ip') ) {
         return $data['ip'] ?? '';
     }
 }
+
+/**
+ * [check_url]
+ *
+ * @param  string  $_url  [description]
+ *
+ * @return             [type]        [description]
+ * @author             :cnpscy <[2278757482@qq.com]>
+ * @chineseAnnotation  :检测URL地址格式
+ * @englishAnnotation  :
+ * @version            :1.0
+ */
+if ( !function_exists('check_url') ) {
+    function check_url(string $url) : bool
+    {
+        $str = "/^http(s?):\/\/(?:[A-za-z0-9-]+\.)+[A-za-z]{2,4}(?:[\/\?#][\/=\?%\-&~`@[\]\':+!\.#\w]*)?$/";
+        if ( !preg_match($str, $url) ) return false; else return true;
+    }
+}

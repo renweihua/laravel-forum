@@ -4,6 +4,7 @@ namespace App\Modules\Forum\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
 
 class Dynamic extends Model
 {
@@ -342,6 +343,12 @@ class Dynamic extends Model
         $converter->getConfig()->setOption('hard_break', true);
 
         return $converter->convert($html);
+    }
+
+    // 获取会员的动态数量
+    public static function getDynamicsTotalByUser($user_id): int
+    {
+        return (int)self::where('user_id', $user_id)->count();
     }
 
     // 通过动态Id获取动态（如果存在于缓存，则读取缓存；否则读取数据库）
