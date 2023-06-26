@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 
 /**
- * App\Models\User\UserEmailVerify
+ * App\Modules\User\UserEmailVerify
  *
  * @property int $verify_id 邮箱验证表
  * @property int $user_id 会员Id

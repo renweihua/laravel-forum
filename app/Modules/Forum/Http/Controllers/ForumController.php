@@ -48,6 +48,11 @@ class ForumController extends Controller
                 ]
             ],
             [
+                'menu_name' => '用户组',
+                'menu_url' => '/user-group',
+                'menu_icon' => 'fa-group'
+            ],
+            [
                 'menu_name' => '友情链接',
                 'menu_url' => '/friendlinks',
                 'menu_icon' => 'fa-external-link-square'

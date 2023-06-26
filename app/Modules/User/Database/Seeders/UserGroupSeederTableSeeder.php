@@ -24,7 +24,7 @@ class UserGroupSeederTableSeeder extends Seeder
             UserGroup::create([
                 'group_name' => '默认会员组',
                 'group_color' => '#206bc4',
-                'group_icon' => 'fa-user',
+                'group_icon' => 'fa-group',
                 'group_authority' => $group_authority,
                 'permission_level' => 1,
                 'is_enable' => 1,

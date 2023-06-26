@@ -15,6 +15,9 @@
 5. 创建`Storage`目录软链接 `php artisan storage:link`
 6. 数据库填充：`php artisan module:seed`
 
+### 功能列表
+- [ ] 动态详情
+- [X] 会员权限组 /user-group
 
 ### 感谢
 - [Laravel](https://github.com/laravel)
