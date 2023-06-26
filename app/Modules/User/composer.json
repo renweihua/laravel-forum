@@ -18,6 +18,9 @@
     "autoload": {
         "psr-4": {
             "App\\Modules\\User\\": ""
-        }
+        },
+        "files": [
+            "app/Modules/User/Helper/functions.php"
+        ]
     }
 }

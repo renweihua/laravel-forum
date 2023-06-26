@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('')->group(function() {
     Route::get('/users', 'UserController@users')->name('users');
     Route::get('/user-group', 'UserGroupController@group')->name('user-group');
+    Route::get('/user/{user_id}', 'UserController@show')->name('user.show');
 });

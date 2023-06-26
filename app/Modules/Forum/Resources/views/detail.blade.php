@@ -122,12 +122,12 @@
                     <article class="card-body topic article markdown text-reset">
                         {!! $dynamic->dynamic_content !!}
                     </article>
-                        <div class="px-3 py-3">
-                            <div class="hr-text hr-text-left mt-0 mb-3">signature</div>
-                            <span class="text-muted">
-                                {{$dynamic->userInfo->qianming ?? '这里待渲染签名信息'}}
-                            </span>
-                        </div>
+                    <div class="px-3 py-3">
+                        <div class="hr-text hr-text-left mt-0 mb-3">signature</div>
+                        <span class="text-muted">
+                            {{$dynamic->userInfo->basic_extends['user_introduction']}}
+                        </span>
+                    </div>
 
                     {{--            页脚--}}
                     @if(auth()->check())

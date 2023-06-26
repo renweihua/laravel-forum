@@ -29,12 +29,12 @@
 
 @section('content')
     <div class="row row-cards">
-        @foreach($users as $user)
+        @foreach($userInfos as $userInfo)
             <div class="col-md-6 col-lg-3">
                 <div class="card">
                     <div class="card-body p-4 text-center">
                         <span class="avatar avatar-xl mb-3 rounded" style="background-image: url({{ $user->userInfo->user_avatar }})"></span>
-                        <h3 class="m-0 mb-1"><a href="#">{{ $user->userInfo->nick_name }}</a></h3>
+                        <h3 class="m-0 mb-1"><a href="#">{{ $userInfo->nick_name }}</a></h3>
                         <div class="text-secondary">UI Designer</div>
                         <div class="mt-3">
                             <span class="badge bg-purple-lt">Owner</span>
@@ -54,7 +54,7 @@
         @endforeach
     </div>
     <div class="d-flex mt-4">
-        {{ $users->links() }}
+        {{ $userInfo->links() }}
     </div>
     <div class="d-flex mt-4">
         <ul class="pagination ms-auto">

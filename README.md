@@ -17,7 +17,13 @@
 
 ### 功能列表
 - [ ] 动态详情
+  - [X] 动态渲染
+  - [X] 作者渲染
+  - 点赞
+  - 评论
 - [X] 会员权限组 /user-group
+- [ ] 会员详情 /user/user_id
+  - [X] 会员导航栏
 
 ### 感谢
 - [Laravel](https://github.com/laravel)

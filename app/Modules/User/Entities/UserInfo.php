@@ -219,11 +219,6 @@ class UserInfo extends Model
         return $this->hasOne(UserFollowFan::class, 'user_id', $this->primaryKey);
     }
 
-    protected static function newFactory()
-    {
-        return UserInfoFactory::new();
-    }
-
     /**
      * 获取会员头像
      *
