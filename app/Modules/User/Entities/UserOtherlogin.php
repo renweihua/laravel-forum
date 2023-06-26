@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 use App\Modules\Bbs\Database\factories\UserOtherloginFactory;
 
 /**
- * App\Models\User\UserOtherlogin
+ * App\Modules\User\UserOtherlogin
  *
  * @property int $user_id 用户的id-会员基本信息表
  * @property string $qq_openid QQ登录的标识
@@ -25,7 +25,7 @@ use App\Modules\Bbs\Database\factories\UserOtherloginFactory;
  * @property int $change_account 是否允许更改账户：0.否；1.是【仅针对于第三方快捷登录的账户，仅可更改一次，值变动】
  * @property \Illuminate\Support\Carbon $created_time 创建时间
  * @property \Illuminate\Support\Carbon $updated_time 更新时间
- * @property-read \App\Models\User\User $user
+ * @property-read \App\Modules\User\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Model filter(array $input = [], $filter = null)
  * @method static \Illuminate\Database\Eloquent\Builder|UserOtherlogin newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserOtherlogin newQuery()

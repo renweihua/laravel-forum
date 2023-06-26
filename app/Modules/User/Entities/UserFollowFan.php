@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 
 /**
- * App\Models\User\UserFollowFan
+ * App\Modules\User\UserFollowFan
  *
  * @property int $relation_id 会员关注与粉丝记录表
  * @property int $user_id 会员主键
@@ -15,8 +15,8 @@ use App\Models\Model;
  * @property int $is_special 是否特别关心：1：是；0：否
  * @property int $is_blacklist 是否拉黑：1：是；0：否
  * @property \Illuminate\Support\Carbon $updated_time 更新时间
- * @property-read \App\Models\User\UserInfo|null $friendInfo
- * @property-read \App\Models\User\UserInfo|null $userInfo
+ * @property-read \App\Modules\User\UserInfo|null $friendInfo
+ * @property-read \App\Modules\User\UserInfo|null $userInfo
  * @method static \Illuminate\Database\Eloquent\Builder|Model filter(array $input = [], $filter = null)
  * @method static \Illuminate\Database\Eloquent\Builder|UserFollowFan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserFollowFan newQuery()

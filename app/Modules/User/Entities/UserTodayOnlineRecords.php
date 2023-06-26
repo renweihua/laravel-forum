@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 
 /**
- * App\Models\User\UserTodayOnlineRecords
+ * App\Modules\User\UserTodayOnlineRecords
  *
  * @property int $record_id 每天在线会员的记录表
  * @property int $day_time 当天时间戳 - 年月日即可

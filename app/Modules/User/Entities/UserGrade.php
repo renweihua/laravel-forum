@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 use App\Modules\Bbs\Database\factories\UserGradeFactory;
 
 /**
- * App\Models\User\UserGrade
+ * App\Modules\User\UserGrade
  *
  * @property int $grade_id 会员等级表【禁止删除，允许修改】
  * @property string $grade_name 等级名称

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\User\Entities;
+namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 use App\Models\MonthModel;
 
 /**
- * App\Models\User\UserSign
+ * App\Modules\User\UserSign
  *
  * @property int $sign_id 会员签到记录表
  * @property int $user_id 用户的id
