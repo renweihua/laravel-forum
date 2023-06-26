@@ -29,21 +29,20 @@
                                         创建于 {{ $dynamic->time_formatting }}
                                     </div>
                                     <div class="col-auto">
-                                    <span title="浏览量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                        <i class="fa fa-eye"></i>
-                                        {{ $dynamic->cache_extends['reads_num'] }}
-                                    </span>
                                         <span title="浏览量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                        <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
-                                        {{ $dynamic->cache_extends['praises_count'] }}
-                                    </span>
-                                        <span title="浏览量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                        <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
-                                        {{ $dynamic->cache_extends['collections_count'] }}
-                                    </span>
-                                        <a style="text-decoration:none;" href="javascript:;" class="text-muted cursor-pointer">
-                                            <i class="fa fa-commenting-o"></i>
-                                            <i class="fa fa-comments"></i>
+                                            <i class="fa fa-eye fa-lg"></i>
+                                            {{ $dynamic->cache_extends['reads_num'] }}
+                                        </span>
+                                        <span title="点赞量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                            <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }} fa-lg"></i>
+                                            {{ $dynamic->cache_extends['praises_count'] }}
+                                        </span>
+                                            <span title="收藏量" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                            <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }} fa-lg"></i>
+                                            {{ $dynamic->cache_extends['collections_count'] }}
+                                        </span>
+                                        <a title="评论量" style="text-decoration:none;" href="javascript:;" class="text-muted cursor-pointer">
+                                            <i class="fa fa-commenting-o fa-lg"></i>
                                             <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
                                         </a>
                                     </div>

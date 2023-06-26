@@ -12,7 +12,7 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('forum')->group(function() {
-    Route::get('/', 'HomeController@index');
+Route::prefix('')->group(function() {
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/{dynamic_id}.html', 'DynamicController@show')->name('dynamic.show');
 });

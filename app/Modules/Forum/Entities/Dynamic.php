@@ -2,6 +2,9 @@
 
 namespace App\Modules\Forum\Entities;
 
+use App\Modules\Topic\Entities\Topic;
+use App\Modules\User\Entities\User;
+use App\Modules\User\Entities\UserInfo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;

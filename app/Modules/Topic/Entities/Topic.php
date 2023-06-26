@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Models\Forum\Entities;
+namespace App\Modules\Topic\Entities;
 
 use App\Models\Model;
-use App\Models\Forum\Entities\User;
-use App\Modules\Bbs\Database\factories\TopicFactory;
+use App\Modules\User\Entities\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 

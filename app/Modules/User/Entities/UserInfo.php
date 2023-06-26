@@ -8,7 +8,7 @@ use App\Modules\Bbs\Database\factories\UserInfoFactory;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * App\Models\User\UserInfo
+ * App\Modules\User\UserInfo
  *
  * @property int $user_id 用户的id-会员基本信息表
  * @property string $user_uuid UUID
@@ -43,15 +43,15 @@ use Illuminate\Support\Facades\Storage;
  * @property int $luckydraw_times 抽奖的次数
  * @property-read \Illuminate\Database\Eloquent\Collection|Dynamic[] $dynamics
  * @property-read int|null $dynamics_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\UserFollowFan[] $fans
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Modules\User\UserFollowFan[] $fans
  * @property-read int|null $fans_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User\UserFollowFan[] $follows
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Modules\User\UserFollowFan[] $follows
  * @property-read int|null $follows_count
  * @property mixed $a_u_t_h_extends
  * @property-read bool $is_sign
  * @property-read string $time_formatting
  * @property-read string $user_sex_text
- * @property-read \App\Models\User\UserFollowFan|null $isFollow
+ * @property-read \App\Modules\User\UserFollowFan|null $isFollow
  * @method static \Illuminate\Database\Eloquent\Builder|Model filter(array $input = [], $filter = null)
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserInfo newQuery()
