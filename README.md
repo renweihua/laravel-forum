@@ -22,9 +22,14 @@
   - 点赞
   - 评论
 - [X] 会员权限组 /user-group
+
+##### 会员相关
 - [ ] 会员详情 /user/user_id
   - [X] 会员导航栏
+
+##### 话题
 - [X] 话题列表 /topics
+- [ ] 话题详情
 
 ### 感谢
 - [Laravel](https://github.com/laravel)
