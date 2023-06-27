@@ -5,12 +5,14 @@ namespace App\Modules\Forum\Entities;
 use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\User;
 use App\Modules\User\Entities\UserInfo;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 
 class Dynamic extends Model
 {
+    use Filterable;
     use HasFactory;
 
     protected $fillable = [];
