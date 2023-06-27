@@ -24,6 +24,7 @@
 - [X] 会员权限组 /user-group
 - [ ] 会员详情 /user/user_id
   - [X] 会员导航栏
+- [X] 话题列表 /topics
 
 ### 感谢
 - [Laravel](https://github.com/laravel)

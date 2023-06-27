@@ -48,6 +48,7 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
+    @yield('style')
     {{-- Laravel Mix - CSS File --}}
     {{-- <link rel="stylesheet" href="{{ mix('css/forum.css') }}"> --}}
     <script>
@@ -78,5 +79,6 @@
     </div>
 </div>
 @include('forum::layouts.footers.js')
+@yield('js')
 </body>
 </html>

@@ -2,11 +2,11 @@
 
 namespace App\Modules\Topic\Http\Controllers;
 
+use App\Modules\Topic\Entities\Topic;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
-class TopicController extends Controller
+class TopicController extends TopicModuleController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return view('topic::index');
+        $topics = Topic::getAllTopics();
+        return view('topic::index', compact('topics'));
     }
 
     /**

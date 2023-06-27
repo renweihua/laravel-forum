@@ -17,7 +17,7 @@ class ForumController extends Controller
             ],
             [
                 'menu_name' => '话题',
-                'menu_url' => '/topic',
+                'menu_url' => route('topics'),
                 'menu_icon' => 'fa-tag'
             ],
             [
