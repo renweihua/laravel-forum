@@ -28,6 +28,9 @@ class TopicController extends TopicModuleController
     public function show($topic_id, Request $request)
     {
         $topic = Topic::find($topic_id);
+        if (empty($topic)){
+            abort(404, '话题不存在或已删除！');
+        }
 
         $dynamics = Dynamic::public()
             ->filter($request->all())
