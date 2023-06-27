@@ -63,8 +63,10 @@
 <script src="/dist/js/demo-theme.min.js?1685973381"></script>
 <div class="page">
     <!-- Navbar -->
-    @include('forum::layouts.navbars.navbar')
-    @include('forum::layouts.navbars.sidebar')
+    <div class="sticky-top">
+        @include('forum::layouts.navbars.navbar')
+        @include('forum::layouts.navbars.sidebar')
+    </div>
     <div class="page-wrapper">
         <!-- Page header -->
         @yield('page-header')
