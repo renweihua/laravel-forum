@@ -2,7 +2,9 @@
 
 namespace App\Modules\Topic\Http\Controllers;
 
+use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Topic\Entities\Topic;
+use App\Modules\User\Entities\UserInfo;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
@@ -16,6 +18,24 @@ class TopicController extends TopicModuleController
     {
         $topics = Topic::getAllTopics();
         return view('topic::index', compact('topics'));
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show($topic_id, Request $request)
+    {
+        $topic = Topic::find($topic_id);
+
+        $dynamics = Dynamic::public()
+            ->filter($request->all())
+            ->where('topic_id', $topic_id)
+            ->orderBy('dynamic_id', 'DESC')
+            ->paginate(10);
+
+        return view('topic::show', compact('topic', 'dynamics'));
     }
 
     /**
@@ -35,16 +55,6 @@ class TopicController extends TopicModuleController
     public function store(Request $request)
     {
         //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('topic::show');
     }
 
     /**

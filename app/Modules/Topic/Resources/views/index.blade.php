@@ -29,7 +29,7 @@
         @if (!empty($topics))
             @foreach ($topics as $topic)
                 <div class="col-md-6 col-lg-4">
-                    <a href="{{$topic->topic_id}}" class="card" @if($topic->topic_color) style="background-color: {{$topic->topic_color}}!important;" @endif>
+                    <a href="{{ route('topic.show', ['topic_id' => $topic->topic_id])}}" class="card" @if($topic->topic_color) style="background-color: {{$topic->topic_color}}!important;" @endif>
                         @if($topic->topic_icon)
                             <div class="card-stamp">
                                 <div class="card-stamp-icon bg-yellow">

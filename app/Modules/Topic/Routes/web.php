@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('')->group(function() {
     Route::get('/topics', 'TopicController@index')->name('topics');
+    Route::get('/topic/{topic_id}', 'TopicController@show')->name('topic.show');
 });

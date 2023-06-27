@@ -1,6 +1,12 @@
 <?php
 use App\Models\User;
 
+
+    function getLoginUserId(): int
+    {
+        return 402;
+    }
+
 function isAdmin()
 {
     return User::isAdmin();
