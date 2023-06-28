@@ -15,6 +15,17 @@
 5. 创建`Storage`目录软链接 `php artisan storage:link`
 6. 数据库填充：`php artisan module:seed`
 
+### 前端安装
+- 为 NPM 和 Yarn 配置安装加速
+  - npm config set registry=https://registry.npm.taobao.org
+  - yarn config set registry https://registry.npm.taobao.org
+- 使用 Yarn 安装依赖
+  - SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
+- 安装成功后，运行以下命令
+  - npm run watch-poll
+- 如遇错误`[webpack-cli] Error: Cannot find module 'laravel-mix-merge-manifest'`
+  - 重新安装 `npm install laravel-mix-merge-manifest --save-dev`
+
 ### 功能列表
 - [ ] 动态详情
   - [X] 动态渲染

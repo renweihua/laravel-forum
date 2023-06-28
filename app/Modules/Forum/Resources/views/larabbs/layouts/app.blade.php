@@ -11,7 +11,7 @@
     <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/forum.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/forum.js') }}"></script>
 </body>
 
 </html>
