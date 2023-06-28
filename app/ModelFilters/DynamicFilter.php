@@ -19,17 +19,17 @@ class DynamicFilter extends ModelFilter
         $this->check();
 
         switch ($tab) {
-            case 'default':
-                $this->latest('dynamic_id')->latest('updated_time');
+            case 'default': // 活跃
+                $this->latest('updated_time')->latest('dynamic_id');
                 break;
             case 'featured': // 精选/加精
                 $this->where('excellent_time', '>', 0)->latest('excellent_time');
                 break;
             case 'recent': // 最新发布
-                $this->latest()->latest('updated_time');
+                $this->latest('dynamic_id')->latest('updated_time');
                 break;
             case 'zeroComment': // 零评论
-                $this->whereJsonContains('cache_extends->comments_count', 0)->latest();
+                $this->whereJsonContains('cache_extends->comments_count', 0)->latest('dynamic_id');
                 break;
             case 'follow': // 关注
                 $login_user_id = getLoginUserId();
