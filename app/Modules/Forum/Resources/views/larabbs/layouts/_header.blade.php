@@ -10,8 +10,8 @@
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav">
-
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item "><a class="nav-link active" href="{{ route('home') }}">首页</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

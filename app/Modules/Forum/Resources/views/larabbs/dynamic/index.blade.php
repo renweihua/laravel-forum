@@ -1,12 +1,16 @@
 @extends('forum::larabbs.layouts.app')
-@section('title', '话题列表')
+@section('title', isset($topic) ? $topic->topic_name : '话题列表')
 
 @section('content')
-
     <div class="row mb-5">
         <div class="col-lg-9 col-md-9 topic-list">
-            <div class="card ">
+            @if (isset($topic))
+                <div class="alert alert-info" role="alert">
+                    {{ $topic->topic_name }} ：{{ $topic->topic_description }}
+                </div>
+            @endif
 
+            <div class="card ">
                 <div class="card-header bg-transparent">
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a class="nav-link active" href="#">最后回复</a></li>
@@ -16,10 +20,10 @@
 
                 <div class="card-body">
                     {{-- 话题列表 --}}
-                    @include('forum::larabbs.dynamic._dynamic_list', ['topics' => $topics])
+                    @include('forum::larabbs.dynamic._dynamic_list', ['dynamics' => $dynamics])
                     {{-- 分页 --}}
                     <div class="mt-5">
-                        {!! $topics->appends(\Illuminate\Http\Request::except('page'))->render() !!}
+                        {!! $dynamics->appends(Request::except('page'))->render() !!}
                     </div>
                 </div>
             </div>

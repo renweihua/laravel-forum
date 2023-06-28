@@ -37,10 +37,11 @@ class TopicController extends TopicModuleController
         $dynamics = Dynamic::public()
             ->filter($request->all())
             ->where('topic_id', $topic_id)
+            ->with(['userInfo', 'topic'])
             ->orderBy('dynamic_id', 'DESC')
             ->paginate(10);
 
-        return view('topic::show', compact('topic', 'dynamics', 'tab'));
+        return $this->view('forum::dynamic.index', compact('topic', 'dynamics', 'tab'));
     }
 
     /**
