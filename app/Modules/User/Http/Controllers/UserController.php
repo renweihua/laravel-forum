@@ -4,6 +4,7 @@ namespace App\Modules\User\Http\Controllers;
 
 use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\User\Entities\User;
+use App\Modules\User\Entities\UserAuth;
 use App\Modules\User\Entities\UserInfo;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -18,8 +19,11 @@ class UserController extends UserModuleController
         return view('user::users', compact('userInfos'));
     }
 
-    public function show($user_id, Request $request)
+    public function show(UserAuth $user, Request $request)
     {
+        $user->load('userInfo');
+        return $this->view('user::user.show', compact('user'));
+
         $userInfo = UserInfo::find($user_id);
         if (empty($userInfo)){
             abort(404, '会员不存在或已删除！');
