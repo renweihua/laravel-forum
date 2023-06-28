@@ -17,12 +17,9 @@
     <meta name="mobile-web-app-capable" content="yes"/>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="MobileOptimized" content="320"/>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
-    <meta name="canonical" content="https://preview.tabler.io/music.html">
-    <meta name="twitter:image:src" content="https://preview.tabler.io/static/og.png">
-    <meta name="twitter:site" content="@tabler_ui">
-    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <meta name="canonical" content="{{ url()->current() }}">
     <meta property="og:image" content="https://preview.tabler.io/static/og.png">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="640">
@@ -37,17 +34,8 @@
     <link href="/dist/css/tabler-payments.min.css?1685973381" rel="stylesheet"/>
     <link href="/dist/css/tabler-vendors.min.css?1685973381" rel="stylesheet"/>
     <link href="/dist/css/demo.min.css?1685973381" rel="stylesheet"/>
-
+    <!-- font-awesome 图标字体库 -->
     <link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-        @import url('https://rsms.me/inter/inter.css');
-        :root {
-            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-        }
-        body {
-            font-feature-settings: "cv03", "cv04", "cv11";
-        }
-    </style>
     @yield('style')
     {{-- Laravel Mix - CSS File --}}
     {{-- <link rel="stylesheet" href="{{ mix('css/forum.css') }}"> --}}

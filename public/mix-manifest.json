@@ -1,6 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/forum.js": "/js/forum.js",
-    "/css/app.css": "/css/app.css",
-    "/css/forum.css": "/css/forum.css"
+    "/js/app.js": "/js/app.js?id=11af5b026762d33429c2ff59316117eb",
+    "/js/forum.js": "/js/forum.js?id=eb261b1ff206f6a6bba474697aeafd7e",
+    "/css/app.css": "/css/app.css?id=6866ce158855db83d05309f31fda07d4",
+    "/css/forum.css": "/css/forum.css?id=1df1d2f153f9438c87dfe5c35728ea58"
 }

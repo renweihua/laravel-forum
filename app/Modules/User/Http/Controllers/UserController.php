@@ -29,6 +29,14 @@ class UserController extends UserModuleController
         $this->getUserMenus();
 
         $user_menu_id = $request->input('user_menu', 1);
+        switch ($user_menu_id){
+            case 1: // 主页
+                break;
+            case 2: // 动态
+                $dynamics = Dynamic::where('user_id', $user_id)->with(['userInfo', 'topic'])->orderByDesc('dynamic_id')->paginate(10);
+                View::share('dynamics', $dynamics);
+                break;
+        }
         return view('user::show', compact('userInfo', 'user_menu_id'));
     }
 }
