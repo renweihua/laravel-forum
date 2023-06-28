@@ -14,6 +14,7 @@
 4. 数据表迁移 `php artisan migrate`
 5. 创建`Storage`目录软链接 `php artisan storage:link`
 6. 数据库填充：`php artisan module:seed`
+7. 可发布语言包：`php artisan lang:publish zh_CN/语言标识`
 
 ### 前端安装
 - 为 NPM 和 Yarn 配置安装加速
