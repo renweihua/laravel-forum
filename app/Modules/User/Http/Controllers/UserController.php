@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\View;
 
 class UserController extends UserModuleController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     public function users()
     {
         $userInfos = UserInfo::paginate(4);
@@ -47,11 +53,13 @@ class UserController extends UserModuleController
 
     public function edit(UserAuth $user)
     {
+        $this->authorize('update', $user);
         return $this->view('user::user.edit', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, UserAuth $user)
     {
+        $this->authorize('update', $user);
         $user->userInfo()->update($request->only('nick_name'));
         return redirect()->route('users.show', $user->user_id)->with('success', '个人资料更新成功！');
     }

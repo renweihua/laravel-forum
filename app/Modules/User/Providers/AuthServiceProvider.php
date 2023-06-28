@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace App\Modules\User\Providers;
 
+use App\Modules\User\Entities\UserAuth;
+use App\Modules\User\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        UserAuth::class => UserPolicy::class,
     ];
 
     /**
