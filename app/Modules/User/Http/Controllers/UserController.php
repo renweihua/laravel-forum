@@ -29,7 +29,10 @@ class UserController extends UserModuleController
     public function show(UserAuth $user, Request $request)
     {
         $user->load('userInfo');
-        return $this->view('user::user.show', compact('user'));
+
+        $dynamics = Dynamic::where('user_id', $user->user_id)->orderByDesc('dynamic_id')->paginate(10);
+
+        return $this->view('user::user.show', compact('user', 'dynamics'));
 
         $userInfo = UserInfo::find($user_id);
         if (empty($userInfo)){
