@@ -6,6 +6,8 @@ use Illuminate\Routing\Controller;
 
 class ForumController extends Controller
 {
+    protected $template = 'larabbs';
+
     public function __construct()
     {
         // 临时设置菜单栏目
@@ -61,5 +63,19 @@ class ForumController extends Controller
         view()->share([
             'menus' => $menus
         ]);
+    }
+
+    public function view($view, $data = [])
+    {
+        $template = $this->template;
+        // 设置模板主题
+        if ($template){
+            $needle = '::';
+            // 先获取字符串第一次出现的位置（ strpos() ）
+            // 获取需替换字符长度（ strlen() ）
+            // 替换字符
+            $view = substr_replace($view, $needle . $template . '.', strpos($view, $needle),strlen($needle));
+        }
+        return view($view, $data);
     }
 }
