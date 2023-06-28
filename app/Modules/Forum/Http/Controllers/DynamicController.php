@@ -42,4 +42,19 @@ class DynamicController extends ForumController
 
         return redirect()->route('dynamic.show', $dynamic->dynamic_id)->with('success', '帖子`' . $dynamic->dynamic_title . '`创建成功！');
     }
+
+    public function edit(Dynamic $dynamic)
+    {
+        $this->authorize('update', $dynamic);
+        $topics = Topic::getAllTopics();
+        return $this->view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
+    }
+
+    public function update(DynamicRequest $request, Dynamic $dynamic)
+    {
+        $this->authorize('update', $dynamic);
+        $dynamic->update($request->all());
+
+        return redirect()->route('dynamic.show', $dynamic->dynamic_id)->with('success', '更新成功！');
+    }
 }
