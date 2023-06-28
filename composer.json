@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "nwidart/laravel-modules": "^8.3",
+        "overtrue/laravel-lang": "~5.0.2",
         "tucker-eric/eloquentfilter": "^3.0"
     },
     "require-dev": {
