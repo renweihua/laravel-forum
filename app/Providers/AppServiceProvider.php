@@ -24,8 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::defaultView('pagination::bootstrap-4');
+        // 分页使用bootstrap
+        Paginator::useBootstrap();
 
-        Paginator::defaultSimpleView('pagination::simple-bootstrap-4');
+        // Paginator::defaultView('pagination::bootstrap-4');
+        // Paginator::defaultSimpleView('pagination::simple-bootstrap-4');
     }
 }

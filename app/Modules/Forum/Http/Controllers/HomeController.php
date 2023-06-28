@@ -8,7 +8,7 @@ class HomeController extends ForumController
 {
     public function index()
     {
-        $dynamics = Dynamic::paginate(15);
+        $dynamics = Dynamic::with(['topic', 'userInfo'])->paginate(15);
 
         return $this->view('forum::index', compact('dynamics'));
     }

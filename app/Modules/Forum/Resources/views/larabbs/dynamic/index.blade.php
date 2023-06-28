@@ -1,7 +1,8 @@
 @extends('forum::larabbs.layouts.app')
-@section('title', '首页')
+@section('title', '话题列表')
 
 @section('content')
+
     <div class="row mb-5">
         <div class="col-lg-9 col-md-9 topic-list">
             <div class="card ">
@@ -15,10 +16,10 @@
 
                 <div class="card-body">
                     {{-- 话题列表 --}}
-                    @include('forum::larabbs.dynamic._dynamic_list', ['dynamics' => $dynamics])
+                    @include('forum::larabbs.dynamic._dynamic_list', ['topics' => $topics])
                     {{-- 分页 --}}
                     <div class="mt-5">
-                        {!! $dynamics->appends(Request::except('page'))->render() !!}
+                        {!! $topics->appends(\Illuminate\Http\Request::except('page'))->render() !!}
                     </div>
                 </div>
             </div>
