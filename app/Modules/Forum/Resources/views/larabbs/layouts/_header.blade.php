@@ -11,7 +11,8 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item "><a class="nav-link active" href="{{ route('home') }}">首页</a></li>
+                <li class="nav-item "><a class="nav-link {{ active_class(if_route('home')) }}" href="{{ route('home') }}">首页</a></li>
+                <li class="nav-item "><a class="nav-link {{ active_class((if_route('topic.show') && if_route_param('topic_id', 1))) }}" href="{{ route('topic.show', 1) }}">话题分组1</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
