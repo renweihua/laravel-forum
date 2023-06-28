@@ -12,10 +12,10 @@
                      alt="{{ $user->userInfo->nick_name }}">
                 <div class="card-body">
                     <h5><strong>个人简介</strong></h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                    <p>{{ $user->userInfo->basic_extends['user_introduction'] }}</p>
                     <hr>
                     <h5><strong>注册于</strong></h5>
-                    <p>January 01 1901</p>
+                    <p>{{ $user->userInfo->time_formatting }}</p>
                 </div>
             </div>
         </div>
