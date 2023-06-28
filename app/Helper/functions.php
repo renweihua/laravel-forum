@@ -76,3 +76,35 @@ if ( !function_exists('check_url') ) {
         if ( !preg_match($str, $url) ) return false; else return true;
     }
 }
+
+
+if ( !function_exists('my_json_encode') ) {
+    /**
+     * 统一的json_encode
+     *
+     * @param  array   $data
+     * @param  string  $options
+     *
+     * @return false|string
+     */
+    function my_json_encode($data, string $options = '')
+    {
+        //$data = is_object($data) ? (array)$data : $data;
+        return json_encode($data, empty($options) ? (JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : $options);
+    }
+}
+
+if ( !function_exists('my_json_decode') ) {
+    /**
+     * 统一的 json_decode
+     *
+     * @param  string  $string
+     * @param  bool    $assoc
+     *
+     * @return mixed
+     */
+    function my_json_decode(string $string, bool $assoc = true)
+    {
+        return json_decode($string, $assoc);
+    }
+}

@@ -15,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/search', 'HomeController@index')->name('search');
+
+
     Route::get('/{dynamic_id}.html', 'DynamicController@show')->name('dynamic.show');
+    Route::get('/dynamic.create', 'DynamicController@create')->name('dynamic.create');
+    Route::post('/dynamic.store', 'DynamicController@store')->name('dynamic.store');
+    Route::get('/dynamic.update', 'DynamicController@update')->name('dynamic.update');
 });

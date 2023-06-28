@@ -2,9 +2,8 @@
 
 namespace App\Modules\User\Entities;
 
-use App\Models\Dynamic\Dynamic;
 use App\Models\Model;
-use App\Modules\Bbs\Database\factories\UserInfoFactory;
+use App\Modules\Forum\Entities\Dynamic;
 use Illuminate\Support\Facades\Storage;
 
 /**

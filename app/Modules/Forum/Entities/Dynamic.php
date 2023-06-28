@@ -3,17 +3,25 @@
 namespace App\Modules\Forum\Entities;
 
 use App\Models\Model;
+use App\Modules\Forum\Constants\DynamicCacheKeys;
 use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\User;
 use App\Modules\User\Entities\UserInfo;
+use App\Modules\User\Entities\UserOtherlogin;
+use Carbon\Carbon;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class Dynamic extends Model
 {
     use Filterable;
     use HasFactory;
+
+    // 内容格式类型
+    const CONTENT_TYPE_MARKDOWN = 'markdown';
+    const CONTENT_TYPE_HTML = 'html';
 
     protected $fillable = [];
 
@@ -63,7 +71,7 @@ class Dynamic extends Model
             $updateTopicsCache($dynamic);
 
             // 清除动态的所有缓存
-            self::getDynamicById($dynamic->id, -1 ,true);
+            self::getDynamicById($dynamic->dynamic_id, -1 ,true);
         };
 
         static::created($saveContent);
@@ -382,7 +390,7 @@ class Dynamic extends Model
             if (empty($dynamic)) {
                 throw new \Exception('动态不存在！');
             }
-            Cache::tags($tag_key)->put($key, $dynamic, Carbon::now()->addMinutes(5));
+            Cache::tags($tag_key)->put($key, $dynamic, Carbon::now()->addMinutes(10));
         } else {
             $dynamic = Cache::tags($tag_key)->get($key);
         }
