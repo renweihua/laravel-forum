@@ -32,13 +32,15 @@ class TopicController extends TopicModuleController
             abort(404, '话题不存在或已删除！');
         }
 
+        $tab = $request->input('tab', 'default');
+
         $dynamics = Dynamic::public()
             ->filter($request->all())
             ->where('topic_id', $topic_id)
             ->orderBy('dynamic_id', 'DESC')
             ->paginate(10);
 
-        return view('topic::show', compact('topic', 'dynamics'));
+        return view('topic::show', compact('topic', 'dynamics', 'tab'));
     }
 
     /**
