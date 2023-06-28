@@ -6,6 +6,7 @@ use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\User\Entities\User;
 use App\Modules\User\Entities\UserAuth;
 use App\Modules\User\Entities\UserInfo;
+use App\Modules\User\Http\Requests\UserUpdateRequest;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -42,5 +43,16 @@ class UserController extends UserModuleController
                 break;
         }
         return view('user::show', compact('userInfo', 'user_menu_id'));
+    }
+
+    public function edit(UserAuth $user)
+    {
+        return $this->view('user::user.edit', compact('user'));
+    }
+
+    public function update(UserUpdateRequest $request, UserAuth $user)
+    {
+        $user->userInfo()->update($request->only('nick_name'));
+        return redirect()->route('users.show', $user->user_id)->with('success', '个人资料更新成功！');
     }
 }
