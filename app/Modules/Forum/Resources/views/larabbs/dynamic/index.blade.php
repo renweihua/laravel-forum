@@ -13,8 +13,31 @@
             <div class="card ">
                 <div class="card-header bg-transparent">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#">最后回复</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">最新发布</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class($tab == 'default') }}" href="{{ Request::url() }}?tab=default">
+                                活跃
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(if_query('tab', 'recent')) }}" href="{{ Request::url() }}?tab=recent">
+                                最新发布
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(if_query('tab', 'featured')) }}" href="{{ Request::url() }}?tab=featured">
+                                精选
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(if_query('tab', 'zeroComment')) }}" href="{{ Request::url() }}?tab=zeroComment">
+                                零评论
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ active_class(if_query('tab', 'follow')) }}" href="{{ Request::url() }}?tab=follow">
+                                关注
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
