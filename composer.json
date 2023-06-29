@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.5",
         "nwidart/laravel-modules": "^8.3",
         "overtrue/laravel-lang": "~5.0.2",
+        "predis/predis": "~1.1",
         "summerblue/laravel-active": "8.*",
         "tucker-eric/eloquentfilter": "^3.0"
     },
