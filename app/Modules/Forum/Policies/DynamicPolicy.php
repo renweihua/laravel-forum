@@ -22,6 +22,11 @@ class DynamicPolicy
 
     public function update(UserAuth $currentUser, Dynamic $dynamic)
     {
-        return $currentUser->user_id === $dynamic->user_id;
+        return $currentUser->isAuthorOf($dynamic);
+    }
+
+    public function destroy(UserAuth $currentUser, Dynamic $dynamic)
+    {
+        return $currentUser->isAuthorOf($dynamic);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models\Forum\Entities;
 
 use App\Models\Model;
 use App\Models\Forum\Entities\User;
-use App\Models\Forum\Entities\UserInfo;
+use App\Modules\User\Entities\UserInfo;
 
 /**
  * App\Models\Dynamic\DynamicPraise

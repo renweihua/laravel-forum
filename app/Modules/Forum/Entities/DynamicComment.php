@@ -3,7 +3,7 @@
 namespace App\Modules\Forum\Entities;
 
 use App\Models\Model;
-use App\Models\Forum\Entities\UserInfo;
+use App\Modules\User\Entities\UserInfo;
 
 class DynamicComment extends Model
 {

@@ -116,4 +116,9 @@ class UserAuth extends Authenticatable implements MustVerifyEmail
     {
         return route('user.activate_change_email', ['verify_token' => $token]);
     }
+
+    public function isAuthorOf($model)
+    {
+        return $this->user_id == $model->user_id;
+    }
 }

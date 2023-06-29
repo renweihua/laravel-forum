@@ -4,9 +4,8 @@ namespace App\Modules\Forum\Providers;
 
 use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Forum\Policies\DynamicPolicy;
-use App\Modules\User\Entities\UserAuth;
-use App\Modules\User\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
