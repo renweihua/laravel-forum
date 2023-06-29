@@ -28,11 +28,11 @@ class CommentsController extends CommentModuleController
         return redirect()->to(route('dynamic.show', [$comment->dynamic_id]))->with('success', '评论创建成功！');
     }
 
-    public function destroy(Reply $reply)
+    public function destroy(DynamicComment $comment)
     {
-        $this->authorize('destroy', $reply);
-        $reply->delete();
+        $this->authorize('destroy', $comment);
+        $comment->delete();
 
-        return redirect()->route('replies.index')->with('success', '评论删除成功！');
+        return redirect()->route('dynamic.show', [$comment->dynamic_id])->with('success', '评论删除成功！');
     }
 }

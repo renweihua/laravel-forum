@@ -16,11 +16,19 @@
                     <span class="meta text-secondary" title="{{ $comment->time_formatting }}">{{ $comment->time_formatting }}</span>
 
                     {{-- 回复删除按钮 --}}
-                    <span class="meta float-right">
-                        <a title="删除回复">
-                          <i class="far fa-trash-alt"></i>
-                        </a>
-                    </span>
+                    @can('destroy', $comment)
+                        <span class="meta float-right">
+                            <form action="{{ route('comments.destroy', $comment->comment_id) }}"
+                                  onsubmit="return confirm('确定要删除此评论？');"
+                                  method="post">
+                              {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                              <button type="submit" class="btn btn-default btn-xs pull-left text-secondary">
+                                <i class="far fa-trash-alt"></i>
+                              </button>
+                            </form>
+                        </span>
+                    @endcan
                 </div>
                 <div class="reply-content text-secondary">
                     {!! $comment->comment_content !!}
