@@ -23,12 +23,14 @@
 
                     <small class="media-body meta text-secondary">
 
+                        @if($dynamic->topic)
                         <a class="text-secondary" href="{{ route('topic.show', $dynamic->topic_id) }}" title="{{ $dynamic->topic->topic_name }}">
                             <i class="far fa-folder"></i>
                             {{ $dynamic->topic->topic_name }}
                         </a>
 
                         <span> • </span>
+                        @endif
                         @if(!empty($dynamic->userInfo))
                             <a class="text-secondary" href="{{ route('users.show', [$dynamic->user_id]) }}" title="{{ $dynamic->userInfo->nick_name }}">
                                 <i class="far fa-user"></i>

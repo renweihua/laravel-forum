@@ -11,7 +11,10 @@ class HomeController extends ForumController
     {
         $tab = $request->input('tab', 'default');
 
-        $dynamics = Dynamic::with(['topic', 'userInfo'])->paginate(15);
+        $dynamics = Dynamic::public()
+            ->filter($request->all())
+            ->with(['topic', 'userInfo'])
+            ->paginate(15);
 
         return $this->view('forum::dynamic.index', compact('dynamics', 'tab'));
         return $this->view('forum::index', compact('dynamics'));
