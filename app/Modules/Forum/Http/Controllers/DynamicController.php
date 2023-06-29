@@ -15,9 +15,9 @@ class DynamicController extends ForumController
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function show($id)
+    public function show($dynamic_id)
     {
-        $dynamic = Dynamic::with(['user', 'userInfo'])->find($id);
+        $dynamic = Dynamic::with(['user', 'userInfo'])->find($dynamic_id);
         if (empty($dynamic)){
             abort(404, '动态不存在或已删除！');
         }
@@ -56,5 +56,13 @@ class DynamicController extends ForumController
         $dynamic->update($request->all());
 
         return redirect()->route('dynamic.show', $dynamic->dynamic_id)->with('success', '更新成功！');
+    }
+
+    public function destroy(Dynamic $dynamic)
+    {
+        $this->authorize('destroy', $dynamic);
+        $dynamic->delete();
+
+        return redirect()->route('home')->with('success', '成功删除！');
     }
 }

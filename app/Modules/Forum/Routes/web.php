@@ -20,6 +20,7 @@ Route::prefix('')->group(function() {
     Route::get('/dynamic/{dynamic}', 'DynamicController@show')->name('dynamic.show');
     Route::get('/dynamic/{dynamic}/edit', 'DynamicController@edit')->name('dynamic.edit');
     Route::get('/dynamic.create', 'DynamicController@create')->name('dynamic.create');
-    Route::post('/dynamic.store', 'DynamicController@store')->name('dynamic.store');
-    Route::get('/dynamic.update', 'DynamicController@update')->name('dynamic.update');
+    Route::post('/dynamic', 'DynamicController@store')->name('dynamic.store');
+    Route::put('/dynamic/{dynamic}', 'DynamicController@update')->name('dynamic.update');
+    Route::delete('/dynamic/{dynamic}', 'DynamicController@destroy')->name('dynamic.destroy');
 });

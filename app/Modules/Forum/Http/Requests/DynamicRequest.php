@@ -22,9 +22,9 @@ class DynamicRequest extends FormRequest
             case 'PATCH':
                 {
                     return [
-                        'title'       => 'required|min:2',
-                        'body'        => 'required|min:3',
-                        'category_id' => 'required|numeric',
+                        'dynamic_title'       => 'required|min:2',
+                        'dynamic_content'        => 'required|min:3',
+                        'topic_id' => 'required|numeric',
                     ];
                 }
             case 'GET':
@@ -39,8 +39,8 @@ class DynamicRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.min' => '标题必须至少两个字符',
-            'body.min' => '文章内容必须至少三个字符',
+            'dynamic_title.min' => '标题必须至少两个字符',
+            'dynamic_content.min' => '文章内容必须至少三个字符',
         ];
     }
 
