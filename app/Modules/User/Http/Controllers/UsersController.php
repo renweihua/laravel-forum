@@ -3,6 +3,7 @@
 namespace App\Modules\User\Http\Controllers;
 
 use App\Modules\Forum\Entities\Dynamic;
+use App\Modules\Forum\Entities\DynamicComment;
 use App\Modules\User\Entities\User;
 use App\Modules\User\Entities\UserAuth;
 use App\Modules\User\Entities\UserInfo;
@@ -30,9 +31,16 @@ class UserController extends UserModuleController
     {
         $user->load('userInfo');
 
-        $dynamics = Dynamic::where('user_id', $user->user_id)->orderByDesc('dynamic_id')->paginate(10);
+        $tab = $request->input('tab');
+        if ($tab == 'replies'){
+            $comments = DynamicComment::where('user_id', $user->user_id)->with('dynamic')->orderByDesc('comment_id')->paginate(10);
+            View::share('comments', $comments);
+        }else{
+            $dynamics = Dynamic::where('user_id', $user->user_id)->with('userInfo')->orderByDesc('dynamic_id')->paginate(10);
+            View::share('dynamics', $dynamics);
+        }
 
-        return $this->view('user::user.show', compact('user', 'dynamics'));
+        return $this->view('user::users.show', compact('user'));
 
         $userInfo = UserInfo::find($user_id);
         if (empty($userInfo)){
@@ -57,7 +65,7 @@ class UserController extends UserModuleController
     public function edit(UserAuth $user)
     {
         $this->authorize('update', $user);
-        return $this->view('user::user.edit', compact('user'));
+        return $this->view('user::users.edit', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, UserAuth $user)

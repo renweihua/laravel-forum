@@ -373,6 +373,7 @@ class Dynamic extends Model
             // 清除该动态的所有缓存
             if($login_user_id == -1){
                 Cache::tags($tag_key)->delete($key);
+                return;
             }
             $dynamic = Dynamic::check()->with([
                 'userInfo' => function($query) use($login_user_id){
