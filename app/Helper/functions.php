@@ -108,3 +108,53 @@ if ( !function_exists('my_json_decode') ) {
         return json_decode($string, $assoc);
     }
 }
+
+if ( !function_exists('get_dir_files') ) {
+
+    //获取某目录下所有子文件和子目录,可以过滤
+    function get_dir_files($path, $filter = [], $onlydir = false)
+    {
+        if ( !is_dir($path) ) {
+            return false;
+        }
+        //scandir方法
+        $arr = [];
+        $data = scandir($path);
+        foreach ($data as $value) {
+            if ( $value != '.' && $value != '..' && $value != ".DS_Store" && !in_array($value, $filter) ) {
+                if ( $onlydir ) {
+                    if ( is_dir($path . "/" . $value) ) {
+                        $arr[] = $value;
+                    } else {
+                        continue;
+                    }
+                } else {
+                    $arr[] = $value;
+                }
+            }
+        }
+        return $arr;
+    }
+
+    // 列出指定目录下所有目录和文件
+    function get_dir_files1($dir)
+    {
+        $arr = [];
+        if ( is_dir($dir) ) {//如果是目录，则进行下一步操作
+            $d = opendir($dir);//打开目录
+            if ( $d ) {//目录打开正常
+                while ( ($file = readdir($d)) !== false ) {//循环读出目录下的文件，直到读不到为止
+                    if ( $file != '.' && $file != '..' ) {//排除一个点和两个点
+                        if ( is_dir($file) ) {//如果当前是目录
+                            $arr[$file] = get_dir_files($file);//进一步获取该目录里的文件
+                        } else {
+                            $arr[] = $file;//记录文件名
+                        }
+                    }
+                }
+            }
+            closedir($d);//关闭句柄
+        }
+        return $arr;
+    }
+}

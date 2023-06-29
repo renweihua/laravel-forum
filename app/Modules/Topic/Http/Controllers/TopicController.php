@@ -4,6 +4,8 @@ namespace App\Modules\Topic\Http\Controllers;
 
 use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Topic\Entities\Topic;
+use App\Modules\User\Entities\User;
+use App\Modules\User\Entities\UserAuth;
 use App\Modules\User\Entities\UserInfo;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -25,7 +27,7 @@ class TopicController extends TopicModuleController
      * @param int $id
      * @return Renderable
      */
-    public function show($topic_id, Request $request)
+    public function show($topic_id, Request $request, User $user)
     {
         $topic = Topic::find($topic_id);
         if (empty($topic)){
@@ -41,7 +43,10 @@ class TopicController extends TopicModuleController
             ->orderBy('dynamic_id', 'DESC')
             ->paginate(10);
 
-        return $this->view('forum::dynamic.index', compact('topic', 'dynamics', 'tab'));
+        // 活跃会员
+        $active_users = $user->getActiveUsers();
+
+        return $this->view('forum::dynamic.index', compact('topic', 'dynamics', 'tab', 'active_users'));
     }
 
     /**

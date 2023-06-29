@@ -4,9 +4,12 @@ namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 use App\Modules\Bbs\Database\factories\UserFactory;
+use App\Modules\User\Entities\Traits\ActiveUserHelper;
 
 class User extends Model
 {
+    use ActiveUserHelper;
+
     protected $primaryKey = 'user_id';
     public $timestamps = false;
 
