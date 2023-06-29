@@ -9,7 +9,7 @@ class DynamicComment extends Model
 {
     protected $primaryKey = 'comment_id';
     protected $is_delete = 0;
-    protected $appends = ['comment_time'];
+    protected $appends = ['comment_time', 'time_formatting'];
 
     protected static function boot()
     {
