@@ -2,14 +2,17 @@
 
 namespace App\Modules\Comment\Jobs;
 
+use App\Modules\Comment\Emails\DynamicCommentNotify;
 use App\Modules\Forum\Entities\Notify;
 use App\Modules\Comment\Entities\DynamicComment;
 use App\Modules\User\Entities\UserInfo;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class DynamicCommentNotifyJob implements ShouldQueue
@@ -56,5 +59,14 @@ class DynamicCommentNotifyJob implements ShouldQueue
         }
         // 作者的通知数量累加1
         UserInfo::find($notify->user_id)->increment('notification_count');
+        // 发送邮件通知
+        if ($dynamic->user->user_email){
+            Mail::to($dynamic->user->user_email)->send(
+                new DynamicCommentNotify(
+                    '您的动态`' . $dynamic->dynamic_title . '`有新的评论/回复',
+                    route('dynamic.show', [$dynamic->dynamic_id, '#reply' . $comment->comment_id]),
+                )
+            );
+        }
     }
 }

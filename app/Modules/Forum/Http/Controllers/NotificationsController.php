@@ -2,11 +2,8 @@
 
 namespace App\Modules\Forum\Http\Controllers;
 
-use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Forum\Entities\Notify;
-use App\Modules\Forum\Http\Requests\DynamicRequest;
 use App\Modules\Forum\Services\NotifyService;
-use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\UserInfo;
 use Illuminate\Support\Facades\Auth;
 
