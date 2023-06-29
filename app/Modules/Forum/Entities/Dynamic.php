@@ -3,6 +3,7 @@
 namespace App\Modules\Forum\Entities;
 
 use App\Models\Model;
+use App\Modules\Comment\Entities\DynamicComment;
 use App\Modules\Forum\Constants\DynamicCacheKeys;
 use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\User;

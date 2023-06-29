@@ -3,7 +3,7 @@
 namespace App\Modules\User\Http\Controllers;
 
 use App\Modules\Forum\Entities\Dynamic;
-use App\Modules\Forum\Entities\DynamicComment;
+use App\Modules\Comment\Entities\DynamicComment;
 use App\Modules\User\Entities\User;
 use App\Modules\User\Entities\UserAuth;
 use App\Modules\User\Entities\UserInfo;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
-class UserController extends UserModuleController
+class UsersController extends UserModuleController
 {
     public function __construct()
     {

@@ -107,7 +107,7 @@
                     <ul class="nav nav-pills nav-vertical">
                         @foreach($user_menus as $user_menu)
                             <li class="nav-item">
-                                <a href="{{ route('user.show', ['user_id' => $userInfo->user_id, 'user_menu' => $user_menu['menu_id']]) }}" class="row nav-link @if($user_menu_id == $user_menu['menu_id']) active @endif">
+                                <a href="{{ route('users.show', ['user_id' => $userInfo->user_id, 'user_menu' => $user_menu['menu_id']]) }}" class="row nav-link @if($user_menu_id == $user_menu['menu_id']) active @endif">
                                     <div class="col">
                                         <i class="fa {{ $user_menu['menu_icon'] }}"></i>
                                         {{ $user_menu['menu_name'] }}

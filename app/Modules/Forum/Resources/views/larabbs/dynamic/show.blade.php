@@ -15,7 +15,7 @@
                     <hr>
                     <div class="media">
                         <div align="center">
-                            <a href="{{ route('user.show', $dynamic->user_id) }}">
+                            <a href="{{ route('users.show', $dynamic->user_id) }}">
                                 <img class="thumbnail img-fluid" src="{{ $dynamic->userInfo->user_avatar }}" width="300px" height="300px">
                             </a>
                         </div>
@@ -66,8 +66,8 @@
             {{-- 用户回复列表 --}}
             <div class="card topic-reply mt-4">
                 <div class="card-body">
-                    @includeWhen(Auth::check(), 'forum::larabbs.dynamic._reply_box', ['dynamic' => $dynamic])
-                    @include('forum::larabbs.dynamic._reply_list', ['comments' => $dynamic->comments()->with('userInfo')->get()])
+                    @includeWhen(Auth::check(), 'comment::dynamic._reply_box', ['dynamic' => $dynamic])
+                    @include('comment::dynamic._reply_list', ['comments' => $dynamic->comments()->with('userInfo')->get()])
                 </div>
             </div>
 

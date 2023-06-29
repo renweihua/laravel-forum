@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
-Route::prefix('comment')->group(function() {
-    Route::get('/', 'CommentController@index');
+Route::prefix('')->group(function() {
+    // Route::get('/', 'CommentController@index');
+    Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
 });

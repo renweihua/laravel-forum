@@ -13,8 +13,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('')->group(function() {
-    Route::get('/users', 'UserController@users')->name('users');
+    Route::get('/users', 'UsersController@users')->name('users');
     Route::get('/user-group', 'UserGroupController@group')->name('user-group');
 
-    Route::resource('user', 'UserController', ['only' => ['show', 'update', 'edit']]);
+    Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 });

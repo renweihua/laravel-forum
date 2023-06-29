@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Modules\Forum\Entities;
+namespace App\Modules\Comment\Entities;
 
 use App\Models\Model;
+use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\User\Entities\UserInfo;
 
 class DynamicComment extends Model

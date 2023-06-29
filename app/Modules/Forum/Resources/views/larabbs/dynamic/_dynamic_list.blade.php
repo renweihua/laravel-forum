@@ -4,7 +4,7 @@
             <li class="d-flex">
                 @if(!empty($dynamic->userInfo))
                 <div class="">
-                    <a href="{{ route('user.show', [$dynamic->user_id]) }}">
+                    <a href="{{ route('users.show', [$dynamic->user_id]) }}">
                         <img class="media-object img-thumbnail mr-3" style="width: 52px; height: 52px;" src="{{ $dynamic->userInfo->user_avatar ?? '/default.jpg' }}" title="{{ $dynamic->userInfo->nick_name }}">
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                             <span> • </span>
                         @endif
                         @if(!empty($dynamic->userInfo))
-                            <a class="text-secondary" href="{{ route('user.show', [$dynamic->user_id]) }}" title="{{ $dynamic->userInfo->nick_name }}">
+                            <a class="text-secondary" href="{{ route('users.show', [$dynamic->user_id]) }}" title="{{ $dynamic->userInfo->nick_name }}">
                                 <i class="far fa-user"></i>
                                 {{ $dynamic->userInfo->nick_name }}
                             </a>
