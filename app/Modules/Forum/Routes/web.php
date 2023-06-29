@@ -23,4 +23,6 @@ Route::prefix('')->group(function() {
     Route::post('/dynamic', 'DynamicController@store')->name('dynamic.store');
     Route::put('/dynamic/{dynamic}', 'DynamicController@update')->name('dynamic.update');
     Route::delete('/dynamic/{dynamic}', 'DynamicController@destroy')->name('dynamic.destroy');
+
+    Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
 });

@@ -3,7 +3,7 @@
 namespace App\Modules\Forum\Entities;
 
 use App\Models\Model;
-use App\Models\MonthModel;
+use App\Modules\User\Entities\UserInfo;
 use Illuminate\Support\Facades\DB;
 
 class Notify extends Model
