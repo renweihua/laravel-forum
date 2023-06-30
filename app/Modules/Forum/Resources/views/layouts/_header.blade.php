@@ -1,3 +1,4 @@
+<!-- fixed-top 固定导航栏  -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
     <div class="container">
         <!-- Branding Image -->
@@ -11,8 +12,27 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item "><a class="nav-link {{ active_class(if_route('home')) }}" href="{{ route('home') }}">首页</a></li>
-                <li class="nav-item "><a class="nav-link {{ active_class((if_route('topic.show') && if_route_param('topic_id', 1))) }}" href="{{ route('topic.show', 1) }}">话题分组1</a></li>
+                <li class="nav-item"><a class="nav-link {{ active_class(if_route('home')) }}" href="{{ route('home') }}">首页</a></li>
+
+                <!-- 全部话题 -->
+                @if(!empty($topics))
+                    <li class="nav-item dropdown">
+                        <a class="nav-link {{ active_class((if_route('topic.show'))) }} dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            前10项话题组
+                        </a>
+                        <div class="dropdown-menu">
+                            @foreach($topics as $key => $_topic)
+                                @if($key >= 10)
+                                    @break
+                                @endif
+                                <a class="dropdown-item" href="{{ route('topic.show', $_topic->topic_id) }}">{{ $_topic->topic_name }}</a>
+                            @endforeach
+                        </div>
+                    </li>
+                @endif
+
+                <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.cnpscy.com">小丑路人·博客</a></li>
+                <li class="nav-item"><a class="nav-link" target="_blank" href="https://notes.cnpscy.com">小丑路人·即时通讯与笔记</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

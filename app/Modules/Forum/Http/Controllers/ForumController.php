@@ -3,6 +3,7 @@
 namespace App\Modules\Forum\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Topic\Entities\Topic;
 
 class ForumController extends Controller
 {
@@ -60,9 +61,9 @@ class ForumController extends Controller
                 'menu_icon' => 'fa-external-link-square'
             ]
         ];
-        view()->share([
-            'menus' => $menus
-        ]);
+        // 话题列表
+        $topics = Topic::getAllTopics();
+        view()->share(compact('menus', 'topics'));
     }
 
     public function view($view, $data = [])
