@@ -36,8 +36,8 @@
                                     <div class="form-group">
                                         <select class="form-control" name="topic_id" required>
                                             <option value="" hidden disabled selected>请选择话题</option>
-                                            @foreach ($topics as $topic)
-                                                <option value="{{ $topic->topic_id }}">{{ $topic->topic_name }}</option>
+                                            @foreach ($allTopics as $allTopic)
+                                                <option @if($topic_id == $allTopic->topic_id) selected @endif value="{{ $allTopic->topic_id }}">{{ $allTopic->topic_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

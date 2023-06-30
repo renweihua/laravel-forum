@@ -31,10 +31,11 @@ class DynamicsController extends ForumController
         return view('forum::dynamic.show', compact('dynamic'));
     }
 
-    public function create(Dynamic $dynamic)
+    public function create(Dynamic $dynamic, Request $request)
     {
-        $topics = Topic::getAllTopics();
-        return view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
+        $allTopics = Topic::getAllTopics();
+        $topic_id = $request->input('topic_id', 0);
+        return view('forum::dynamic.create_and_edit', compact('dynamic', 'allTopics', 'topic_id'));
     }
 
     public function store(DynamicRequest $request, Dynamic $dynamic)
