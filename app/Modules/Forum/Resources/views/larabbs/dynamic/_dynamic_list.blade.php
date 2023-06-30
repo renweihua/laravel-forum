@@ -13,10 +13,10 @@
                 <div class="flex-grow-1 ms-2">
 
                     <div class="mt-0 mb-1">
-                        <a href="{{ route('dynamic.show', [$dynamic->dynamic_id]) }}" title="{{ $dynamic->dynamic_title }}">
+                        <a href="{{ $dynamic->link() }}" title="{{ $dynamic->dynamic_title }}">
                             {{ $dynamic->dynamic_title }}
                         </a>
-                        <a class="float-end" href="{{ route('dynamic.show', [$dynamic->dynamic_id]) }}">
+                        <a class="float-end" href="{{ $dynamic->link() }}">
                             <span class="badge bg-secondary rounded-pill"> {{ $dynamic->cache_extends['comments_count'] }} </span>
                         </a>
                     </div>

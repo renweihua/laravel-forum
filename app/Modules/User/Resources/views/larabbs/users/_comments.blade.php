@@ -2,7 +2,7 @@
     <ul class="list-group mt-4 border-0">
         @foreach ($comments as $comment)
             <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 @if($loop->first) border-top-0 @endif">
-                <a href="{{ route('dynamic.show', ['dynamic_id' => $comment->dynamic->dynamic_id, '#reply' . $comment->comment_id]) }}">
+                <a href="{{ $comment->dynamic->link(['#reply' . $comment->comment_id]) }}">
                     {{ $comment->dynamic->dynamic_title }}
                 </a>
 

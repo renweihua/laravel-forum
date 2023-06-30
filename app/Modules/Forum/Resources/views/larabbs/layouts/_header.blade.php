@@ -23,7 +23,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('dynamic.create') }}">
+                        <a class="nav-link mt-1 mr-3 font-weight-bold" href="{{ route('dynamics.create') }}">
                             <i class="fa fa-plus"></i>
                         </a>
                     </li>

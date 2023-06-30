@@ -19,7 +19,7 @@
                                             <div class="col-md-12">
                                                 <div class="row">
                                                     <div class="col-md-12 markdown home-article">
-                                                        <a href="{{ route('dynamic.show', ['dynamic_id' => $dynamic->dynamic_id]) }}" class="text-reset">
+                                                        <a href="{{ $dynamic->link() }}" class="text-reset">
                                                             <h3 class="text-muted">
                                                                 @if($dynamic->topic)
                                                                     <span class="badge d-none d-lg-inline-block"

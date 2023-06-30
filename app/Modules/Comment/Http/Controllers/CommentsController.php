@@ -25,7 +25,7 @@ class CommentsController extends CommentModuleController
         // 通知动态作者有新的评论/回复
         DynamicCommentNotifyJob::dispatch($comment);
 
-        return redirect()->to(route('dynamic.show', [$comment->dynamic_id]))->with('success', '评论创建成功！');
+        return redirect()->to($comment->dynamic->link())->with('success', '评论创建成功！');
     }
 
     public function destroy(DynamicComment $comment)
@@ -33,6 +33,6 @@ class CommentsController extends CommentModuleController
         $this->authorize('destroy', $comment);
         $comment->delete();
 
-        return redirect()->route('dynamic.show', [$comment->dynamic_id])->with('success', '评论删除成功！');
+        return redirect()->to($comment->dynamic->link())->with('success', '评论删除成功！');
     }
 }

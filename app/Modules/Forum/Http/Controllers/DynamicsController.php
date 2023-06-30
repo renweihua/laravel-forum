@@ -5,9 +5,10 @@ namespace App\Modules\Forum\Http\Controllers;
 use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Forum\Http\Requests\DynamicRequest;
 use App\Modules\Topic\Entities\Topic;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DynamicController extends ForumController
+class DynamicsController extends ForumController
 {
     public function __construct()
     {
@@ -15,11 +16,15 @@ class DynamicController extends ForumController
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function show($dynamic_id)
+    public function show(Request $request, $dynamic_id)
     {
         $dynamic = Dynamic::with(['user', 'userInfo'])->find($dynamic_id);
         if (empty($dynamic)){
             abort(404, '动态不存在或已删除！');
+        }
+        // URL 矫正
+        if (!empty($dynamic->slug) && $dynamic->slug != $request->slug) {
+            return redirect($dynamic->link(), 301);
         }
         // // 会员的动态数量
         // $dynamic->user->dynamic_count = Dynamic::getDynamicsTotalByUser($dynamic->user_id);
@@ -40,7 +45,7 @@ class DynamicController extends ForumController
         $dynamic->is_check = 1;
         $dynamic->save();
 
-        return redirect()->route('dynamic.show', $dynamic->dynamic_id)->with('success', '帖子`' . $dynamic->dynamic_title . '`创建成功！');
+        return redirect()->to($dynamic->link())->with('success', '帖子`' . $dynamic->dynamic_title . '`创建成功！');
     }
 
     public function edit(Dynamic $dynamic)
@@ -55,7 +60,7 @@ class DynamicController extends ForumController
         $this->authorize('update', $dynamic);
         $dynamic->update($request->all());
 
-        return redirect()->route('dynamic.show', $dynamic->dynamic_id)->with('success', '更新成功！');
+        return redirect()->to($dynamic->link())->with('success', '更新成功！');
     }
 
     public function destroy(Dynamic $dynamic)

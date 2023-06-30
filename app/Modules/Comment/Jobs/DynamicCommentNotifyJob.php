@@ -64,7 +64,7 @@ class DynamicCommentNotifyJob implements ShouldQueue
             Mail::to($dynamic->user->user_email)->send(
                 new DynamicCommentNotify(
                     '您的动态`' . $dynamic->dynamic_title . '`有新的评论/回复',
-                    route('dynamic.show', [$dynamic->dynamic_id, '#reply' . $comment->comment_id]),
+                    $dynamic->link(['#reply' . $comment->comment_id]),
                 )
             );
         }

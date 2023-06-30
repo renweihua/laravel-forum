@@ -19,10 +19,10 @@
                     <hr>
 
                     @if($dynamic->dynamic_id)
-                        <form action="{{ route('dynamic.update', $dynamic->dynamic_id) }}" method="POST" accept-charset="UTF-8">
+                        <form action="{{ route('dynamics.update', $dynamic->dynamic_id) }}" method="POST" accept-charset="UTF-8">
                             <input type="hidden" name="_method" value="PUT">
                             @else
-                                <form action="{{ route('dynamic.store') }}" method="POST" accept-charset="UTF-8">
+                                <form action="{{ route('dynamics.store') }}" method="POST" accept-charset="UTF-8">
                                     @endif
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -8,7 +8,7 @@
         <div class="media-heading mt-0 mb-1 text-secondary">
             <a href="{{ route('users.show', $notify->sender['user_id']) }}">{{ $notify->sender['nick_name'] }}</a>
             评论了 === {{ $notify->explain }}
-            <a href="{{ route('dynamic.show', [$notify->relation->dynamic_id]) }}">{{ $notify->relation->dynamic_title }}</a>
+            <a href="{{ $notify->relation->link() }}">{{ $notify->relation->dynamic_title }}</a>
 
             {{-- 回复删除按钮 --}}
             <span class="meta float-right" title="{{ $notify->time_formatting }}">

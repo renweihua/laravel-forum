@@ -9,7 +9,7 @@
                     {{ $dynamic->topic->topic_name }}
                 </a>
             @endif
-            <a href="{{ route('dynamic.show', ['dynamic_id' => $dynamic->dynamic_id]) }}" class="text-reset">
+            <a href="{{ $dynamic->link() }}" class="text-reset">
                 {{ $dynamic->dynamic_title }}
             </a>
             <div class="text-secondary">
@@ -32,7 +32,7 @@
                 <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }} fa-lg"></i>
                 {{ $dynamic->cache_extends['collections_count'] }}
             </span>
-            <a title="评论量" style="text-decoration:none;" href="{{ route('dynamic.show', ['dynamic_id' => $dynamic->dynamic_id]) }}#comment" class="text-muted cursor-pointer">
+            <a title="评论量" style="text-decoration:none;" href="{{ $dynamic->link() }}#comment" class="text-muted cursor-pointer">
                 <i class="fa fa-commenting-o fa-lg"></i>
                 <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
             </a>

@@ -5,6 +5,7 @@ namespace App\Modules\Forum\Entities;
 use App\Models\Model;
 use App\Modules\Comment\Entities\DynamicComment;
 use App\Modules\Forum\Constants\DynamicCacheKeys;
+use App\Modules\Forum\Handlers\SlugTranslateHandler;
 use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\User;
 use App\Modules\User\Entities\UserInfo;
@@ -86,6 +87,18 @@ class Dynamic extends Model
         // static::saved(function ($content) {
         //     \dispatch(new FetchContentMentions($content));
         // });
+
+        static::saving(function ($dynamic){
+            // 如 slug 字段无内容，即使用翻译器对 title 进行翻译
+            if ( ! $dynamic->slug) {
+                $dynamic->slug = app(SlugTranslateHandler::class)->translate($dynamic->dynamic_title);
+            }
+        });
+    }
+
+    public function link($params = [])
+    {
+        return route('dynamics.show', array_merge([$this->dynamic_id, $this->slug], $params));
     }
 
     /**
