@@ -35,6 +35,8 @@
 - [X] 会员最后活跃时间计算
 - [X] 动态标题的seo自动转换
 - [X] 登录会员切换工具 sudo-su
+  - 发布资源文件`php artisan vendor:publish --provider="VIACreative\SudoSu\ServiceProvider"`
+- [X] 返回页面顶部的小工具
 
 #### 动态相关
   + [ ] 动态详情
