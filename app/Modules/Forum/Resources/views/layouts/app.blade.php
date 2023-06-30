@@ -17,18 +17,23 @@
 
 <body>
 <div id="app" class="{{ route_class() }}-page">
+    <div class="flash-message text-center">
+        <p class="alert alert-warning">
+            `Laravel`版`小丑路人社区`改版中，与`<a href="https://bbs.cnpscy.com" target="_blank">Hyperf版小丑路人社区</a>`数据互动，此版本改版中……尚未彻底完结！
+        </p>
+    </div>
 
-    @include('forum::larabbs.layouts._header')
+    @include('forum::layouts._header')
 
     <div class="container">
 
-        @include('forum::larabbs.shared._messages')
+        @include('forum::shared._messages')
 
         @yield('content')
 
     </div>
 
-    @include('forum::larabbs.layouts._footer')
+    @include('forum::layouts._footer')
 </div>
 
 <!-- Scripts -->

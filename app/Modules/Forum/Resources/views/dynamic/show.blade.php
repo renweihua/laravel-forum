@@ -1,4 +1,4 @@
-@extends('forum::larabbs.layouts.app')
+@extends('forum::layouts.app')
 
 @section('title', $dynamic->dynamic_title)
 @section('description', make_excerpt($dynamic->dynamic_content))

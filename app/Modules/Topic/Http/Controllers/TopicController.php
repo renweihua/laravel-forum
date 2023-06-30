@@ -50,7 +50,7 @@ class TopicController extends TopicModuleController
         // 友情链接
         $friendlinks = Friendlink::getFriendlinksByWeb();
 
-        return $this->view('forum::dynamic.index', compact('topic', 'dynamics', 'tab', 'active_users', 'friendlinks'));
+        return view('forum::dynamic.index', compact('topic', 'dynamics', 'tab', 'active_users', 'friendlinks'));
     }
 
     /**

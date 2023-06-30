@@ -40,7 +40,7 @@ class UsersController extends UserModuleController
             View::share('dynamics', $dynamics);
         }
 
-        return $this->view('user::users.show', compact('user'));
+        return view('user::users.show', compact('user'));
 
         $userInfo = UserInfo::find($user_id);
         if (empty($userInfo)){
@@ -65,7 +65,7 @@ class UsersController extends UserModuleController
     public function edit(UserAuth $user)
     {
         $this->authorize('update', $user);
-        return $this->view('user::users.edit', compact('user'));
+        return view('user::users.edit', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, UserAuth $user)

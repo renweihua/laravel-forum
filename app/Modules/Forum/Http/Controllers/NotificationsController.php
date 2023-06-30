@@ -30,6 +30,6 @@ class NotificationsController extends ForumController
         // 扣除已读数量
         UserInfo::find($login_user_id)->decrement('notification_count', $set_read_nums);
 
-        return view('forum::larabbs.notifications.index', compact('notifications'));
+        return view('forum::notifications.index', compact('notifications'));
     }
 }

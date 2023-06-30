@@ -1,4 +1,4 @@
-@extends('forum::larabbs.layouts.app')
+@extends('forum::layouts.app')
 @section('title', '创建帖子')
 
 @section('content')
@@ -27,7 +27,7 @@
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                    @include('forum::larabbs.shared._error')
+                                    @include('forum::shared._error')
 
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="dynamic_title" value="{{ old('dynamic_title', $dynamic->dynamic_title ) }}" placeholder="请填写标题" required />

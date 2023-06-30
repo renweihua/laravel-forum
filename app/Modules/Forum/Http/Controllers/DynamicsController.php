@@ -28,13 +28,13 @@ class DynamicsController extends ForumController
         }
         // // 会员的动态数量
         // $dynamic->user->dynamic_count = Dynamic::getDynamicsTotalByUser($dynamic->user_id);
-        return $this->view('forum::dynamic.show', compact('dynamic'));
+        return view('forum::dynamic.show', compact('dynamic'));
     }
 
     public function create(Dynamic $dynamic)
     {
         $topics = Topic::getAllTopics();
-        return $this->view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
+        return view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
     }
 
     public function store(DynamicRequest $request, Dynamic $dynamic)
@@ -63,7 +63,7 @@ class DynamicsController extends ForumController
     {
         $this->authorize('update', $dynamic);
         $topics = Topic::getAllTopics();
-        return $this->view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
+        return view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
     }
 
     public function update(DynamicRequest $request, Dynamic $dynamic)

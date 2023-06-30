@@ -1,4 +1,4 @@
-@extends('forum::larabbs.layouts.app')
+@extends('forum::layouts.app')
 
 @section('title', $user->name . ' 的个人中心')
 
@@ -18,7 +18,7 @@
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                        @include('forum::larabbs.shared._error')
+                        @include('forum::shared._error')
 
                         <div class="mb-3">
                             <label for="name-field">昵称</label>

@@ -1,4 +1,4 @@
-@include('forum::larabbs.shared._error')
+@include('forum::shared._error')
 
 <div class="reply-box">
     <form action="{{ route('comments.store') }}" method="POST" accept-charset="UTF-8">

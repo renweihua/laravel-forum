@@ -1,4 +1,4 @@
-@extends('forum::larabbs.layouts.app')
+@extends('forum::layouts.app')
 @section('title', '我的通知')
 
 @section('content')
@@ -17,7 +17,7 @@
                         <div class="list-unstyled notification-list">
                             @foreach ($notifications as $notify)
                                 @if($notify->target_type == \App\Modules\Forum\Entities\Notify::TARGET_TYPE['DYNAMIC'])
-                                    @include('forum::larabbs.notifications.types._dynamic_comment', compact('notify'))
+                                    @include('forum::notifications.types._dynamic_comment', compact('notify'))
                                 @else
                                     <li class="media @if ( ! $loop->last) border-bottom @endif">
                                         其它类型

@@ -1,4 +1,4 @@
-@extends('forum::larabbs.layouts.app')
+@extends('forum::layouts.app')
 
 @section('title', $user->name . ' 的个人中心')
 
@@ -46,9 +46,9 @@
                         </li>
                     </ul>
                     @if (if_query('tab', 'replies'))
-                        @include('user::larabbs.users._comments', ['comments' => $comments])
+                        @include('user::users.users._comments', ['comments' => $comments])
                     @else
-                        @include('user::larabbs.users._dynamics', ['topics' => $dynamics])
+                        @include('user::users.users._dynamics', ['topics' => $dynamics])
                     @endif
                 </div>
             </div>
