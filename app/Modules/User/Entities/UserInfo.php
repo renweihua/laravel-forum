@@ -4,6 +4,7 @@ namespace App\Modules\User\Entities;
 
 use App\Models\Model;
 use App\Modules\Forum\Entities\Dynamic;
+use App\Modules\User\Entities\Traits\LastActivedAtHelper;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -95,6 +96,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class UserInfo extends Model
 {
+    use LastActivedAtHelper;
+
     protected $primaryKey = 'user_id';
     // 追加属性
     protected $appends = ['user_sex_text', 'time_formatting'];

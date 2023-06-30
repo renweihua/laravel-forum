@@ -5,10 +5,12 @@ namespace App\Modules\User\Entities;
 use App\Models\Model;
 use App\Modules\Bbs\Database\factories\UserFactory;
 use App\Modules\User\Entities\Traits\ActiveUserHelper;
+use App\Modules\User\Entities\Traits\LastActivedAtHelper;
 
 class User extends Model
 {
     use ActiveUserHelper;
+    use LastActivedAtHelper;
 
     protected $primaryKey = 'user_id';
     public $timestamps = false;

@@ -3,12 +3,13 @@
 namespace App\Modules\User\Entities;
 
 use App\Models\Model;
+use App\Modules\User\Entities\Traits\LastActivedAtHelper;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class UserAuth extends Authenticatable implements MustVerifyEmail
+class UserAuth extends Authenticatable
 {
-
+    use LastActivedAtHelper;
     // use Authenticatable;
 
     protected $primaryKey = 'user_id';

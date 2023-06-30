@@ -8,9 +8,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
+// 计算活跃会员
 trait ActiveUserHelper
 {
-// 用于存放临时用户数据
+    // 用于存放临时用户数据
     protected $users = [];
 
     // 配置信息

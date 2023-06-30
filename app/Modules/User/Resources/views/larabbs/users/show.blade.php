@@ -16,6 +16,9 @@
                     <hr>
                     <h5><strong>注册于</strong></h5>
                     <p>{{ $user->userInfo->time_formatting }}</p>
+                    <hr>
+                    <h5><strong>最后活跃</strong></h5>
+                    <p title="{{ $user->userInfo->last_actived_at }}">{{ $user->userInfo->last_actived_at }}</p>
                 </div>
             </div>
         </div>
@@ -43,9 +46,9 @@
                         </li>
                     </ul>
                     @if (if_query('tab', 'replies'))
-                        @include('user::larabbs.user._comments', ['comments' => $comments])
+                        @include('user::larabbs.users._comments', ['comments' => $comments])
                     @else
-                        @include('user::larabbs.user._dynamics', ['topics' => $dynamics])
+                        @include('user::larabbs.users._dynamics', ['topics' => $dynamics])
                     @endif
                 </div>
             </div>
