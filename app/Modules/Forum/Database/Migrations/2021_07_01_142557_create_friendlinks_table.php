@@ -18,9 +18,9 @@ class CreateFriendlinksTable extends Migration
         Schema::create('friendlinks', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('link_id')->unsigned()->comment('友情链接Id');
-            $table->string('link_name', 256)->default('')->comment('名称');
-            $table->string('link_url', 256)->default('')->comment('链接URL');
-            $table->string('link_cover', 256)->default('')->comment('链接图标');
+            $table->string('link_name', 200)->default('')->comment('名称');
+            $table->string('link_url', 200)->default('')->comment('链接URL');
+            $table->string('link_cover', 200)->default('')->comment('链接图标');
             $table->integer('link_sort')->unsigned()->default(0)->comment('排序[从小到大]');
             $table->boolean('is_check')->unsigned()->default(1)->comment('是否可用：1：可用；0：禁用');
             $table->boolean('open_window')->unsigned()->default(1)->comment('是否打开新窗口：1：是；0：否');
