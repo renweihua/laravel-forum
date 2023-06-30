@@ -36,6 +36,11 @@
     @include('forum::layouts._footer')
 </div>
 
+@if (app()->isLocal())
+    <!-- 切换登录会员工具 -->
+    @include('sudosu::user-selector')
+@endif
+
 <!-- Scripts -->
 <script src="{{ mix('js/forum.js') }}"></script>
 </body>
