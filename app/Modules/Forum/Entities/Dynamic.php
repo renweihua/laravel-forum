@@ -14,7 +14,9 @@ use Carbon\Carbon;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use League\HTMLToMarkdown\HtmlConverter;
 
 class Dynamic extends Model
 {
@@ -24,6 +26,18 @@ class Dynamic extends Model
     // 内容格式类型
     const CONTENT_TYPE_MARKDOWN = 'markdown';
     const CONTENT_TYPE_HTML = 'html';
+
+    /**
+     * 动态类型
+     */
+    // 动态
+    const DYNAMIC_TYPE_DEFAULT = 0;
+    // 图文
+    const DYNAMIC_TYPE_ARTICLE = 1;
+    // 视频
+    const DYNAMIC_TYPE_VIDEO = 2;
+    // 摄影/相册
+    const DYNAMIC_TYPE_ALBUM = 3;
 
     protected $fillable = [];
 
@@ -64,6 +78,16 @@ class Dynamic extends Model
             if ($dynamic->content_type == self::CONTENT_TYPE_HTML && $dynamic->isDirty('dynamic_content')) {
                 $dynamic->dynamic_markdown = self::htmlToMarkdown($dynamic->dynamic_content);
             }
+
+            // 编辑时，原始与新话题归属可能不一致
+            // 重新计算一次，归属话题的动态量:1.原始话题；2，新归属话题
+            if (
+                $dynamic->original && $dynamic->attributes
+                && $dynamic->original['topic_id'] != $dynamic->attributes['topic_id']
+            ){
+                Topic::updateDynamicCount($dynamic->original['topic_id']);
+            }
+            Topic::updateDynamicCount($dynamic->attributes['topic_id']);
         };
 
         // 新增与删除动态时，调用会员的统计缓存字段
@@ -257,13 +281,13 @@ class Dynamic extends Model
         $text = '动态';
         if (!isset($this->attributes['dynamic_type'])) return $text;
         switch ($this->attributes['dynamic_type']){
-            case 1: // 图文
+            case self::DYNAMIC_TYPE_ARTICLE: // 图文
                 $text = '图文';
                 break;
-            case 2: // 视频
+            case self::DYNAMIC_TYPE_VIDEO: // 视频
                 $text = '视频';
                 break;
-            case 3: // 摄影/相册
+            case self::DYNAMIC_TYPE_ALBUM: // 摄影/相册
                 $text = '相册';
                 break;
         }

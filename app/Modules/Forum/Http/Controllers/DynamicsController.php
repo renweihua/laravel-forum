@@ -39,10 +39,21 @@ class DynamicsController extends ForumController
 
     public function store(DynamicRequest $request, Dynamic $dynamic)
     {
-        $dynamic->fill($request->all());
+        // 限制可设置的字段
+        $dynamic->fill($request->only('dynamic_title', 'dynamic_content', 'topic_id'));
         $dynamic->user_id = Auth::id();
+        // 限制htmll类型
+        $dynamic->content_type = Dynamic::CONTENT_TYPE_HTML;
+        // 仅支持`文章`类型
+        $dynamic->dynamic_type = Dynamic::DYNAMIC_TYPE_ARTICLE;
         // 默认为已审核的
         $dynamic->is_check = 1;
+        // 默认为公开的文章
+        $dynamic->is_public = 1;
+        // 创建Ip与浏览器类型
+        $ip_agent = get_client_info();
+        $dynamic->created_ip = $ip_agent['ip'] ?? $request->getClientIp();
+        $dynamic->browser_type = $ip_agent['agent'] ?? $_SERVER['HTTP_USER_AGENT'];
         $dynamic->save();
 
         return redirect()->to($dynamic->link())->with('success', '帖子`' . $dynamic->dynamic_title . '`创建成功！');
@@ -58,7 +69,7 @@ class DynamicsController extends ForumController
     public function update(DynamicRequest $request, Dynamic $dynamic)
     {
         $this->authorize('update', $dynamic);
-        $dynamic->update($request->all());
+        $dynamic->fill($request->only('dynamic_title', 'dynamic_content', 'topic_id'));
 
         return redirect()->to($dynamic->link())->with('success', '更新成功！');
     }
