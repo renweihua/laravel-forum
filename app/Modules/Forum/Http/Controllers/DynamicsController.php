@@ -63,8 +63,8 @@ class DynamicsController extends ForumController
     public function edit(Dynamic $dynamic)
     {
         $this->authorize('update', $dynamic);
-        $topics = Topic::getAllTopics();
-        return view('forum::dynamic.create_and_edit', compact('dynamic', 'topics'));
+        $allTopics = Topic::getAllTopics();
+        return view('forum::dynamic.create_and_edit', compact('dynamic', 'allTopics'));
     }
 
     public function update(DynamicRequest $request, Dynamic $dynamic)

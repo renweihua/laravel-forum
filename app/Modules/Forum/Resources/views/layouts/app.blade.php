@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/forum.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 <body>
     <div id="app" class="{{ route_class() }}-page">
@@ -44,5 +45,6 @@
     <script src="{{ mix('js/forum.js') }}"></script>
 
     @include('forum::layouts._back_page_top')
+@yield('script')
 </body>
 </html>

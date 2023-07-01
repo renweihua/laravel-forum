@@ -15,9 +15,7 @@
                             新建帖子
                         @endif
                     </h2>
-
                     <hr>
-
                     @if($dynamic->dynamic_id)
                         <form action="{{ route('dynamics.update', $dynamic->dynamic_id) }}" method="POST" accept-charset="UTF-8">
                             <input type="hidden" name="_method" value="PUT">
@@ -37,13 +35,18 @@
                                         <select class="form-control" name="topic_id" required>
                                             <option value="" hidden disabled selected>请选择话题</option>
                                             @foreach ($allTopics as $allTopic)
-                                                <option @if($topic_id == $allTopic->topic_id) selected @endif value="{{ $allTopic->topic_id }}">{{ $allTopic->topic_name }}</option>
+                                                <option @if(
+    (!empty($topic_id) && $topic_id == $allTopic->topic_id)
+    || (!empty($dynamic) && $dynamic->topic_id == $allTopic->topic_id)
+) selected @endif value="{{ $allTopic->topic_id }}">{{ $allTopic->topic_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
-                                    <div class="form-group">
-                                        <textarea name="dynamic_content" class="form-control" id="editor" rows="6" placeholder="请填入至少三个字符的内容。" required>{{ old('dynamic_content', $dynamic->dynamic_content ) }}</textarea>
+                                    <div class="form-group" id="markDownDiv">
+                                        <div id="editormd_id">
+                                            <textarea name="dynamic_content" class="form-control" rows="6" style="display:none;" placeholder="请填入至少三个字符的内容。" required>{{ old('dynamic_content', $dynamic->dynamic_content ) }}</textarea>
+                                        </div>
                                     </div>
 
                                     <div class="well well-sm">
@@ -54,4 +57,11 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    {!! editor_css() !!}
+@endsection
+@section('script')
+    {!! editor_js() !!}
 @endsection

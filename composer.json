@@ -12,6 +12,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laravelchen/laravel-editormd": "^2.5",
         "league/html-to-markdown": "^5.1",
         "nwidart/laravel-modules": "^8.3",
         "overtrue/laravel-lang": "~5.0.2",
