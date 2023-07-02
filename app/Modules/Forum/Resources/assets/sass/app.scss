@@ -4,11 +4,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Fontawesome
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/brands';
+// font-awesome-4.7.0
+@import '~font-awesome/scss/font-awesome';
+
 
 .text-center{
     text-align: center;
