@@ -24,7 +24,7 @@
                     <small class="media-body meta text-secondary">
                         @if($dynamic->topic)
                             <a class="text-secondary" href="{{ route('topic.show', $dynamic->topic_id) }}" title="{{ $dynamic->topic->topic_name }}">
-                                <i class="far fa-folder"></i>
+                                <i class="fa fa-folder"></i>
                                 {{ $dynamic->topic->topic_name }}
                             </a>
 
@@ -32,13 +32,30 @@
                         @endif
                         @if(!empty($dynamic->userInfo))
                             <a class="text-secondary" href="{{ route('users.show', [$dynamic->user_id]) }}" title="{{ $dynamic->userInfo->nick_name }}">
-                                <i class="far fa-user"></i>
+                                <i class="fa fa-user"></i>
                                 {{ $dynamic->userInfo->nick_name }}
                             </a>
                             <span> • </span>
                         @endif
-                        <i class="far fa-clock"></i>
+                        <i class="fa fa-clock-o"></i>
                         <span class="timeago" title="最后活跃于：{{ date('Y-m-d H:i', $dynamic->updated_time) }}">{{ $dynamic->last_time_formatting }}</span>
+                        <small style="float: right;">
+                            <i class="fa fa-eye"></i>
+                            <span title="最后活跃于：{{ date('Y-m-d H:i', $dynamic->updated_time) }}">
+                            {{ $dynamic->cache_extends['reads_num'] }}</span>
+
+                            <span> • </span>
+                            <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
+                            {{ $dynamic->cache_extends['praises_count'] }}
+
+                            <span> • </span>
+                            <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
+                            {{ $dynamic->cache_extends['collections_count'] }}
+
+                            <span> • </span>
+                            <i class="fa fa-commenting-o"></i>
+                            <span>{{ $dynamic->cache_extends['comments_count'] }}</span>
+                        </small>
                     </small>
 
                 </div>

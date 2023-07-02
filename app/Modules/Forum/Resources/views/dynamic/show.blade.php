@@ -34,8 +34,17 @@
                     <div class="article-meta text-center text-secondary">
                         {{ $dynamic->time_formatting }}
                         ⋅
-                        <i class="far fa-comment"></i>
-                        {{ $dynamic->cache_extends['comments_count'] }}
+                        <i class="fa fa-eye"></i>
+                        {{ $dynamic->cache_extends['reads_num'] }}
+                        ⋅
+                        <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
+                        {{ $dynamic->cache_extends['praises_count'] }}
+                        ⋅
+                        <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
+                        {{ $dynamic->cache_extends['collections_count'] }}
+                        ⋅
+                        <i class="fa fa-commenting-o"></i>
+                        <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
                     </div>
 
                     <div class="topic-body mt-4 mb-4">
