@@ -44,6 +44,8 @@
 <!-- Scripts -->
 <script src="{{ mix('js/forum.js') }}"></script>
 @yield('script')
+
 @include('forum::layouts._back_page_top')
+
 </body>
 </html>

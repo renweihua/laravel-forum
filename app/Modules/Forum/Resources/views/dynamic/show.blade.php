@@ -28,7 +28,7 @@
                         <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
                     </div>
 
-                    <div class="topic-body mt-4 mb-4">
+                    <div class="topic-body mt-4">
                         {!! $dynamic->dynamic_content !!}
                     </div>
 
@@ -75,6 +75,25 @@
                             <a href="{{ route('users.show', $dynamic->user_id) }}">
                                 <img class="thumbnail img-fluid" src="{{ $dynamic->userInfo->user_avatar }}" width="300px" height="300px">
                             </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row author-statistics">
+                        <div class="col-3">
+                            <div>文章</div>
+                            <div>{{ $dynamic->user->dynamic_count }}</div>
+                        </div>
+                        <div class="col-3">
+                            <div>粉丝</div>
+                            <div>{{ $dynamic->user->fan_count }}</div>
+                        </div>
+                        <div class="col-3">
+                            <div>喜欢</div>
+                            <div>{{ $dynamic->user->praise_dynamic_count }}</div>
+                        </div>
+                        <div class="col-3">
+                            <div>收藏</div>
+                            <div>{{ $dynamic->user->collection_dynamic_count }}</div>
                         </div>
                     </div>
                 </div>

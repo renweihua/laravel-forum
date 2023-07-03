@@ -53,7 +53,7 @@
                             {{ $dynamic->cache_extends['collections_count'] }}
 
                             <span> • </span>
-                            <i class="fa fa-commenting-o"></i>
+                            <i class="fa fa-comments-o fa-lg"></i>
                             <span>{{ $dynamic->cache_extends['comments_count'] }}</span>
                         </small>
                     </small>

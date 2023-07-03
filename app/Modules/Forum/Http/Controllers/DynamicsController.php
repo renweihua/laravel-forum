@@ -3,8 +3,11 @@
 namespace App\Modules\Forum\Http\Controllers;
 
 use App\Modules\Forum\Entities\Dynamic;
+use App\Modules\Forum\Entities\DynamicCollection;
+use App\Modules\Forum\Entities\DynamicPraise;
 use App\Modules\Forum\Http\Requests\DynamicRequest;
 use App\Modules\Topic\Entities\Topic;
+use App\Modules\User\Entities\UserFollowFan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,8 +31,18 @@ class DynamicsController extends ForumController
         }
         // 浏览量递增
         $dynamic->update(['cache_extends->reads_num' => $dynamic->cache_extends['reads_num'] + 1]);
-        // // 会员的动态数量
-        // $dynamic->user->dynamic_count = Dynamic::getDynamicsTotalByUser($dynamic->user_id);
+        /**
+         * 后续使用沉余字段
+         */
+        // 会员的动态数量
+        $dynamic->user->dynamic_count = Dynamic::getDynamicsTotalByUser($dynamic->user_id);
+        // 会员的粉丝数量
+        $dynamic->user->fan_count = UserFollowFan::where('friend_id', $dynamic->user_id)->count();
+        // 会员喜欢的动态数量
+        $dynamic->user->praise_dynamic_count = DynamicPraise::where('user_id', $dynamic->user_id)->count();
+        // 会员收藏的动态数量
+        $dynamic->user->collection_dynamic_count = DynamicCollection::where('user_id', $dynamic->user_id)->count();
+
         return view('forum::dynamic.show', compact('dynamic'));
     }
 
