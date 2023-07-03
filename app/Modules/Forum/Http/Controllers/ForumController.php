@@ -3,7 +3,9 @@
 namespace App\Modules\Forum\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Forum\Entities\Friendlink;
 use App\Modules\Topic\Entities\Topic;
+use App\Modules\User\Entities\User;
 
 class ForumController extends Controller
 {
@@ -61,9 +63,17 @@ class ForumController extends Controller
                 'menu_icon' => 'fa-external-link-square'
             ]
         ];
+
         // 话题列表
         $topics = Topic::getAllTopics();
-        view()->share(compact('menus', 'topics'));
+
+        // 活跃会员
+        $active_users = User::getInstance()->getActiveUsers();
+
+        // 友情链接
+        $friendlinks = Friendlink::getFriendlinksByWeb();
+
+        view()->share(compact('menus', 'topics', 'active_users', 'friendlinks'));
     }
 
     public function view($view, $data = [])

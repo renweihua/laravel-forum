@@ -5,25 +5,6 @@
 
 @section('content')
     <div class="row">
-
-        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
-            <div class="card ">
-                <div class="card-body">
-                    <div class="text-center">
-                        作者：{{ $dynamic->userInfo->nick_name }}
-                    </div>
-                    <hr>
-                    <div class="media">
-                        <div align="center">
-                            <a href="{{ route('users.show', $dynamic->user_id) }}">
-                                <img class="thumbnail img-fluid" src="{{ $dynamic->userInfo->user_avatar }}" width="300px" height="300px">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
             <div class="card ">
                 <div class="card-body">
@@ -80,6 +61,28 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        作者：{{ $dynamic->userInfo->nick_name }}
+                    </div>
+                    <hr>
+                    <div class="media">
+                        <div align="center">
+                            <a href="{{ route('users.show', $dynamic->user_id) }}">
+                                <img class="thumbnail img-fluid" src="{{ $dynamic->userInfo->user_avatar }}" width="300px" height="300px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @include('forum::layouts._active_users')
+
+            @include('forum::layouts._friendlinks')
         </div>
     </div>
 @endsection

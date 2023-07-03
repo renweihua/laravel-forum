@@ -19,12 +19,6 @@ class HomeController extends ForumController
             ->with(['topic', 'userInfo'])
             ->paginate(15);
 
-        // 活跃会员
-        $active_users = $user->getActiveUsers();
-
-        // 友情链接
-        $friendlinks = Friendlink::getFriendlinksByWeb();
-
-        return view('forum::dynamic.index', compact('dynamics', 'tab', 'active_users', 'friendlinks'));
+        return view('forum::dynamic.index', compact('dynamics', 'tab'));
     }
 }

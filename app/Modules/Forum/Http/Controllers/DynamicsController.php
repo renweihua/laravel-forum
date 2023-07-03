@@ -35,9 +35,8 @@ class DynamicsController extends ForumController
 
     public function create(Dynamic $dynamic, Request $request)
     {
-        $allTopics = Topic::getAllTopics();
         $topic_id = $request->input('topic_id', 0);
-        return view('forum::dynamic.create_and_edit', compact('dynamic', 'allTopics', 'topic_id'));
+        return view('forum::dynamic.create_and_edit', compact('dynamic', 'topic_id'));
     }
 
     public function store(DynamicRequest $request, Dynamic $dynamic)
@@ -65,8 +64,7 @@ class DynamicsController extends ForumController
     public function edit(Dynamic $dynamic)
     {
         $this->authorize('update', $dynamic);
-        $allTopics = Topic::getAllTopics();
-        return view('forum::dynamic.create_and_edit', compact('dynamic', 'allTopics'));
+        return view('forum::dynamic.create_and_edit', compact('dynamic'));
     }
 
     public function update(DynamicRequest $request, Dynamic $dynamic)

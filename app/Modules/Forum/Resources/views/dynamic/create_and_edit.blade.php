@@ -34,11 +34,11 @@
                                     <div class="form-group">
                                         <select class="form-control" name="topic_id" required>
                                             <option value="" hidden disabled selected>请选择话题</option>
-                                            @foreach ($allTopics as $allTopic)
+                                            @foreach ($topics as $topic)
                                                 <option @if(
-    (!empty($topic_id) && $topic_id == $allTopic->topic_id)
-    || (!empty($dynamic) && $dynamic->topic_id == $allTopic->topic_id)
-) selected @endif value="{{ $allTopic->topic_id }}">{{ $allTopic->topic_name }}</option>
+    (!empty($topic_id) && $topic_id == $topic->topic_id)
+    || (!empty($dynamic) && $dynamic->topic_id == $topic->topic_id)
+) selected @endif value="{{ $topic->topic_id }}">{{ $topic->topic_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
