@@ -19,7 +19,8 @@
         "overtrue/pinyin": "~4.0",
         "predis/predis": "~1.1",
         "summerblue/laravel-active": "8.*",
-        "tucker-eric/eloquentfilter": "^3.0"
+        "tucker-eric/eloquentfilter": "^3.0",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

@@ -11,6 +11,7 @@
 1. composer install
 2. cp .env.example .env
 3. 生成 APP_KEY：`php artisan key:generate`
+4. jwt：`php artisan jwt:secret`
 4. 数据表迁移 `php artisan migrate`
 5. 创建`Storage`目录软链接 `php artisan storage:link`
 6. 数据库填充：`php artisan module:seed`

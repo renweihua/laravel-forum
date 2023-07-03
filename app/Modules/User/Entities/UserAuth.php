@@ -6,8 +6,9 @@ use App\Models\Model;
 use App\Modules\User\Entities\Traits\LastActivedAtHelper;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class UserAuth extends Authenticatable
+class UserAuth extends Authenticatable implements JWTSubject
 {
     use LastActivedAtHelper;
     // use Authenticatable;
@@ -15,6 +16,27 @@ class UserAuth extends Authenticatable
     protected $primaryKey = 'user_id';
     protected $table = 'users';
     public $timestamps = false;
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.
