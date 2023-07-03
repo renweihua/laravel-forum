@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
@@ -46,5 +49,19 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function attemptLogin(Request $request)
+    {
+        $result = $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
+        if ($result){
+            $user = Auth::user();
+            $token = JWTAuth::fromUser($user);
+            // 存储登录会员的token
+            session()->put('login_token', $token);
+        }
+        return $result;
     }
 }
