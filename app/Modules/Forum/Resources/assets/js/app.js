@@ -1,5 +1,7 @@
 require('./bootstrap');
 
+require('./axios');
+
 // 是否展示返回页面顶部的图标
 setTimeout(() => {
     window.addEventListener('scroll', () => {
