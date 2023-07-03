@@ -26,6 +26,8 @@ class DynamicsController extends ForumController
         if (!empty($dynamic->slug) && $dynamic->slug != $request->slug) {
             return redirect($dynamic->link(), 301);
         }
+        // 浏览量递增
+        $dynamic->update(['cache_extends->reads_num' => $dynamic->cache_extends['reads_num'] + 1]);
         // // 会员的动态数量
         // $dynamic->user->dynamic_count = Dynamic::getDynamicsTotalByUser($dynamic->user_id);
         return view('forum::dynamic.show', compact('dynamic'));
