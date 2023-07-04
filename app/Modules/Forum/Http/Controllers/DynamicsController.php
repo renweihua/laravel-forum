@@ -21,16 +21,44 @@ class DynamicsController extends ForumController
 
     public function show(Request $request, $dynamic_id)
     {
-        $dynamic = Dynamic::with(['user', 'userInfo'])->find($dynamic_id);
+        $login_user_id = Auth::id();
+        $dynamic = Dynamic::with(['user', 'userInfo' => function($query) use($login_user_id){
+            $query->with([
+                'isFollow' => function($query) use ($login_user_id) {
+                    $query->where('user_id', $login_user_id);
+                }
+            ]);
+        }])->find($dynamic_id);
         if (empty($dynamic)){
             abort(404, '动态不存在或已删除！');
+        }
+        if ($dynamic->is_public == 0){
+            abort(403, '动态不可访问！');
         }
         // URL 矫正
         if (!empty($dynamic->slug) && $dynamic->slug != $request->slug) {
             return redirect($dynamic->link(), 301);
         }
+        if ($login_user_id){
+            $dynamic->load([
+                'isPraise' => function($query) use ($login_user_id) {
+                    $query->where('user_id', $login_user_id);
+                },
+                'isCollection' => function($query) use ($login_user_id) {
+                    $query->where('user_id', $login_user_id);
+                },
+            ]);
+        }
         // 浏览量递增
         $dynamic->update(['cache_extends->reads_num' => $dynamic->cache_extends['reads_num'] + 1]);
+        // 是否已赞
+        $dynamic->is_praise = $login_user_id == 0 ? false : ($dynamic->isPraise ? true : false);
+        // 是否已收藏
+        $dynamic->is_collection = $login_user_id == 0 ? false : ($dynamic->isCollection ? true : false);
+        // 是否关注
+        $dynamic->userInfo->is_follow = $login_user_id == 0 ? false : ($dynamic->userInfo->isFollow ? true : false);
+        // 是否为登录会员
+        $dynamic->userInfo->is_self = $login_user_id == 0 ? false : ($dynamic->user_id == $login_user_id ? true : false);
         /**
          * 后续使用沉余字段
          */
