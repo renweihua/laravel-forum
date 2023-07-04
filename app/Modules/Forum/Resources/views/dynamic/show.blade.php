@@ -26,8 +26,8 @@
                         </small>
                         ⋅
                         <small @click="collection">
-                            <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
-                            {{ $dynamic->cache_extends['collections_count'] }}
+                            <i class="fa" :class="[dynamic.is_collection ? 'fa-heartbeat' : 'fa-heart-o']"></i>
+                            ${ dynamic.cache_extends.collections_count }
                         </small>
                         ⋅
                         <small>
@@ -150,7 +150,14 @@
                         instance.post('/dynamics/collection', {
                             'dynamic_id': this.dynamic.dynamic_id
                         }).then(res => {
-                            console.log(res);
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.dynamic.is_collection = res.is_collection;
+                            if(this.dynamic.is_collection){
+                                ++this.dynamic.cache_extends.collections_count;
+                            }else{
+                                --this.dynamic.cache_extends.collections_count;
+                            }
                         });
                     }
                 }

@@ -80,7 +80,7 @@ class DynamicService
         }
     }
 
-    public function collection($login_user_id, $dynamic)
+    public function collection($login_user_id, $dynamic, &$is_collection = true)
     {
         $dynamic_id = $dynamic->dynamic_id;
         $dynamicCollection = DynamicCollection::getInstance();
@@ -88,16 +88,20 @@ class DynamicService
             'user_id'    => $login_user_id,
             'dynamic_id' => $dynamic_id,
         ];
+        $is_collection = true;
+        $collection = [];
         DB::beginTransaction();
         try {
             // 是否已点赞过了该动态
             if ($dynamicCollection->isCollection($login_user_id, $dynamic_id)) {
                 // 删除点赞记录[先first再delete，为了触发模型实际]
                 $dynamicCollection->where($data)->first()->delete();
+
+                $is_collection = false;
                 $this->setError('取消收藏成功！');
             } else {
                 $ip_agent = get_client_info();
-                $dynamicCollection->create(array_merge($data, [
+                $collection = $dynamicCollection->create(array_merge($data, [
                     'created_time' => time(),
                     'created_ip'   => $ip_agent['ip'] ?? get_ip(),
                     'browser_type' => $ip_agent['agent'] ?? $_SERVER['HTTP_USER_AGENT'],
@@ -123,7 +127,7 @@ class DynamicService
             }
 
             DB::commit();
-            return true;
+            return $collection;
         } catch (Exception $e) {
             DB::rollBack();
             throw new BadRequestException($e->getMessage());

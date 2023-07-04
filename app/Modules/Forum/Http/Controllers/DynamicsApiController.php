@@ -45,8 +45,8 @@ class DynamicsApiController extends ForumController
 
         $login_user_id = Auth::id();
 
-        $collection = $this->dynamicService->collection($login_user_id, $dynamic);
+        $collection = $this->dynamicService->collection($login_user_id, $dynamic, $is_collection);
 
-        return $this->successJson($collection, $this->dynamicService->getError());
+        return $this->successJson($collection, $this->dynamicService->getError(), compact('is_collection'));
     }
 }
