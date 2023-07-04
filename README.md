@@ -4,7 +4,11 @@
 软件架构说明
 - [Laravel:8.75](https://github.com/laravel)
 - PHP:7.3^8.0
-- 模板:[tabler](https://github.com/tabler/tabler)
+- <font color='red'>禁止使用DB对数据进行删除</font>
+  - 原因：`is_delete`的概念是自己封装的，无法兼容`DB::delete`删除逻辑，需手动调整为`DB::update(['is_delete' => 1, ……])`
+  - 如需使用，两个步骤操作：
+    - 请更换`App\Models\Model`的假删除引用为Laravel假删除模块
+    - 且数据表需引入对应的删除字段  
 
 
 ### 安装教程
@@ -63,6 +67,7 @@
   + [X] 编辑
       + [X] 更新原始与所属话题的动态数量
   + [X] 删除
+    * [X] 同步删除`未删除`的评论 
 
 ##### 会员相关
 - [X] 话题列表
