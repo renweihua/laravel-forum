@@ -8,27 +8,23 @@ use App\Constants\HttpStatus;
 
 trait Json
 {
-    protected $http_code = HttpStatus::SUCCESS;
-
-    public function setHttpCode($http_code){
-        $this->http_code = $http_code;
-    }
+    protected $http_status = HttpStatus::SUCCESS;
 
     public function successJson($data = [], $msg = 'success', $other = [], array $header = [])
     {
         return $this->myAjaxReturn(array_merge(['data' => $data, 'msg' => $msg], $other), $header);
     }
 
-    public function errorJson($msg = 'error', $http_code = HttpStatus::BAD_REQUEST, $data = [], $other = [], array $header = [])
+    public function errorJson($msg = 'error', $http_status = HttpStatus::BAD_REQUEST, $data = [], $other = [], array $header = [])
     {
-        return $this->myAjaxReturn(array_merge(['msg' => $msg, 'http_code' => $http_code, 'data' => $data], $other), $header);
+        return $this->myAjaxReturn(array_merge(['msg' => $msg, 'http_status' => $http_status, 'data' => $data], $other), $header);
     }
 
     public function myAjaxReturn($data, array $header = [])
     {
         $data['data'] = $data['data'] ?? [];
-        if(!isset($data['http_code'])) $data['http_code'] = $this->http_code;
-        switch ($data['http_code']){
+        if(!isset($data['http_status'])) $data['http_status'] = $this->http_status;
+        switch ($data['http_status']){
             case HttpStatus::SUCCESS:
                 $data['status'] = 1;
                 break;
@@ -44,7 +40,6 @@ trait Json
         }
         $data['msg'] = $data['msg'] ?? (empty($data['status']) ? '数据不存在！' : 'success');
         $data['execution_time'] = microtime(true) - LARAVEL_START;
-        $data['http_status'] = $data['http_code'];
 
         // 如果设置的header的Token返回，那么追加参数
         if ($authorization = request()->header('new_authorization')) $header['Authorization'] = $authorization;

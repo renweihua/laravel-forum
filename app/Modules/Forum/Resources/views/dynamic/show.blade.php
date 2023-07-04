@@ -21,8 +21,10 @@
                         <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
                         {{ $dynamic->cache_extends['praises_count'] }}
                         ⋅
-                        <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
-                        {{ $dynamic->cache_extends['collections_count'] }}
+                        <small id="collection" @click="collection">
+                            <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
+                            {{ $dynamic->cache_extends['collections_count'] }}
+                        </small>
                         ⋅
                         <i class="fa fa-commenting-o"></i>
                         <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
@@ -104,4 +106,36 @@
             @include('forum::layouts._friendlinks')
         </div>
     </div>
+@endsection
+
+@section('script')
+    <style>
+        .topic-content>div.left>a{
+            padding: 0.1rem 1rem;
+        }
+    </style>
+    <script>
+        console.log(@json($dynamic))
+        const app = new window.vue({
+                el: '#app', //element
+                // 数据哪里来？
+                data: {
+                    dynamic: @json($dynamic),
+                },
+                // 重定义解析变量，避免与PHP语法冲突
+                delimiters: ['${', '}'],
+                // 在 `methods` 对象中定义方法
+                methods: {
+                    // 收藏动态
+                    collection: function () {
+                        instance.post('/dynamics/collection', {
+                            'dynamic_id': this.dynamic.dynamic_id
+                        }).then(res => {
+                            console.log(res);
+                        });
+                    }
+                }
+            } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
+        );
+    </script>
 @endsection
