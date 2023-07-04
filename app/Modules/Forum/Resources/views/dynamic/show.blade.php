@@ -15,12 +15,14 @@
                     <div class="article-meta text-center text-secondary">
                         {{ $dynamic->time_formatting }}
                         ⋅
-                        <i class="fa fa-eye"></i>
-                        {{ $dynamic->cache_extends['reads_num'] }}
+                        <small>
+                            <i class="fa fa-eye"></i>
+                            {{ $dynamic->cache_extends['reads_num'] }}
+                        </small>
                         ⋅
                         <small @click="praise">
-                            <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
-                            {{ $dynamic->cache_extends['praises_count'] }}
+                            <i class="fa" :class="[dynamic.is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"></i>
+                            ${ dynamic.cache_extends.praises_count }
                         </small>
                         ⋅
                         <small @click="collection">
@@ -28,8 +30,10 @@
                             {{ $dynamic->cache_extends['collections_count'] }}
                         </small>
                         ⋅
-                        <i class="fa fa-commenting-o"></i>
-                        <span core-show="topic-likes">{{ $dynamic->cache_extends['comments_count'] }}</span>
+                        <small>
+                            <i class="fa fa-commenting-o"></i>
+                            <span>{{ $dynamic->cache_extends['comments_count'] }}</span>
+                        </small>
                     </div>
 
                     <div class="topic-body mt-4">
@@ -53,7 +57,6 @@
                             </form>
                         </div>
                     @endcan
-
                 </div>
             </div>
 
@@ -64,7 +67,6 @@
                     @include('comment::dynamic._reply_list', ['comments' => $dynamic->comments()->with('userInfo')->get()])
                 </div>
             </div>
-
         </div>
 
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
@@ -103,6 +105,7 @@
                 </div>
             </div>
 
+
             @include('forum::layouts._active_users')
 
             @include('forum::layouts._friendlinks')
@@ -117,7 +120,6 @@
         }
     </style>
     <script>
-        console.log(@json($dynamic))
         const app = new window.vue({
                 el: '#app', //element
                 // 数据哪里来？
@@ -133,7 +135,14 @@
                         instance.post('/dynamics/praise', {
                             'dynamic_id': this.dynamic.dynamic_id
                         }).then(res => {
-                            console.log(res);
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.dynamic.is_praise = res.is_praise;
+                            if(this.dynamic.is_praise){
+                                ++this.dynamic.cache_extends.praises_count;
+                            }else{
+                                --this.dynamic.cache_extends.praises_count;
+                            }
                         });
                     },
                     // 收藏动态

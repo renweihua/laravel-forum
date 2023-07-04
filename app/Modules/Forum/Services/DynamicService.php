@@ -19,7 +19,7 @@ class DynamicService
     use Error;
     use Instance;
 
-    public function praise($login_user_id, $dynamic)
+    public function praise($login_user_id, $dynamic, &$is_praise = true)
     {
         $dynamic_id = $dynamic->dynamic_id;
         $dynamicPraise = DynamicPraise::getInstance();
@@ -27,6 +27,8 @@ class DynamicService
             'user_id'    => $login_user_id,
             'dynamic_id' => $dynamic_id,
         ];
+        $is_praise = true;
+        $praise = [];
         DB::beginTransaction();
         try {
             // 动态的作者
@@ -36,10 +38,14 @@ class DynamicService
             if ($dynamicPraise->isPraise($login_user_id, $dynamic_id)) {
                 // 删除点赞记录[先first再delete，为了触发模型实际]
                 $dynamicPraise->where($data)->first()->delete();
+                // 会员获赞数递减
+                $userInfoInstance->setGetLikes($author, -1);
+
+                $is_praise = false;
                 $this->setError('取消点赞成功！');
             } else {
                 $ip_agent = get_client_info();
-                $dynamicPraise->create(array_merge($data, [
+                $praise = $dynamicPraise->create(array_merge($data, [
                     'created_time' => time(),
                     'created_ip'   => $ip_agent['ip'] ?? get_ip(),
                     'browser_type' => $ip_agent['agent'] ?? $_SERVER['HTTP_USER_AGENT'],
@@ -67,7 +73,7 @@ class DynamicService
             }
 
             DB::commit();
-            return true;
+            return $praise;
         } catch (Exception $e) {
             DB::rollBack();
             throw new BadRequestException($e->getMessage());

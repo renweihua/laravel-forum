@@ -30,9 +30,9 @@ class DynamicsApiController extends ForumController
 
         $login_user_id = Auth::id();
 
-        $praise = $this->dynamicService->praise($login_user_id, $dynamic);
+        $praise = $this->dynamicService->praise($login_user_id, $dynamic, $is_praise);
 
-        return $this->successJson($praise, $this->dynamicService->getError());
+        return $this->successJson($praise, $this->dynamicService->getError(), compact('is_praise'));
     }
 
     public function collection(DynamicIdRequest $request): JsonResponse
