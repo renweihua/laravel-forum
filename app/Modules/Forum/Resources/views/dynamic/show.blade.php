@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
-            <div class="card ">
+            <div class="card">
                 <div class="card-body">
                     <h1 class="text-center mt-3 mb-3">
                         {{ $dynamic->dynamic_title }}
@@ -20,12 +20,12 @@
                             {{ $dynamic->cache_extends['reads_num'] }}
                         </small>
                         ⋅
-                        <small @click="praise">
+                        <small class="cursor-pointer" @click="praise">
                             <i class="fa" :class="[dynamic.is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"></i>
                             ${ dynamic.cache_extends.praises_count }
                         </small>
                         ⋅
-                        <small @click="collection">
+                        <small class="cursor-pointer" @click="collection">
                             <i class="fa" :class="[dynamic.is_collection ? 'fa-heartbeat' : 'fa-heart-o']"></i>
                             ${ dynamic.cache_extends.collections_count }
                         </small>
@@ -114,11 +114,6 @@
 @endsection
 
 @section('script')
-    <style>
-        .topic-content>div.left>a{
-            padding: 0.1rem 1rem;
-        }
-    </style>
     <script>
         const app = new window.vue({
                 el: '#app', //element
