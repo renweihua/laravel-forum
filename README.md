@@ -16,11 +16,11 @@
 2. cp .env.example .env
 3. 生成 APP_KEY：`php artisan key:generate`
 4. jwt：`php artisan jwt:secret`
-4. 数据表迁移 `php artisan migrate`
-5. 创建`Storage`目录软链接 `php artisan storage:link`
-6. 数据库填充：`php artisan module:seed`
-7. 可发布语言包：`php artisan lang:publish zh_CN/语言标识`
-8. 发布编辑器`pandao/editor.md`相关文件：`php artisan vendor:publish --provider="LaravelChen\Editormd\EditorMdProvider"`
+5. 数据表迁移 `php artisan migrate`
+6. 创建`Storage`目录软链接 `php artisan storage:link`
+7. 数据库填充：`php artisan module:seed`
+8. 可发布语言包：`php artisan lang:publish zh_CN/语言标识`
+9. 发布编辑器`pandao/editor.md`相关文件：`php artisan vendor:publish --provider="Cnpscy\LaravelEditormd\EditorMdProvider"`
 
 ### 前端安装
 - 为 NPM 和 Yarn 配置安装加速

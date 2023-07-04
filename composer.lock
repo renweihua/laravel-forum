@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3134dc7aebcad11af2b891f86d2a682",
+    "content-hash": "30953a87bb5c2acfab298f34d2a78952",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,40 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "cnpscy/laravel-editormd",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./cnpscy/laravel-editormd",
+                "reference": "2706cc78f0dcd6c1e3b8ba79c0f93a183c4cde37"
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cnpscy\\LaravelEditormd\\": "src"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "小丑路人",
+                    "email": "2278757482@qq.com"
+                }
+            ],
+            "description": "laravel + pandao/editor.md.",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "doctrine/inflector",
@@ -1428,50 +1462,6 @@
             "time": "2023-02-15T16:40:09+00:00"
         },
         {
-            "name": "laravelchen/laravel-editormd",
-            "version": "2.5.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LaravelChen/laravel-editormd.git",
-                "reference": "b3b25a063bef30f5af8f172ac137cb4bd7d3bca5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LaravelChen/laravel-editormd/zipball/b3b25a063bef30f5af8f172ac137cb4bd7d3bca5",
-                "reference": "b3b25a063bef30f5af8f172ac137cb4bd7d3bca5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "zgldh/qiniu-laravel-storage": "^0.7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/helper.php"
-                ],
-                "psr-4": {
-                    "LaravelChen\\Editormd\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "LaravelChen",
-                    "email": "848407695@qq.com"
-                }
-            ],
-            "description": "laravel-editor-mb",
-            "support": {
-                "issues": "https://github.com/LaravelChen/laravel-editormd/issues",
-                "source": "https://github.com/LaravelChen/laravel-editormd/tree/master"
-            },
-            "time": "2017-08-03T04:45:44+00:00"
-        },
-        {
             "name": "lcobucci/jwt",
             "version": "3.3.3",
             "source": {
@@ -1973,69 +1963,6 @@
                 }
             ],
             "time": "2023-02-06T13:44:46+00:00"
-        },
-        {
-            "name": "myclabs/php-enum",
-            "version": "1.8.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/php-enum.git",
-                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/a867478eae49c9f59ece437ae7f9506bfaa27483",
-                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.3 || ^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5",
-                "squizlabs/php_codesniffer": "1.*",
-                "vimeo/psalm": "^4.6.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MyCLabs\\Enum\\": "src/"
-                },
-                "classmap": [
-                    "stubs/Stringable.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP Enum contributors",
-                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
-                }
-            ],
-            "description": "PHP Enum implementation",
-            "homepage": "http://github.com/myclabs/php-enum",
-            "keywords": [
-                "enum"
-            ],
-            "support": {
-                "issues": "https://github.com/myclabs/php-enum/issues",
-                "source": "https://github.com/myclabs/php-enum/tree/1.8.4"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/mnapoli",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-08-04T09:53:51+00:00"
         },
         {
             "name": "namshi/jose",
@@ -3122,63 +3049,6 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.11.18"
             },
             "time": "2023-05-23T02:31:11+00:00"
-        },
-        {
-            "name": "qiniu/php-sdk",
-            "version": "v7.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/qiniu/php-sdk.git",
-                "reference": "3c0ebeee6a7439a0d2874f24b56dfe43545a1d2e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/3c0ebeee6a7439a0d2874f24b56dfe43545a1d2e",
-                "reference": "3c0ebeee6a7439a0d2874f24b56dfe43545a1d2e",
-                "shasum": ""
-            },
-            "require": {
-                "myclabs/php-enum": "~1.5.2 || ~1.6.6 || ~1.7.7 || ~1.8.4",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "paragonie/random_compat": ">=2",
-                "phpunit/phpunit": "^4.8 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4",
-                "squizlabs/php_codesniffer": "^2.3 || ~3.6"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Qiniu/functions.php"
-                ],
-                "psr-4": {
-                    "Qiniu\\": "src/Qiniu"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Qiniu",
-                    "email": "sdk@qiniu.com",
-                    "homepage": "http://www.qiniu.com"
-                }
-            ],
-            "description": "Qiniu Resource (Cloud) Storage SDK for PHP",
-            "homepage": "http://developer.qiniu.com/",
-            "keywords": [
-                "cloud",
-                "qiniu",
-                "sdk",
-                "storage"
-            ],
-            "support": {
-                "issues": "https://github.com/qiniu/php-sdk/issues",
-                "source": "https://github.com/qiniu/php-sdk/tree/v7.9.0"
-            },
-            "time": "2023-05-06T04:36:16+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -6231,62 +6101,6 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
-        },
-        {
-            "name": "zgldh/qiniu-laravel-storage",
-            "version": "v0.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zgldh/qiniu-laravel-storage.git",
-                "reference": "1651af398c46e994df4179cfa41bf80cb025e7e0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zgldh/qiniu-laravel-storage/zipball/1651af398c46e994df4179cfa41bf80cb025e7e0",
-                "reference": "1651af398c46e994df4179cfa41bf80cb025e7e0",
-                "shasum": ""
-            },
-            "require": {
-                "league/flysystem": "^1.0",
-                "php": ">=5.3.3",
-                "qiniu/php-sdk": "^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "zgldh\\QiniuStorage\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "zgldh",
-                    "email": "zgldh@hotmail.com",
-                    "role": "Original Developer"
-                },
-                {
-                    "name": "abcsun",
-                    "email": "chenglongsun_nj@163.com",
-                    "homepage": "http://github.com/abcsun",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Qiniu Resource (Cloud) Storage SDK for Laravel 5",
-            "keywords": [
-                "cloud",
-                "laravel",
-                "qiniu",
-                "sdk",
-                "storage"
-            ],
-            "support": {
-                "issues": "https://github.com/zgldh/qiniu-laravel-storage/issues",
-                "source": "https://github.com/zgldh/qiniu-laravel-storage/tree/master"
-            },
-            "time": "2017-07-12T14:34:41+00:00"
         }
     ],
     "packages-dev": [
@@ -8827,7 +8641,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "cnpscy/laravel-editormd": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

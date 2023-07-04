@@ -175,9 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // 编辑器
-        LaravelChen\Editormd\EditorMdProvider::class,
-        zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
+        // https://pandao.github.io/editor.md 编辑器
+        Cnpscy\LaravelEditormd\EditorMdProvider::class,
     ],
 
     /*
