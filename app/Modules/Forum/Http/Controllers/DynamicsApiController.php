@@ -20,6 +20,21 @@ class DynamicsApiController extends ForumController
         $this->dynamicService = DynamicService::getInstance();
     }
 
+    public function praise(DynamicIdRequest $request): JsonResponse
+    {
+        $dynamic_id = $request->input('dynamic_id');
+        $dynamic = Dynamic::getDynamicById($dynamic_id);
+        if (empty($dynamic)){
+            return $this->errorJson('动态不存在或已删除');
+        }
+
+        $login_user_id = Auth::id();
+
+        $praise = $this->dynamicService->praise($login_user_id, $dynamic);
+
+        return $this->successJson($praise, $this->dynamicService->getError());
+    }
+
     public function collection(DynamicIdRequest $request): JsonResponse
     {
         $dynamic_id = $request->input('dynamic_id');

@@ -18,10 +18,12 @@
                         <i class="fa fa-eye"></i>
                         {{ $dynamic->cache_extends['reads_num'] }}
                         ⋅
-                        <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
-                        {{ $dynamic->cache_extends['praises_count'] }}
+                        <small @click="praise">
+                            <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
+                            {{ $dynamic->cache_extends['praises_count'] }}
+                        </small>
                         ⋅
-                        <small id="collection" @click="collection">
+                        <small @click="collection">
                             <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
                             {{ $dynamic->cache_extends['collections_count'] }}
                         </small>
@@ -126,6 +128,14 @@
                 delimiters: ['${', '}'],
                 // 在 `methods` 对象中定义方法
                 methods: {
+                    // 收藏动态
+                    praise: function () {
+                        instance.post('/dynamics/praise', {
+                            'dynamic_id': this.dynamic.dynamic_id
+                        }).then(res => {
+                            console.log(res);
+                        });
+                    },
                     // 收藏动态
                     collection: function () {
                         instance.post('/dynamics/collection', {

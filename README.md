@@ -46,7 +46,8 @@
     + [X] 作者渲染
     + [X] 评论列表
     + [X] 访问量
-    + 点赞
+    + [X] 点赞 /api/dynamics/praise
+    + [X] 收藏 /api/dynamics/collection
     + [X] 评论
       * [X] 评论之后，给动态创建人发送Job通知消息；如果评论本身就是动态创建人，则无需发送。
       * [X] 发送邮件通知
