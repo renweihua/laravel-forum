@@ -44,7 +44,7 @@
                         <div class="operate">
                             <hr>
                             <a href="{{ route('dynamics.edit', $dynamic->dynamic_id) }}" class="btn btn-outline-secondary btn-sm" role="button">
-                                <i class="far fa-edit"></i> 编辑
+                                <i class="fa fa-edit"></i> 编辑
                             </a>
                             <form action="{{ route('dynamics.destroy', $dynamic->dynamic_id) }}" method="post"
                                   style="display: inline-block;"
@@ -52,7 +52,7 @@
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-outline-secondary btn-sm">
-                                    <i class="far fa-trash-alt"></i> 删除
+                                    <i class="fa fa-trash"></i> 删除
                                 </button>
                             </form>
                         </div>

@@ -114,9 +114,7 @@ class Dynamic extends Model
 
         static::saving(function ($dynamic){
             // 如 slug 字段无内容，即使用翻译器对 title 进行翻译
-            if ( ! $dynamic->slug) {
-                $dynamic->slug = app(SlugTranslateHandler::class)->translate($dynamic->dynamic_title);
-            }
+            $dynamic->slug = app(SlugTranslateHandler::class)->translate($dynamic->dynamic_title);
         });
     }
 
