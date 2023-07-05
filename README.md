@@ -83,4 +83,6 @@
 
 ### 感谢
 - [Laravel](https://github.com/laravel)
-- [tabler](https://github.com/tabler/tabler)
+- [L02 Laravel 教程 - Web 开发实战进阶](https://learnku.com/courses/laravel-intermediate-training/8.x)
+- [pandao/editor.md](https://github.com/pandao/editor.md)
+- [element](https://element.eleme.cn)
