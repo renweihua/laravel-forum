@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('')->group(function() {
+    Route::post('upload', 'UploadController@file')->name('upload.file');
     Route::post('dynamics/collection', 'DynamicsApiController@collection')->name('dynamics.collection');
     Route::post('dynamics/praise', 'DynamicsApiController@praise')->name('dynamics.praise');
 });

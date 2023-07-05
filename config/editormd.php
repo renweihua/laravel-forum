@@ -1,6 +1,6 @@
 <?php
 return [
-    'upload_url' => '/api/upload', //上传文件的地址
+    'upload_url' => '/api/upload?file=editormd-image-file', //上传文件的地址
     // 'upload_path' => 'uploads/images/',//上传文件的地址
     // 'upload_type' => '',//上传的方式qiniu或者本地,默认为本地
     // 'upload_http' => 'https',//https或者为空
