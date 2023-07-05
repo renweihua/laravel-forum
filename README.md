@@ -18,6 +18,7 @@
 4. jwt：`php artisan jwt:secret`
 5. 数据表迁移 `php artisan migrate`
 6. 创建`Storage`目录软链接 `php artisan storage:link`
+   1. docker环境使用`php artisan storage:link --relative`
 7. 数据库填充：`php artisan module:seed`
 8. 可发布语言包：`php artisan lang:publish zh_CN/语言标识`
 9. 发布编辑器`pandao/editor.md`相关文件：`php artisan vendor:publish --provider="Cnpscy\LaravelEditormd\EditorMdProvider"`

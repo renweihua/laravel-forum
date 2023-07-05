@@ -1,9 +1,6 @@
 <?php
 return [
     'upload_url' => '/api/upload?file=editormd-image-file', //上传文件的地址
-    // 'upload_path' => 'uploads/images/',//上传文件的地址
-    // 'upload_type' => '',//上传的方式qiniu或者本地,默认为本地
-    // 'upload_http' => 'https',//https或者为空
     'width' => '100%',//宽度建议100%
     'height' => '700',//高度
     'theme' => 'default',//顶部的主题分为default和dark
@@ -12,9 +9,9 @@ return [
     'flowChart' => 'true',  //流程图
     'tex' => 'true',  //开启科学公式TeX语言支持
     'searchReplace' => 'true',//搜索替换
-    'saveHTMLToTextarea' => 'true',  //保存 HTML 到 Textarea
+    'saveHTMLToTextarea' => true,  //保存 HTML 到 Textarea
     'codeFold' => 'true',  //代码折叠
-    'emoji' => 'true',  //emoji表情
+    'emoji' => true,  //emoji表情
     'toc' => 'true',  //目录
     'tocm' => 'true',  //目录下拉菜单
     'taskList' => 'true',  //任务列表

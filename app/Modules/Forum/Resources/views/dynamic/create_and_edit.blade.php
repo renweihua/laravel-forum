@@ -17,10 +17,10 @@
                     </h2>
                     <hr>
                     @if($dynamic->dynamic_id)
-                        <form action="{{ route('dynamics.update', $dynamic->dynamic_id) }}" method="POST" accept-charset="UTF-8">
+                        <form id="dynamic" action="{{ route('dynamics.update', $dynamic->dynamic_id) }}" method="POST" accept-charset="UTF-8">
                             <input type="hidden" name="_method" value="PUT">
                             @else
-                                <form action="{{ route('dynamics.store') }}" method="POST" accept-charset="UTF-8">
+                                <form id="dynamic" action="{{ route('dynamics.store') }}" method="POST" accept-charset="UTF-8">
                                     @endif
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -36,16 +36,16 @@
                                             <option value="" hidden disabled selected>请选择话题</option>
                                             @foreach ($topics as $topic)
                                                 <option @if(
-    (!empty($topic_id) && $topic_id == $topic->topic_id)
-    || (!empty($dynamic) && $dynamic->topic_id == $topic->topic_id)
-) selected @endif value="{{ $topic->topic_id }}">{{ $topic->topic_name }}</option>
+                                                        (!empty($topic_id) && $topic_id == $topic->topic_id)
+                                                        || (!empty($dynamic) && $dynamic->topic_id == $topic->topic_id)
+                                                    ) selected @endif value="{{ $topic->topic_id }}">{{ $topic->topic_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group" id="markDownDiv">
                                         <div id="editormd_id">
-                                            <textarea name="dynamic_content" class="form-control" rows="6" style="display:none;" placeholder="请填入至少三个字符的内容。" required>{{ old('dynamic_content', $dynamic->dynamic_content ) }}</textarea>
+                                            <textarea name="dynamic_markdown" class="form-control" rows="6" style="display:none;" placeholder="请填入至少三个字符的内容。" required>{{ old('dynamic_markdown', $dynamic->dynamic_markdown ) }}</textarea>
                                         </div>
                                     </div>
 

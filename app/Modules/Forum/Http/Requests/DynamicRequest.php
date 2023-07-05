@@ -23,7 +23,7 @@ class DynamicRequest extends FormRequest
                 {
                     return [
                         'dynamic_title'       => 'required|min:2',
-                        'dynamic_content'        => 'required|min:3',
+                        'dynamic_markdown'        => 'required|min:3',
                         'topic_id' => 'required|numeric',
                     ];
                 }
@@ -40,7 +40,7 @@ class DynamicRequest extends FormRequest
     {
         return [
             'dynamic_title.min' => '标题必须至少两个字符',
-            'dynamic_content.min' => '文章内容必须至少三个字符',
+            'dynamic_markdown.min' => '文章内容必须至少三个字符',
         ];
     }
 

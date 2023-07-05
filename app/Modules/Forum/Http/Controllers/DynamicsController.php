@@ -83,10 +83,14 @@ class DynamicsController extends ForumController
     public function store(DynamicRequest $request, Dynamic $dynamic)
     {
         // 限制可设置的字段
-        $dynamic->fill($request->only('dynamic_title', 'dynamic_content', 'topic_id'));
+        $dynamic->fill($request->only('dynamic_title', 'dynamic_markdown', 'topic_id'));
+        // 如果存在html，则赋值
+        if ($request->has('editormd_id-html-code')){
+            $dynamic->dynamic_content = $request->input('editormd_id-html-code');
+        }
         $dynamic->user_id = Auth::id();
-        // 限制htmll类型
-        $dynamic->content_type = Dynamic::CONTENT_TYPE_HTML;
+        // 默认内容的格式
+        $dynamic->content_type = Dynamic::CONTENT_TYPE_MARKDOWN;
         // 仅支持`文章`类型
         $dynamic->dynamic_type = Dynamic::DYNAMIC_TYPE_ARTICLE;
         // 默认为已审核的
@@ -111,7 +115,13 @@ class DynamicsController extends ForumController
     public function update(DynamicRequest $request, Dynamic $dynamic)
     {
         $this->authorize('update', $dynamic);
-        $dynamic->fill($request->only('dynamic_title', 'dynamic_content', 'topic_id'));
+
+        $params = $request->only('dynamic_title', 'dynamic_markdown', 'topic_id');
+        // 如果存在html，则赋值
+        if ($request->has('editormd_id-html-code')){
+            $params['dynamic_content'] = $request->input('editormd_id-html-code');
+        }
+        $dynamic->update($params);
 
         return redirect()->to($dynamic->link())->with('success', '更新成功！');
     }

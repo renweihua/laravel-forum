@@ -72,11 +72,11 @@ class Dynamic extends Model
             Topic::clearTopicsCache();
 
             if ($dynamic->content_type == self::CONTENT_TYPE_MARKDOWN && $dynamic->isDirty('dynamic_markdown')) {
-                $dynamic->dynamic_content = self::toHTML($dynamic->dynamic_markdown);
+                if (!isset($dynamic->dynamic_content)) $dynamic->dynamic_content = self::toHTML($dynamic->dynamic_markdown);
             }
 
             if ($dynamic->content_type == self::CONTENT_TYPE_HTML && $dynamic->isDirty('dynamic_content')) {
-                $dynamic->dynamic_markdown = self::htmlToMarkdown($dynamic->dynamic_content);
+                if (!isset($dynamic->dynamic_markdown)) $dynamic->dynamic_markdown = self::htmlToMarkdown($dynamic->dynamic_content);
             }
 
             // 编辑时，原始与新话题归属可能不一致
