@@ -14,7 +14,8 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment_content' => 'required|min:2',
+            'dynamic_id' => 'required',
+            'comment_markdown' => 'required|min:2',
         ];
     }
 
