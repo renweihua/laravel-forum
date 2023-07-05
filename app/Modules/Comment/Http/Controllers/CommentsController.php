@@ -41,8 +41,8 @@ class CommentsController extends CommentModuleController
 
         $comment->user_id = Auth::id();
         $comment->dynamic_id = $dynamic->dynamic_id;
-        $comment->content_type = $request->comment_markdown;
-        $comment->comment_markdown = Dynamic::CONTENT_TYPE_MARKDOWN;
+        $comment->content_type = Dynamic::CONTENT_TYPE_MARKDOWN;
+        $comment->comment_markdown = $request->comment_markdown;
         $comment->author_id = $dynamic->user_id;
         $comment->top_level = $top_level;
         $comment->reply_user = $reply_user;
