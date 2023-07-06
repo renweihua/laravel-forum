@@ -64,7 +64,7 @@
             <div class="card topic-reply mt-4">
                 <div class="card-body">
                     @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => 0])
-                    @include('comment::dynamic._reply_list', [
+                    @includeIf('comment::dynamic._reply_list', [
                         'dynamic' => $dynamic,
                         'comments' => $dynamic->topComments()->with([
                                 'userInfo',
@@ -128,7 +128,7 @@
 @endsection
 
 @section('script')
-    @include('comment::dynamic._reply_praise')
+    @includeIf('comment::dynamic._reply_praise')
     <script>
         const app = new window.vue({
                 el: '#app', //element
@@ -140,11 +140,9 @@
                 delimiters: ['${', '}'],
                 // 在 `methods` 对象中定义方法
                 methods: {
-                    // 收藏动态
-                    praise: function () {
-                        instance.post('/dynamics/praise', {
-                            'dynamic_id': this.dynamic.dynamic_id
-                        }).then(res => {
+                    // 动态点赞
+                    async praise () {
+                        await dynamicPraise(this.dynamic.dynamic_id).then(res => {
                             Element.Message.success(res.msg);
                             // 同步渲染是否点赞标识
                             this.dynamic.is_praise = res.is_praise;
@@ -156,10 +154,8 @@
                         });
                     },
                     // 收藏动态
-                    collection: function () {
-                        instance.post('/dynamics/collection', {
-                            'dynamic_id': this.dynamic.dynamic_id
-                        }).then(res => {
+                    async collection () {
+                        await dynamicCollection(this.dynamic.dynamic_id).then(res => {
                             Element.Message.success(res.msg);
                             // 同步渲染是否点赞标识
                             this.dynamic.is_collection = res.is_collection;
@@ -173,12 +169,5 @@
                 }
             } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
         );
-
-        function showReply(_that) {
-            // 关闭所有回复框
-            $('ul.list-unstyled div.reply-box').hide();
-            // 展示当前回复框
-            $(_that).parent().next().find('div.reply-box').show();
-        }
     </script>
 @endsection
