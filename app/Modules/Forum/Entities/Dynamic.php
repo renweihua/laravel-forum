@@ -343,6 +343,12 @@ class Dynamic extends Model
         return $this->hasMany(DynamicComment::class, $this->primaryKey, $this->primaryKey);
     }
 
+    // 一级评论
+    public function topComments()
+    {
+        return $this->hasMany(DynamicComment::class, $this->primaryKey, $this->primaryKey)->where('top_level', 0);
+    }
+
     /**
      * 发布人是谁的关注人
      *

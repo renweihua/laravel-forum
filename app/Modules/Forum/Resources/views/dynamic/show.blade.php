@@ -63,8 +63,8 @@
             {{-- 用户回复列表 --}}
             <div class="card topic-reply mt-4">
                 <div class="card-body">
-                    @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic])
-                    @include('comment::dynamic._reply_list', ['comments' => $dynamic->comments()->with('userInfo')->get()])
+                    @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => 0])
+                    @include('comment::dynamic._reply_list', ['dynamic' => $dynamic, 'comments' => $dynamic->topComments()->with(['userInfo', 'replies.userInfo'])->get()])
                 </div>
             </div>
         </div>

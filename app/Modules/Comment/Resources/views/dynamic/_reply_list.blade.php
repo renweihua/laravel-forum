@@ -1,6 +1,6 @@
 <ul class="list-unstyled">
     @foreach ($comments as $index => $comment)
-        <li class=" media" name="reply{{ $comment->comment_id }}" id="reply{{ $comment->comment_id }}">
+        <li class="media" name="reply{{ $comment->comment_id }}" id="reply{{ $comment->comment_id }}">
             <div class="media-left">
                 <a href="{{ route('users.show', [$comment->user_id]) }}">
                     <img class="media-object img-thumbnail mr-3" alt="{{ $comment->userInfo->nick_name }}" src="{{ $comment->userInfo->user_avatar }}" style="width:48px;height:48px;" />
@@ -32,6 +32,10 @@
                 </div>
                 <div class="reply-content text-secondary">
                     {!! $comment->comment_content !!}
+                </div>
+                <div class="text-secondary reply">
+                    @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => $comment->comment_id, 'class' => 'hidden'])
+                    @include('comment::dynamic._reply_list', ['comments' => $comment->replies])
                 </div>
             </div>
         </li>
