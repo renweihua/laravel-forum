@@ -90,6 +90,19 @@
                         作者：{{ $dynamic->userInfo->nick_name }}
                     </div>
                     <hr>
+                    <div class="text-center">
+                        <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);">
+                            <div v-if="!dynamic.user_info.is_follow" >
+                                <i class="fa fa-plus mr-2"></i>
+                                关注 TA
+                            </div>
+                            <div v-else>
+                                <i class="fa fa-check mr-2"></i>
+                                已关注
+                            </div>
+                        </a>
+                    </div>
+                    <hr>
                     <div class="media">
                         <div align="center">
                             <a href="{{ route('users.show', $dynamic->user_id) }}">
@@ -164,7 +177,15 @@
                                 --this.dynamic.cache_extends.collections_count;
                             }
                         });
-                    }
+                    },
+                    // 关注会员
+                    async follow () {
+                        await followUser(this.dynamic.user_id).then(res => {
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.dynamic.user_info.is_follow = res.is_follow;
+                        });
+                    },
                 }
             } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
         );
