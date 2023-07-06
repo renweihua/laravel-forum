@@ -11,7 +11,12 @@
                 <div class="media-heading mt-0 mb-1 text-secondary">
                     <a href="{{ route('users.show', [$comment->user_id]) }}" title="{{ $comment->userInfo->nick_name }}">
                         {{ $comment->userInfo->nick_name }}
+                        @if($comment->user_id == $dynamic->user_id)（作者）@endif
                     </a>
+                    @if($comment->reply_user != $comment->user_id && $comment->reply_user)
+                        <!-- 回复某人 -->
+                        回复 <a href="javascript:;">{{ $comment->replyUser->nick_name }}@if($comment->reply_user == $dynamic->user_id)（作者）@endif</a>
+                    @endif
                     <span class="text-secondary"> • </span>
                     <span class="meta text-secondary" title="{{ $comment->time_formatting }}">{{ $comment->time_formatting }}</span>
 

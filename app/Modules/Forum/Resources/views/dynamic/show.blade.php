@@ -64,7 +64,7 @@
             <div class="card topic-reply mt-4">
                 <div class="card-body">
                     @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => 0])
-                    @include('comment::dynamic._reply_list', ['dynamic' => $dynamic, 'comments' => $dynamic->topComments()->with(['userInfo', 'replies.userInfo'])->get()])
+                    @include('comment::dynamic._reply_list', ['dynamic' => $dynamic, 'comments' => $dynamic->topComments()->with(['userInfo', 'replies' => function($query){$query->with(['userInfo', 'replyUser']);}])->get()])
                 </div>
             </div>
         </div>
