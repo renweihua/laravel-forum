@@ -364,9 +364,13 @@ class Dynamic extends Model
         return $this->belongsTo(Topic::class, 'topic_id', 'topic_id')->select('topic_id', 'topic_name', 'topic_description', 'topic_cover');
     }
 
-    public static function getListByIds(array $ids)
+    public static function getListByIds(array $ids, $remove_delete = true)
     {
-        $list = self::whereIn('dynamic_id', $ids)->select('dynamic_id', 'dynamic_title', 'dynamic_images', 'dynamic_type', 'created_time')->get()->toArray();
+        $build = new self;
+        if (!$remove_delete){
+            $build = self::withTrashed();
+        }
+        return $list = $build->whereIn('dynamic_id', $ids)->select('dynamic_id', 'dynamic_title', 'dynamic_images', 'dynamic_type', 'created_time')->get()->keyBy('dynamic_id');
         return array_column($list, null, 'dynamic_id');
     }
 
@@ -375,7 +379,7 @@ class Dynamic extends Model
         $convertedHmtl = app(\ParsedownExtra::class)->setBreaksEnabled(true)->text(\emoji($markdown));
 
         /** XSS 防注入 */
-        $convertedHmtl = Purifier::clean($convertedHmtl, 'markdown');
+        // $convertedHmtl = Purifier::clean($convertedHmtl, 'markdown');
 
         // 代码高亮展示优化
         $convertedHmtl = str_replace("<pre><code>", '<pre><code class=" language-php">', $convertedHmtl);

@@ -46,9 +46,9 @@
                         </li>
                     </ul>
                     @if (if_query('tab', 'replies'))
-                        @include('user::users.users._comments', ['comments' => $comments])
+                        @include('user::users._comments', ['comments' => $comments])
                     @else
-                        @include('user::users.users._dynamics', ['topics' => $dynamics])
+                        @include('user::users._dynamics', ['topics' => $dynamics])
                     @endif
                 </div>
             </div>

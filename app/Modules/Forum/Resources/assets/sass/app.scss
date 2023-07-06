@@ -159,11 +159,22 @@ body {
         margin-top: 14px;
     }
 
-  .badge-secondary {
-    background-color: #EBE8E8!important;
-  }
+    .badge-secondary {
+        background-color: #EBE8E8!important;
+    }
 
     .badge-hint {
         background-color: #d15b47 !important;
+    }
+}
+
+// 消息通知页面
+div.notifications-index-page{
+    // 列表
+    div.notification-list{
+        li{
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
     }
 }
