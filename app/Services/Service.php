@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules\User\Services;
+namespace App\Services;
 
 use App\Traits\Error;
 use App\Traits\Instance;

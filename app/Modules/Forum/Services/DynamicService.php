@@ -10,15 +10,13 @@ use App\Modules\Forum\Entities\DynamicPraise;
 use App\Modules\Forum\Entities\Notify;
 use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\UserInfo;
+use App\Services\Service;
 use App\Traits\Error;
 use App\Traits\Instance;
 use Illuminate\Support\Facades\DB;
 
-class DynamicService
+class DynamicService extends Service
 {
-    use Error;
-    use Instance;
-
     public function praise($login_user_id, $dynamic, &$is_praise = true)
     {
         $dynamic_id = $dynamic->dynamic_id;

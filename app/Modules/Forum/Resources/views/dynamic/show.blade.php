@@ -132,7 +132,6 @@
     <script>
         const app = new window.vue({
                 el: '#app', //element
-                // 数据哪里来？
                 data: {
                     dynamic: @json($dynamic),
                 },

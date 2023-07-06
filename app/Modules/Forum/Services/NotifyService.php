@@ -6,8 +6,9 @@ use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Forum\Entities\Notify;
 use App\Modules\Topic\Entities\Topic;
 use App\Modules\User\Entities\UserInfo;
+use App\Services\Service;
 
-class NotifyService
+class NotifyService extends Service
 {
     public static function format(&$notifies, &$set_read_nums = 0)
     {

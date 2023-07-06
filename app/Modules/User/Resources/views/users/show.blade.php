@@ -26,6 +26,17 @@
             <div class="card ">
                 <div class="card-body">
                     <h1 class="mb-0" style="font-size:22px;">{{ $user->user_name }} <small>{{ $user->user_email }}</small></h1>
+
+                    <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);top: 15px;position: absolute;right: 15px;">
+                        <div v-if="!user.user_info.is_follow" >
+                            <i class="fa fa-plus mr-2"></i>
+                            关注 TA
+                        </div>
+                        <div v-else>
+                            <i class="fa fa-check mr-2"></i>
+                            已关注
+                        </div>
+                    </a>
                 </div>
             </div>
             <hr>
@@ -56,3 +67,28 @@
         </div>
     </div>
 @stop
+
+@section('script')
+    <script>
+        const app = new window.vue({
+                el: '#app', //element
+                data: {
+                    user: @json($user),
+                },
+                // 重定义解析变量，避免与PHP语法冲突
+                delimiters: ['${', '}'],
+                // 在 `methods` 对象中定义方法
+                methods: {
+                    // 关注会员
+                    async follow () {
+                        await followUser(this.user.user_id).then(res => {
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.user.user_info.is_follow = res.is_follow;
+                        });
+                    },
+                }
+            } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
+        );
+    </script>
+@endsection

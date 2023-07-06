@@ -6,7 +6,9 @@ require('./element-ui');
 
 require('./axios');
 
-require('./dynamics');
+// 引入API
+require('../api/dynamics');
+require('../api/user');
 
 // 是否展示返回页面顶部的图标
 setTimeout(() => {
@@ -31,4 +33,12 @@ scrollToTop = function () {
         left: 0,
         behavior: 'smooth'
     })
+}
+
+// 展示回复评论框
+showReply = function(_that) {
+    // 关闭所有回复框
+    $('ul.list-unstyled div.reply-box').hide();
+    // 展示当前回复框
+    $(_that).parent().next().find('div.reply-box').show();
 }

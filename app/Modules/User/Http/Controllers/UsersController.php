@@ -11,6 +11,7 @@ use App\Modules\User\Http\Requests\UserUpdateRequest;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class UsersController extends UserModuleController
@@ -27,39 +28,28 @@ class UsersController extends UserModuleController
         return view('user::users', compact('userInfos'));
     }
 
-    public function show(UserAuth $user, Request $request)
+    public function show(User $user, Request $request)
     {
-        $user->load('userInfo');
+        $login_user_id = Auth::id();
+
+        $user->load([
+            'userInfo.isFollow' => function($query) use($login_user_id){
+                $query->where('user_id', $login_user_id);
+            }
+        ]);
+        // 是否已关注
+        $user->userInfo->is_follow = $user->userInfo->isFollow ? true : false;
 
         $tab = $request->input('tab');
         if ($tab == 'replies'){
-            $comments = DynamicComment::where('user_id', $user->user_id)->with('dynamic')->orderByDesc('comment_id')->paginate(10);
+            $comments = DynamicComment::where('user_id', $user->user_id)->with(['dynamic', 'topic'])->orderByDesc('comment_id')->paginate(10);
             View::share('comments', $comments);
         }else{
-            $dynamics = Dynamic::where('user_id', $user->user_id)->with('userInfo')->orderByDesc('dynamic_id')->paginate(10);
+            $dynamics = Dynamic::where('user_id', $user->user_id)->with(['userInfo', 'topic'])->orderByDesc('dynamic_id')->paginate(10);
             View::share('dynamics', $dynamics);
         }
 
         return view('user::users.show', compact('user'));
-
-        $userInfo = UserInfo::find($user_id);
-        if (empty($userInfo)){
-            abort(404, '会员不存在或已删除！');
-        }
-
-        // 设置会员的菜单栏
-        $this->getUserMenus();
-
-        $user_menu_id = $request->input('user_menu', 1);
-        switch ($user_menu_id){
-            case 1: // 主页
-                break;
-            case 2: // 动态
-                $dynamics = Dynamic::where('user_id', $user_id)->with(['userInfo', 'topic'])->orderByDesc('dynamic_id')->paginate(10);
-                View::share('dynamics', $dynamics);
-                break;
-        }
-        return view('user::show', compact('userInfo', 'user_menu_id'));
     }
 
     public function edit(UserAuth $user)
