@@ -22,15 +22,8 @@ setTimeout(() => {
     })
 }, 1000);
 
-$(function(){
-   // 不可直接在html的a标签调用onclick,未找到方法……
-   $('a#back-to-top').click(function(){
-       scrollToTop();
-   });
-});
-
 // 返回页面顶部
-function scrollToTop() {
+scrollToTop = function () {
     window.scroll({
         top: 0,
         left: 0,
