@@ -64,7 +64,21 @@
             <div class="card topic-reply mt-4">
                 <div class="card-body">
                     @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => 0])
-                    @include('comment::dynamic._reply_list', ['dynamic' => $dynamic, 'comments' => $dynamic->topComments()->with(['userInfo', 'replies' => function($query){$query->with(['userInfo', 'replyUser']);}])->get()])
+                    @include('comment::dynamic._reply_list', [
+                        'dynamic' => $dynamic,
+                        'comments' => $dynamic->topComments()->with([
+                                'userInfo',
+                                'isPraise' => function($q) use($login_user_id){
+                                        $q->where('user_id', $login_user_id);
+                                },
+                                'replies' => function($query) use($login_user_id){
+                                    $query->with(['userInfo', 'replyUser', 'isPraise' => function($q) use($login_user_id){
+                                        $q->where('user_id', $login_user_id);
+                                    }]);
+                                }
+                            ])
+                            ->get()
+                    ])
                 </div>
             </div>
         </div>
@@ -114,6 +128,7 @@
 @endsection
 
 @section('script')
+    @include('comment::dynamic._reply_praise')
     <script>
         const app = new window.vue({
                 el: '#app', //element

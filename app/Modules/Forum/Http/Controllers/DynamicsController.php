@@ -71,7 +71,7 @@ class DynamicsController extends ForumController
         // 会员收藏的动态数量
         $dynamic->user->collection_dynamic_count = DynamicCollection::where('user_id', $dynamic->user_id)->count();
 
-        return view('forum::dynamic.show', compact('dynamic'));
+        return view('forum::dynamic.show', compact('dynamic', 'login_user_id'));
     }
 
     public function create(Dynamic $dynamic, Request $request)

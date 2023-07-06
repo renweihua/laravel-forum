@@ -15,7 +15,7 @@
                     </a>
                     @if($comment->reply_user != $comment->user_id && $comment->reply_user)
                         <!-- 回复某人 -->
-                        回复 <a href="javascript:;">{{ $comment->replyUser->nick_name }}@if($comment->reply_user == $dynamic->user_id)（作者）@endif</a>
+                        回复 <a href="{{ route('users.show', [$comment->reply_user]) }}">{{ $comment->replyUser->nick_name }}@if($comment->reply_user == $dynamic->user_id)（作者）@endif</a>
                     @endif
                     <span class="text-secondary"> • </span>
                     <span class="meta text-secondary" title="{{ $comment->time_formatting }}">{{ $comment->time_formatting }}</span>
@@ -39,9 +39,9 @@
                     {!! $comment->comment_content !!}
                 </div>
                 <div class="text-secondary">
-                    <small class="cursor-pointer" @click="praiseComment({{$comment->comment_id}})">
-                        <i class="fa" :class="[dynamic.is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"></i>
-                        {{ $comment->praise_count }}
+                    <small id="comment-praise-{{$comment->comment_id}}" class="cursor-pointer" onclick="praiseComment({{$comment->comment_id}})">
+                        <i class="fa @if($comment->isPraise) fa-thumbs-up @else fa-thumbs-o-up @endif"></i>
+                        <span>{{ $comment->praise_count }}</span>
                     </small>
                     ⋅
                     <small class="cursor-pointer" onclick="showReply(this)">
