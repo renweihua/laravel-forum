@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Comment\Entities;
+namespace App\Modules\Comment\Entities;
 
 use App\Models\Model;
 use App\Models\Forum\Entities\User;

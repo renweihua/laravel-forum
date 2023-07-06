@@ -25,7 +25,7 @@ class DynamicsApiController extends ForumController
         $dynamic_id = $request->input('dynamic_id');
         $dynamic = Dynamic::getDynamicById($dynamic_id);
         if (empty($dynamic)){
-            return $this->errorJson('动态不存在或已删除');
+            return $this->errorJson('动态不存在或已删除！');
         }
 
         $login_user_id = Auth::id();

@@ -141,7 +141,7 @@
                     case 501:
                     case 503:
                     default:
-                        Element.Message.error('服务器出了点小问题，程序员小哥哥要被扣工资了~！');
+                        Element.Message.error(error.response.data.msg || '服务器出了点小问题，程序员小哥哥要被扣工资了~！');
                 }
                 return Promise.reject(error.response);
             }

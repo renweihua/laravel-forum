@@ -111,6 +111,8 @@ class Handler extends ExceptionHandler
             if($exception instanceof \Exception){
                 return $this->setJsonReturn($exception);
             }
+
+            return $this->setJsonReturn($exception);
         }
 
         return parent::render($request, $exception);
