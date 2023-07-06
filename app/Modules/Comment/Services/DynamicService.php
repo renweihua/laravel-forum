@@ -57,7 +57,7 @@ class DynamicService
                     $notify = Notify::insert([
                         'notify_type'  => Notify::NOTIFY_TYPE['INTERACT_MSG'],
                         'user_id'      => $author,
-                        'target_id'    => $comment->comment_id,
+                        'target_id'    => $comment->dynamic_id,
                         'target_type'  => Notify::TARGET_TYPE['DYNAMIC'],
                         'sender_id'    => $login_user_id,
                         'sender_type'  => Notify::SYSTEM_SENDER,
