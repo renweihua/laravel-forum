@@ -19,6 +19,6 @@ class HomeController extends ForumController
             ->with(['topic', 'userInfo'])
             ->paginate(15);
 
-        return view('forum::dynamic.index', compact('dynamics', 'tab'));
+        return view('forum::index', compact('dynamics', 'tab'));
     }
 }
