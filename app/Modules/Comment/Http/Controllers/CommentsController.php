@@ -44,6 +44,7 @@ class CommentsController extends CommentModuleController
         $comment->content_type = Dynamic::CONTENT_TYPE_MARKDOWN;
         $comment->comment_markdown = $request->comment_markdown;
         $comment->author_id = $dynamic->user_id;
+        $comment->reply_id = $reply_id;
         $comment->top_level = $top_level;
         $comment->reply_user = $reply_user;
         // 如果评论者与被回复人是同一个人，那么则默认已读，无需通知
@@ -57,7 +58,7 @@ class CommentsController extends CommentModuleController
         // 通知动态作者有新的评论/回复
         DynamicCommentNotifyJob::dispatch($comment);
 
-        return redirect()->to($comment->dynamic->link())->with('success', '评论创建成功！');
+        return redirect()->to($comment->dynamic->link(['#reply' . $comment->comment_id]))->with('success', '评论创建成功！');
     }
 
     public function destroy(DynamicComment $comment)
