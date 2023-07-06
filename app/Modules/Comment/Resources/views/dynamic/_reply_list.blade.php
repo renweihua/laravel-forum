@@ -33,6 +33,17 @@
                 <div class="reply-content text-secondary">
                     {!! $comment->comment_content !!}
                 </div>
+                <div class="text-secondary">
+                    <small class="cursor-pointer" @click="praiseComment({{$comment->comment_id}})">
+                        <i class="fa" :class="[dynamic.is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"></i>
+                        {{ $comment->praise_count }}
+                    </small>
+                    ⋅
+                    <small class="cursor-pointer" onclick="showReply(this)">
+                        <i class="fa fa-reply"></i>
+                        回复
+                    </small>
+                </div>
                 <div class="text-secondary reply">
                     @includeWhen(Auth::check(), 'comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => $comment->comment_id, 'class' => 'hidden'])
                     @include('comment::dynamic._reply_list', ['comments' => $comment->replies])

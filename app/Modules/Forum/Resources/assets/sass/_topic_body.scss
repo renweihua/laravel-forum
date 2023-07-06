@@ -379,3 +379,15 @@ div.author-statistics>div{
 .cursor-pointer{
     cursor: pointer
 }
+
+
+.topic-content{
+    // 评论回复框
+    div.reply{
+        margin-top: 1rem;
+
+        button{
+            float: right;
+        }
+    }
+}

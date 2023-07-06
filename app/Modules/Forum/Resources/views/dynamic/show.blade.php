@@ -158,5 +158,12 @@
                 }
             } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
         );
+
+        function showReply(_that) {
+            // 关闭所有回复框
+            $('ul.list-unstyled div.reply-box').hide();
+            // 展示当前回复框
+            $(_that).parent().next().find('div.reply-box').show();
+        }
     </script>
 @endsection
