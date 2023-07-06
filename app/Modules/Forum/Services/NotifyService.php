@@ -68,10 +68,11 @@ class NotifyService
         if (!empty($topic_ids)){
             $topic_infos = Topic::getListByIds($topic_ids);
         }
+
         foreach ($notifies as $item){
             switch ($item->target_type){
                 case $notifyInstance::TARGET_TYPE['DYNAMIC']: // 动态
-                    $item->relation = (object)$dynamics[$item->target_id];
+                    $item->relation = isset($dynamics[$item->target_id]) ? $dynamics[$item->target_id] : false;
                     // 评论
                     if(
                         $item->dynamic_type == $notifyInstance::DYNAMIC_TARGET_TYPE['COMMENT']
@@ -85,17 +86,17 @@ class NotifyService
                     $notifyInstance->setExplain($item);
                     break;
                 case $notifyInstance::TARGET_TYPE['FOLLOW']: // 关注
-                    $item->relation = (object)$user_infos[$item->sender_id];
+                    $item->relation = isset($user_infos[$item->sender_id]) ? (object)$user_infos[$item->sender_id] : false;
                     $item->explain = '关注了您';
                     break;
                 case $notifyInstance::TARGET_TYPE['SUBSCRIBE']: // 订阅
                     switch ($item->subscribe_type){
                         case Notify::SUBSCRIBE_TYPE['TOPIC']: // 话题
-                            $item->relation = (object)$topic_infos[$item->target_id];
+                            $item->relation = isset($topic_infos[$item->target_id]) ? (object)$topic_infos[$item->target_id] : false;
                             $item->explain = '订阅话题{' . ($item->relation->topic_name ?? '') . '}';
                             break;
                         case Notify::SUBSCRIBE_TYPE['DYNAMIC']: // 动态
-                            $item->relation = (object)$dynamics[$item->target_id];
+                            $item->relation = isset($dynamics[$item->target_id]) ? $dynamics[$item->target_id] : false;
                             $item->explain = '订阅动态{' . ($item->relation->dynamic_title ?? '') . '}';
                             break;
                     }
