@@ -9,6 +9,7 @@ require('./axios');
 // 引入API
 require('../api/dynamics');
 require('../api/user');
+require('../api/topic');
 
 // 是否展示返回页面顶部的图标
 setTimeout(() => {

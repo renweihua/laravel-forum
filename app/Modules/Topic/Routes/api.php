@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/topic', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/topic', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::prefix('')->middleware('auth:api')->group(function() {
+    Route::post('topic/follow', 'TopicApiController@follow')->name('topic.follow');
 });

@@ -5,7 +5,7 @@
                 <img src="{{ $topic->topic_cover }}" title="{{ $topic->topic_name }}" />
             @endif
             {{ $topic->topic_name }}
-                <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);    top: 13px;
+                <a @click="topicFollow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);    top: 13px;
     position: absolute;
     z-index: 1;
     right: 20px;">

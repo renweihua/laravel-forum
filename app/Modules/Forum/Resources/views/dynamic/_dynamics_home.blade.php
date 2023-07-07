@@ -4,7 +4,7 @@
             <div class="alert alert-info" role="alert">
                 {{ $topic->topic_name }} ：{{ $topic->topic_description }}
             </div>
-            <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);    top: 5px;
+            <a @click="topicFollow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);    top: 5px;
     position: absolute;
     z-index: 1;
     right: 25px;

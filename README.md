@@ -82,6 +82,7 @@
 ##### 话题
 - [X] 话题的动态列表 /topic/话题Id
 - [ ] 话题详情
+- [X] 关注话题 /api/topic/follow
 
 ### 感谢
 - [Laravel](https://github.com/laravel)
