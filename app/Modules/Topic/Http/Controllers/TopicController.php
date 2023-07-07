@@ -10,6 +10,7 @@ use App\Modules\User\Entities\UserAuth;
 use App\Modules\User\Entities\UserInfo;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends TopicModuleController
 {
@@ -28,12 +29,21 @@ class TopicController extends TopicModuleController
      * @param int $id
      * @return Renderable
      */
-    public function show($topic_id, Request $request, User $user)
+    public function show($topic_id, Request $request)
     {
-        $topic = Topic::find($topic_id);
+        $login_user_id = Auth::id();
+
+        $topic = Topic::with([
+            'isFollow' => function($query) use ($login_user_id) {
+                $query->where('user_id', $login_user_id);
+            }
+        ])->find($topic_id);
         if (empty($topic)){
             abort(404, '话题不存在或已删除！');
         }
+
+        // 是否已关注
+        $topic->is_follow = $login_user_id == 0 ? false : ($topic->isFollow ? true : false);
 
         $tab = $request->input('tab', 'default');
 
@@ -44,62 +54,6 @@ class TopicController extends TopicModuleController
             ->orderBy('dynamic_id', 'DESC')
             ->paginate(10);
 
-        // 活跃会员
-        $active_users = $user->getActiveUsers();
-
-        // 友情链接
-        $friendlinks = Friendlink::getFriendlinksByWeb();
-
-        return view('forum::dynamic.index', compact('topic', 'dynamics', 'tab', 'active_users', 'friendlinks'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('topic::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('topic::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        return view('topic::index', compact('topic', 'dynamics', 'tab'));
     }
 }
