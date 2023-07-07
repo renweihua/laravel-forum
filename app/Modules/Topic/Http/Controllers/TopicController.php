@@ -50,9 +50,25 @@ class TopicController extends TopicModuleController
         $dynamics = Dynamic::public()
             ->filter($request->all())
             ->where('topic_id', $topic_id)
-            ->with(['userInfo', 'topic'])
+            ->with([
+                'userInfo',
+                'topic',
+                'isPraise' => function($query) use ($login_user_id) {
+                    $query->where('user_id', $login_user_id);
+                },
+                'isCollection' => function($query) use ($login_user_id) {
+                    $query->where('user_id', $login_user_id);
+                },
+            ])
             ->orderBy('dynamic_id', 'DESC')
             ->paginate(10);
+
+        foreach ($dynamics as $dynamic){
+            // 是否已赞
+            $dynamic->is_praise = $login_user_id == 0 ? false : ($dynamic->isPraise ? true : false);
+            // 是否已收藏
+            $dynamic->is_collection = $login_user_id == 0 ? false : ($dynamic->isCollection ? true : false);
+        }
 
         return view('topic::index', compact('topic', 'dynamics', 'tab'));
     }

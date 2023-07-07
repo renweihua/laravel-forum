@@ -1,7 +1,7 @@
 @if (count($dynamics))
     <ul class="list-unstyled">
         @foreach ($dynamics as $dynamic)
-            <li class="d-flex">
+            <li class="d-flex" id="dynamic-{{$dynamic->dynamic_id}}">
                 @if(!empty($dynamic->userInfo))
                 <div class="">
                     <a href="{{ route('users.show', [$dynamic->user_id]) }}">
@@ -45,12 +45,16 @@
                             {{ $dynamic->cache_extends['reads_num'] }}</span>
 
                             <span> • </span>
-                            <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
-                            {{ $dynamic->cache_extends['praises_count'] }}
+                            <small id="praise" class="cursor-pointer" @click="praise({{$dynamic->dynamic_id}})">
+                                <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
+                                <span>{{ $dynamic->cache_extends['praises_count'] }}</span>
+                            </small>
 
                             <span> • </span>
-                            <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
-                            {{ $dynamic->cache_extends['collections_count'] }}
+                            <small id="collection" class="cursor-pointer" @click="collection({{$dynamic->dynamic_id}})">
+                                <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
+                                <span>{{ $dynamic->cache_extends['collections_count'] }}</span>
+                            </small>
 
                             <span> • </span>
                             <i class="fa fa-comments-o fa-lg"></i>
