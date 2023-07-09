@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "cnpscy/laravel-editormd": "dev-master",
         "erusev/parsedown-extra": "^0.7.1",
+        "freyo/flysystem-qcloud-cos-v5": "^2.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
