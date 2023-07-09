@@ -22,13 +22,29 @@ class DynamicsController extends ForumController
     public function show(Request $request, $dynamic_id)
     {
         $login_user_id = Auth::id();
-        $dynamic = Dynamic::with(['user', 'userInfo' => function($query) use($login_user_id){
-            $query->with([
-                'isFollow' => function($query) use ($login_user_id) {
-                    $query->where('user_id', $login_user_id);
-                }
-            ]);
-        }])->find($dynamic_id);
+        $dynamic = Dynamic::with([
+            'user',
+            'userInfo' => function($query) use($login_user_id){
+                $query->with([
+                    'isFollow' => function($query) use ($login_user_id) {
+                        $query->where('user_id', $login_user_id);
+                    }
+                ]);
+            },
+            'topComments' => function($query) use($login_user_id){
+                $query->with([
+                    'userInfo',
+                    'isPraise' => function($q) use($login_user_id){
+                        $q->where('user_id', $login_user_id);
+                    },
+                    'replies' => function($query) use($login_user_id){
+                        $query->with(['userInfo', 'replyUser', 'isPraise' => function($q) use($login_user_id){
+                            $q->where('user_id', $login_user_id);
+                        }]);
+                    }
+                ]);
+            }
+        ])->find($dynamic_id);
         if (empty($dynamic)){
             abort(404, '动态不存在或已删除！');
         }

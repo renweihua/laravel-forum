@@ -1,4 +1,5 @@
-<ul class="list-unstyled">
+@if(!empty($comments))
+    <ul class="list-unstyled">
     @foreach ($comments as $index => $comment)
         <li class="media" name="reply{{ $comment->comment_id }}" id="reply{{ $comment->comment_id }}">
             <div class="media-left">
@@ -62,3 +63,4 @@
 
     @endforeach
 </ul>
+@endif
