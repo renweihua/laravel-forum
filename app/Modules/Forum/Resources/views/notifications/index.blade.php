@@ -2,6 +2,9 @@
 @section('title', '我的通知')
 
 @section('content')
+    @php
+    use App\Modules\Forum\Entities\Notify;
+    @endphp
     <div class="container">
         <div class="col-md-10 offset-md-1">
             <div class="card ">
@@ -16,11 +19,13 @@
                     @if ($notifications->count())
                         <div class="list-unstyled notification-list">
                             @foreach ($notifications as $notify)
-                                @if($notify->target_type == \App\Modules\Forum\Entities\Notify::TARGET_TYPE['DYNAMIC'])
+                                @if($notify->target_type == Notify::TARGET_TYPE['DYNAMIC'])
                                     @include('forum::notifications.types._dynamic_relation', compact('notify'))
+                                @elseif($notify->target_type == Notify::TARGET_TYPE['FOLLOW'])
+                                    @include('forum::notifications.types._user_follow', compact('notify'))
                                 @else
-                                    <li class="media @if ( ! $loop->last) border-bottom @endif">
-                                        其它类型
+                                    <li class="media @if(!$loop->last) border-bottom @endif">
+                                        其它类型 --- {{ $notify->target_type }}
                                     </li>
                                 @endif
                             @endforeach

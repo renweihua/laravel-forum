@@ -118,7 +118,7 @@ class Notify extends Model
                                 $v->explain = '点赞了您的动态';
                                 break;
                             case self::DYNAMIC_TARGET_TYPE['COLLECTION']: // 收藏
-                                $v->explain = '喜欢了您的动态';
+                                $v->explain = '收藏了您的动态';
                                 break;
                             case self::DYNAMIC_TARGET_TYPE['COMMENT']: // 评论
                                 $v->explain = '评论了您的动态';
@@ -127,7 +127,7 @@ class Notify extends Model
                                 $v->explain = '分享了您的动态';
                                 break;
                             case self::DYNAMIC_TARGET_TYPE['COMMENT_PRAISE']: // 点赞评论
-                                $v->explain = '喜欢了您的评论';
+                                $v->explain = '点赞了您的评论';
                                 break;
                             case self::DYNAMIC_TARGET_TYPE['REPLY_COMMENT']: // 回复评论
                                 $v->explain = '回复了您的评论';
