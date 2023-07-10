@@ -23,6 +23,10 @@
                                     @include('forum::notifications.types._dynamic_relation', compact('notify'))
                                 @elseif($notify->target_type == Notify::TARGET_TYPE['FOLLOW'])
                                     @include('forum::notifications.types._user_follow', compact('notify'))
+                                @elseif($notify->target_type == Notify::TARGET_TYPE['SUBSCRIBE'])
+                                    @if($notify->subscribe_type == Notify::SUBSCRIBE_TYPE['TOPIC'])
+                                        @include('forum::notifications.types._subscribed_topic', compact('notify'))
+                                    @endif
                                 @else
                                     <li class="media @if(!$loop->last) border-bottom @endif">
                                         其它类型 --- {{ $notify->target_type }}

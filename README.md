@@ -84,6 +84,12 @@
 - [ ] 话题详情
 - [X] 关注话题 /api/topic/follow
 
+##### 消息通知
+- [X] 谁点赞了我的动态XXX
+- [X] 谁收藏了我的动态XXX
+- [X] 谁关注了我
+- [X] 您订阅了话题XXX
+
 ### 感谢
 - [Laravel](https://github.com/laravel)
 - [L02 Laravel 教程 - Web 开发实战进阶](https://learnku.com/courses/laravel-intermediate-training/8.x)
