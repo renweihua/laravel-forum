@@ -11,3 +11,12 @@ dynamicCollection = function (dynamic_id) {
         dynamic_id
     });
 }
+
+// 订阅动态
+dynamicSubscribe = function (dynamic_id) {
+    return instance.post('/dynamics/subscribe', {
+        dynamic_id
+    });
+}
+
+

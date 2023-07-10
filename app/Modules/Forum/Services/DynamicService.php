@@ -3,16 +3,12 @@ namespace App\Modules\Forum\Services;
 
 use App\Exceptions\Exception;
 use App\Exceptions\HttpStatus\BadRequestException;
-use App\Modules\Comment\Entities\DynamicComment;
-use App\Modules\Forum\Entities\Dynamic;
 use App\Modules\Forum\Entities\DynamicCollection;
 use App\Modules\Forum\Entities\DynamicPraise;
 use App\Modules\Forum\Entities\Notify;
-use App\Modules\Topic\Entities\Topic;
+use App\Modules\Forum\Entities\SubscribeDynamic;
 use App\Modules\User\Entities\UserInfo;
 use App\Services\Service;
-use App\Traits\Error;
-use App\Traits\Instance;
 use Illuminate\Support\Facades\DB;
 
 class DynamicService extends Service
@@ -126,6 +122,55 @@ class DynamicService extends Service
 
             DB::commit();
             return $collection;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new BadRequestException($e->getMessage());
+        }
+    }
+
+    // 订阅动态流程
+    public function subscribe(int $login_user_id, $dynamic, &$is_subscribe = true)
+    {
+        $is_subscribe = true;
+        $subscribe = [];
+        DB::beginTransaction();
+        try {
+            // 是否已订阅过了该动态
+            if ($result = SubscribeDynamic::getSubscribe($dynamic->dynamic_id, $login_user_id)) {
+                $result->delete();
+                $this->setError('取消订阅成功！');
+                $is_subscribe = false;
+            } else {
+                $ip_agent = get_client_info();
+                $subscribe = SubscribeDynamic::create([
+                    'dynamic_id' => $dynamic->dynamic_id,
+                    'user_id'    => $login_user_id,
+                    'created_ip'   => $ip_agent['ip'] ?? get_ip(),
+                    'browser_type' => $ip_agent['agent'] ?? $_SERVER['HTTP_USER_AGENT'],
+                ]);
+
+                // 互动消息：xxx 订阅了您的动态 xxx。
+                if ($dynamic->user_id != $login_user_id) {
+                    $result = Notify::insert([
+                        'notify_type'  => Notify::NOTIFY_TYPE['INTERACT_MSG'],
+                        'user_id'      => $dynamic->user_id,
+                        'target_id'    => $dynamic->dynamic_id,
+                        'target_type'  => Notify::TARGET_TYPE['SUBSCRIBE'],
+                        'sender_id'    => $login_user_id,
+                        'sender_type'  => Notify::SYSTEM_SENDER,
+                        'dynamic_type' => Notify::DYNAMIC_TARGET_TYPE['SUBSCRIBE'],
+                        'subscribe_type' => Notify::SUBSCRIBE_TYPE['DYNAMIC'],
+                    ]);
+                    if (!$result) {
+                        throw new BadRequestException('互动消息录入失败！');
+                    }
+                }
+
+                $this->setError('订阅`' . $dynamic->dynamic_title . '`成功！');
+            }
+
+            DB::commit();
+            return $subscribe;
         } catch (Exception $e) {
             DB::rollBack();
             throw new BadRequestException($e->getMessage());

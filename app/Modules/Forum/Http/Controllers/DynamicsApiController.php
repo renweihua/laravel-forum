@@ -10,17 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DynamicsApiController extends ForumController
 {
-    protected DynamicService $dynamicService;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->middleware('auth:api', ['except' => []]);
-
-        $this->dynamicService = DynamicService::getInstance();
-    }
-
-    public function praise(DynamicIdRequest $request): JsonResponse
+    public function praise(DynamicIdRequest $request, DynamicService $dynamicService): JsonResponse
     {
         $dynamic_id = $request->input('dynamic_id');
         $dynamic = Dynamic::getDynamicById($dynamic_id);
@@ -30,23 +20,38 @@ class DynamicsApiController extends ForumController
 
         $login_user_id = Auth::id();
 
-        $praise = $this->dynamicService->praise($login_user_id, $dynamic, $is_praise);
+        $praise = $dynamicService->praise($login_user_id, $dynamic, $is_praise);
 
-        return $this->successJson($praise, $this->dynamicService->getError(), compact('is_praise'));
+        return $this->successJson($praise, $dynamicService->getError(), compact('is_praise'));
     }
 
-    public function collection(DynamicIdRequest $request): JsonResponse
+    public function collection(DynamicIdRequest $request, DynamicService $dynamicService): JsonResponse
     {
         $dynamic_id = $request->input('dynamic_id');
         $dynamic = Dynamic::getDynamicById($dynamic_id);
         if (empty($dynamic)){
-            return $this->errorJson('动态不存在或已删除');
+            return $this->errorJson('动态不存在或已删除！');
         }
 
         $login_user_id = Auth::id();
 
-        $collection = $this->dynamicService->collection($login_user_id, $dynamic, $is_collection);
+        $collection = $dynamicService->collection($login_user_id, $dynamic, $is_collection);
 
-        return $this->successJson($collection, $this->dynamicService->getError(), compact('is_collection'));
+        return $this->successJson($collection, $dynamicService->getError(), compact('is_collection'));
+    }
+
+    public function subscribe(DynamicIdRequest $request, DynamicService $dynamicService): JsonResponse
+    {
+        $dynamic_id = $request->input('dynamic_id');
+        $dynamic = Dynamic::getDynamicById($dynamic_id);
+        if (empty($dynamic)){
+            return $this->errorJson('动态不存在或已删除！');
+        }
+
+        $login_user_id = Auth::id();
+
+        $subscribe = $dynamicService->subscribe($login_user_id, $dynamic, $is_subscribe);
+
+        return $this->successJson($subscribe, $dynamicService->getError(), compact('is_subscribe'));
     }
 }

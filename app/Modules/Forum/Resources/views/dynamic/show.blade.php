@@ -12,6 +12,19 @@
                         {{ $dynamic->dynamic_title }}
                     </h1>
 
+                    <div class="text-center">
+                        <a @click="subscribeDynamic" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);">
+                            <div v-if="!dynamic.is_subscribe" >
+                                <i class="fa fa-plus mr-2"></i>
+                                订阅
+                            </div>
+                            <div v-else>
+                                <i class="fa fa-check mr-2"></i>
+                                已订阅
+                            </div>
+                        </a>
+                    </div>
+
                     <div class="article-meta text-center text-secondary">
                         {{ $dynamic->time_formatting }}
                         ⋅
@@ -175,6 +188,14 @@
                             this.dynamic.user_info.is_follow = res.is_follow;
                         });
                     },
+                    // 订阅动态
+                    async subscribeDynamic(){
+                        await dynamicSubscribe(this.dynamic.dynamic_id).then(res => {
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.dynamic.is_subscribe = res.is_subscribe;
+                        });
+                    }
                 }
             } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
         );

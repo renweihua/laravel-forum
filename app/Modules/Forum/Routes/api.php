@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::prefix('')->group(function() {
+Route::prefix('')->middleware('auth:api')->group(function() {
     Route::post('upload', 'UploadController@file')->name('upload.file');
     Route::post('dynamics/collection', 'DynamicsApiController@collection')->name('dynamics.collection');
     Route::post('dynamics/praise', 'DynamicsApiController@praise')->name('dynamics.praise');
+    Route::post('dynamics/subscribe', 'DynamicsApiController@subscribe')->name('dynamics.subscribe');
 });

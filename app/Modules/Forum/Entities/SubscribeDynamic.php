@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\Forum\Entities;
+namespace App\Modules\Forum\Entities;
 
 use App\Models\Model;
-use App\Models\Forum\Entities\User;
+use App\Modules\User\Entities\User;
 
 class SubscribeDynamic extends Model
 {
