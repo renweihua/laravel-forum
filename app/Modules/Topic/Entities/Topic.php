@@ -65,7 +65,7 @@ class Topic extends Model
             if ($limit > 0) {
                 $build = $build->limit($limit)->where('dynamic_count', '>', 0);
             }
-            return $build->orderBy('topic_sort', 'ASC')->orderBy('follow_count', 'DESC')->get();
+            return $build->orderBy('is_default', 'DESC')->orderBy('topic_sort', 'ASC')->orderBy('follow_count', 'DESC')->get();
         });
     }
 

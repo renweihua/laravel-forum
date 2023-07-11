@@ -10,6 +10,7 @@ use App\Modules\User\Entities\User;
 class ForumController extends Controller
 {
     protected $template = 'larabbs';
+    protected $topics;
 
     public function __construct()
     {
@@ -65,7 +66,7 @@ class ForumController extends Controller
         ];
 
         // 话题列表
-        $topics = Topic::getAllTopics();
+        $this->topics = $topics = Topic::getAllTopics();
 
         // 活跃会员
         $active_users = User::getInstance()->getActiveUsers();

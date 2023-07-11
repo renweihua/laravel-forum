@@ -20,8 +20,16 @@ class TopicController extends TopicModuleController
      */
     public function index()
     {
-        $topics = Topic::getAllTopics();
-        return view('topic::index', compact('topics'));
+        $topics = $this->topics;
+
+        $login_user_id = Auth::id();
+        // 加载是否订阅
+        $topics->load([
+            'isFollow' => function($query) use ($login_user_id) {
+                $query->where('user_id', $login_user_id);
+            }
+        ]);
+        return view('topic::index');
     }
 
     /**
@@ -70,6 +78,6 @@ class TopicController extends TopicModuleController
             $dynamic->is_collection = $login_user_id == 0 ? false : ($dynamic->isCollection ? true : false);
         }
 
-        return view('topic::index', compact('topic', 'dynamics', 'tab'));
+        return view('topic::detail', compact('topic', 'dynamics', 'tab'));
     }
 }

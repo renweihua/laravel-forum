@@ -15,7 +15,7 @@
                     </div>
                     <div v-else>
                         <i class="fa fa-check mr-2"></i>
-                        已关注
+                        已订阅
                     </div>
                 </a>
         </div>

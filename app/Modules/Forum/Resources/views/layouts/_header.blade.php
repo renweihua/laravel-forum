@@ -15,30 +15,22 @@
                 <li class="nav-item"><a class="nav-link {{ active_class(if_route('home')) }}" href="{{ route('home') }}">首页</a></li>
 
                 <!-- 全部话题 -->
-                @if(!empty($topics))
-                    <li class="nav-item dropdown">
-                        <a class="nav-link {{ active_class((if_route('topic.show'))) }} dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            前10项话题组
-                        </a>
-                        <div class="dropdown-menu">
-                            @foreach($topics as $key => $_topic)
-                                @if($key >= 10)
-                                    @break
-                                @endif
-                                <a class="dropdown-item" href="{{ route('topic.show', $_topic->topic_id) }}">{{ $_topic->topic_name }}</a>
-                            @endforeach
-                        </div>
-                    </li>
-                @endif
-                <!-- 前三项`话题`默认展示成菜单栏 -->
-                @if(!empty($topics))
-                    @foreach($topics as $key => $_topic)
-                        @if($key >= 3)
-                            @break
-                        @endif
-                        <li class="nav-item"><a class="nav-link" href="{{ route('topic.show', $_topic->topic_id) }}">{{ $_topic->topic_name }}</a></li>
-                    @endforeach
-                @endif
+                <li class="nav-item"><a class="nav-link {{ active_class(if_route('topics')) }}" href="{{ route('topics') }}">话题组</a></li>
+{{--                @if(!empty($topics))--}}
+{{--                    <li class="nav-item dropdown">--}}
+{{--                        <a class="nav-link {{ active_class((if_route('topic.show'))) }} dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">--}}
+{{--                            前10项话题组--}}
+{{--                        </a>--}}
+{{--                        <div class="dropdown-menu">--}}
+{{--                            @foreach($topics as $key => $_topic)--}}
+{{--                                @if($key >= 10)--}}
+{{--                                    @break--}}
+{{--                                @endif--}}
+{{--                                <a class="dropdown-item" href="{{ route('topic.show', $_topic->topic_id) }}">{{ $_topic->topic_name }}</a>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
 
                 <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.cnpscy.com">小丑路人·博客</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" href="https://notes.cnpscy.com">小丑路人·即时通讯与笔记</a></li>

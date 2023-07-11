@@ -36,8 +36,12 @@
 
 ### 功能列表
 - [X] 会员权限组 /user-group
-- [ ] 消息通知列表
-  + [X] 动态评论
+- [X] 消息通知列表
+  - [X] 谁点赞了我的动态XXX
+  - [X] 谁收藏了我的动态XXX
+  - [X] 谁关注了我
+  - [X] 您订阅了话题XXX
+  - [X] XXX订阅了您的文章XXX
 - [X] 活跃会员；定时脚本：每小时自动更新一次
 - [X] 会员最后活跃时间计算
 - [X] 动态标题的seo自动转换
@@ -47,7 +51,7 @@
 - [X] 文件上传，兼容`pandao/editor.md`编辑器的结构 /api/upload
 
 #### 动态相关
-- [ ] 动态详情
+- [X] 动态详情
   + [X] 动态渲染
   + [X] 作者渲染
   + [X] 评论列表
@@ -81,18 +85,12 @@
   + [X] 关注会员 /api/user/follow
 
 ##### 话题
+- [X] 话题组
 - [X] 话题的动态列表 /topic/话题Id
-- [ ] 话题详情
 - [X] 关注话题 /api/topic/follow
-
-##### 消息通知
-- [X] 谁点赞了我的动态XXX
-- [X] 谁收藏了我的动态XXX
-- [X] 谁关注了我
-- [X] 您订阅了话题XXX
 
 ### 感谢
 - [Laravel](https://github.com/laravel)
 - [L02 Laravel 教程 - Web 开发实战进阶](https://learnku.com/courses/laravel-intermediate-training/8.x)
-- [pandao/editor.md](https://github.com/pandao/editor.md)
+- 编辑器：[pandao/editor.md](https://github.com/pandao/editor.md)
 - [element](https://element.eleme.cn)
