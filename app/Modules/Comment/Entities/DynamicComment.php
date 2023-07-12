@@ -29,14 +29,12 @@ class DynamicComment extends Model
             if ($content->isDirty('comment_markdown') && !empty($content->comment_markdown)) {
                 $content->comment_content = self::toHTML($content->comment_markdown);
             }
-
-            // $content->body = Purifier::clean($content->body);
         });
     }
 
     public function dynamic()
     {
-        return $this->belongsTo(Dynamic::class, 'dynamic_id', 'dynamic_id')->where('is_delete', 0);
+        return $this->belongsTo(Dynamic::class, 'dynamic_id', 'dynamic_id');
     }
 
     public function userInfo()

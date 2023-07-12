@@ -5,6 +5,7 @@ namespace App\Modules\Comment\Http\Controllers;
 use App\Modules\Comment\Http\Requests\CommentRequest;
 use App\Modules\Comment\Entities\DynamicComment;
 use App\Modules\Comment\Jobs\DynamicCommentNotifyJob;
+use App\Modules\Comment\Services\CommentService;
 use App\Modules\Forum\Entities\Dynamic;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,10 +62,14 @@ class CommentsController extends CommentModuleController
         return redirect()->to($comment->dynamic->link(['#reply' . $comment->comment_id]))->with('success', '评论创建成功！');
     }
 
-    public function destroy(DynamicComment $comment)
+    public function destroy(DynamicComment $comment, CommentService $commentService)
     {
+        if (empty($comment)){
+            return $this->errorJson('评论不存在或已删除，请刷新重试~');
+        }
         $this->authorize('destroy', $comment);
-        $comment->delete();
+
+        $comment_ids = $commentService->delete(Auth::id(), $comment);
 
         return redirect()->to($comment->dynamic->link())->with('success', '评论删除成功！');
     }

@@ -66,6 +66,7 @@
     * [X] 回复评论
     * [X] 点赞回复 /api/dynamics-comment/praise
   + [X] 删除评论
+    + 同步删除多级回复
   + [X] 作者信息
     - [X] 作者的文章、粉丝、点赞与收藏统计
   + [X] 订阅动态 /api/dynamics/subscribe

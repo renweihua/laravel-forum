@@ -13,6 +13,5 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('')->group(function() {
-    // Route::get('/', 'CommentController@index');
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
 });

@@ -3,15 +3,15 @@ namespace App\Modules\Comment\Services;
 
 use App\Exceptions\Exception;
 use App\Exceptions\HttpStatus\BadRequestException;
+use App\Exceptions\HttpStatus\ForbiddenException;
+use App\Modules\Comment\Entities\DynamicComment;
 use App\Modules\Comment\Entities\DynamicCommentPraise;
 use App\Modules\Forum\Entities\Notify;
 use App\Modules\User\Entities\UserInfo;
 use App\Services\Service;
-use App\Traits\Error;
-use App\Traits\Instance;
 use Illuminate\Support\Facades\DB;
 
-class DynamicService extends Service
+class CommentService extends Service
 {
     public function praise($login_user_id, $comment, &$is_praise = true)
     {
@@ -76,6 +76,43 @@ class DynamicService extends Service
         } catch (Exception $e) {
             DB::rollBack();
             throw new BadRequestException($e->getMessage());
+        }
+    }
+
+    public function delete($login_user_id, $comment)
+    {
+        $dynamicCommentInstance = DynamicComment::getInstance();
+        if (!$comment->dynamic || $comment->dynamic->is_delete == 1 || $comment->dynamic->is_check != 1) {
+            throw new BadRequestException('动态已被删除或已禁用！');
+        }
+        if ($comment->user_id != $login_user_id) {
+            throw new ForbiddenException('您无权删除！');
+        }
+        DB::beginTransaction();
+        try {
+            $comment->delete();
+            // 获取该评论下的所有回复记录
+            $reply_lists = DB::select('SELECT * FROM
+              (
+                SELECT * FROM ' . get_db_prefix() . $dynamicCommentInstance->getTable() . ' where reply_id > 0 ORDER BY reply_id, comment_id DESC
+              ) realname_sorted,
+              (SELECT @pv := ?) initialisation
+              WHERE (FIND_IN_SET(reply_id,@pv)>0 And @pv := concat(@pv, \',\', comment_id)) AND is_delete = 0', [$comment->comment_id]);
+            $reply_ids   = [];
+            if ( !empty($reply_lists)) {
+                foreach ($reply_lists as $reply) {
+                    $reply_ids[] = $reply->comment_id;
+                }
+                // 评论的所有回复记录：批量假删除
+                $dynamicCommentInstance->whereIn('comment_id', $reply_ids)->delete();
+            }
+
+            DB::commit();
+            $this->setError('评论删除成功！');
+            return array_merge($reply_ids, [$comment->comment_id]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new BadRequestException('评论删除失败，请重试！');
         }
     }
 }
