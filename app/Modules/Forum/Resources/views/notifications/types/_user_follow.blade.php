@@ -10,7 +10,7 @@
             {{ $notify->explain }}
 
             <span class="meta float-right" title="{{ $notify->time_formatting }}">
-                <i class="far fa-clock"></i>
+                <i class="fa fa-clock-o"></i>
                 {{ $notify->time_formatting }}
             </span>
         </div>

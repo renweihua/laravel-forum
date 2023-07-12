@@ -8,7 +8,7 @@
 
                 <div class="card-body">
                     <h2 class="">
-                        <i class="far fa-edit"></i>
+                        <i class="fa fa-edit"></i>
                         @if($dynamic->dynamic_id)
                             编辑帖子
                         @else
@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="well well-sm">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-save mr-2" aria-hidden="true"></i> 保存</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-2" aria-hidden="true"></i> 保存</button>
                                     </div>
                                 </form>
                 </div>

@@ -11,7 +11,8 @@
                 </div>
 
                 <div class="text-secondary" style="font-size:0.9em;">
-                    <i class="far fa-clock"></i> 评论于 {{ $comment->time_formatting }}
+                    <i class="fa fa-clock-o"></i>
+                    评论于 {{ $comment->time_formatting }}
                 </div>
             </li>
         @endforeach

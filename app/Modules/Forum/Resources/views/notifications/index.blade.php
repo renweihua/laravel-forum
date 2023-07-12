@@ -8,11 +8,9 @@
     <div class="container">
         <div class="col-md-10 offset-md-1">
             <div class="card ">
-
                 <div class="card-body">
-
                     <h3 class="text-xs-center">
-                        <i class="far fa-bell" aria-hidden="true"></i> 我的通知
+                        <i class="fa fa-bell" aria-hidden="true"></i> 我的通知
                     </h3>
                     <hr>
 
