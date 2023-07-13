@@ -63,6 +63,9 @@ class DynamicsController extends ForumController
                 'isCollection' => function($query) use ($login_user_id) {
                     $query->where('user_id', $login_user_id);
                 },
+                'isSubscribe' => function($query) use ($login_user_id) {
+                    $query->where('user_id', $login_user_id);
+                },
             ]);
         }
         // 浏览量递增
@@ -71,6 +74,8 @@ class DynamicsController extends ForumController
         $dynamic->is_praise = $login_user_id == 0 ? false : ($dynamic->isPraise ? true : false);
         // 是否已收藏
         $dynamic->is_collection = $login_user_id == 0 ? false : ($dynamic->isCollection ? true : false);
+        // 是否已订阅动态
+        $dynamic->is_subscribe = $login_user_id == 0 ? false : ($dynamic->isSubscribe ? true : false);
         // 是否关注
         $dynamic->userInfo->is_follow = $login_user_id == 0 ? false : ($dynamic->userInfo->isFollow ? true : false);
         // 是否为登录会员
