@@ -11,12 +11,12 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+// mix.js('resources/js/app.js', 'public/js')
     // .postCss('resources/css/app.css', 'public/css', [
     //     //
     // ])
     // .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps();
+    // .sourceMaps();
 
 // 引入 Forum 模块下的 webpack 配置文件
 require(`${__dirname}/app/Modules/Forum/webpack.mix.js`);
