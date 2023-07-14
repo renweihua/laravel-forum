@@ -64,11 +64,7 @@
 
                 </div>
             </li>
-
-            @if ( ! $loop->last)
-                <hr>
-            @endif
-
+            <hr>
         @endforeach
     </ul>
 
