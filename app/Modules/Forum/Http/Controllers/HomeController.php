@@ -13,12 +13,15 @@ class HomeController extends ForumController
     public function index(Request $request, User $user)
     {
         $tab = $request->input('tab', 'default');
+        $search = $request->input('q', '');
 
         $dynamics = Dynamic::public()
             ->filter($request->all())
             ->with(['topic', 'userInfo'])
             ->paginate(15);
+        // var_dump($dynamics);
+        // exit;
 
-        return view('forum::index', compact('dynamics', 'tab'));
+        return view('forum::index', compact('dynamics', 'tab', 'search'));
     }
 }

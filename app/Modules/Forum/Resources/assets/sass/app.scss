@@ -42,6 +42,36 @@ body {
     margin-bottom: 60px;
 }
 
+// 搜索相关样式
+nav ul>li.search{
+    form{
+        position: relative;
+        padding-top:0;
+        padding-bottom: 0;
+    }
+
+    input{
+        border-radius: 50rem;
+        background: #fff;
+        border: 1px solid rgba(34,36,38,.15);
+        box-shadow: none;
+        color: rgba(0,0,0,.87);
+        padding: 0.4rem 1rem;
+    }
+    input:focus{
+        background: #fff;
+        border-color: #85b7d9;
+        box-shadow: none;
+        color: rgba(0,0,0,.8);
+    }
+
+    i{
+        position: absolute;
+        right: 20px;
+        top: 12px;
+    }
+}
+
 /* 返回顶部 */
 .back-to-top {
     display: none;

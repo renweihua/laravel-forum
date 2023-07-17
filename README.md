@@ -35,6 +35,7 @@
   - 重新安装 `npm install laravel-mix-merge-manifest --save-dev`
 
 ### 功能列表
+- [X] 搜索
 - [X] 会员权限组 /user-group
 - [X] 消息通知列表
   - [X] 谁点赞了我的动态XXX

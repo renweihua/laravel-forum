@@ -34,6 +34,12 @@
 
                 <li class="nav-item"><a class="nav-link" target="_blank" href="https://www.cnpscy.com">小丑路人·博客</a></li>
                 <li class="nav-item"><a class="nav-link" target="_blank" href="https://notes.cnpscy.com">小丑路人·即时通讯与笔记</a></li>
+                <li class="nav-item search">
+                    <form class="nav-link" action="{{ route('search') }}">
+                        <input placeholder="社区搜索" type="text" name="q" value="{{ $search ?? '' }}"/>
+                        <i class="fa fa-search"></i>
+                    </form>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

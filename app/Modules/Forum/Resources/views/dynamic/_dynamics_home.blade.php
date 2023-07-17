@@ -19,6 +19,11 @@
                 </div>
             </a>
         @endif
+        @if (isset($search))
+            <div class="alert alert-info" role="alert">
+                检索：有{{ $dynamics->total() }}个 <b><code>{{ $search }}</code></b> 相关的内容
+            </div>
+        @endif
 
         <div class="card">
             <div class="card-header bg-transparent">

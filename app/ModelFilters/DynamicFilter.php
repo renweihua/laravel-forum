@@ -43,6 +43,11 @@ class DynamicFilter extends ModelFilter
         }
     }
 
+    public function q(string $dynamic_title)
+    {
+        $this->where('dynamic_title', 'LIKE', "%{$dynamic_title}%");
+    }
+
     public function search(string $dynamic_title)
     {
         $this->where('dynamic_title', 'LIKE', "%{$dynamic_title}%");
