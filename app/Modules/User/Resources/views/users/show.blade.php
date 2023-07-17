@@ -11,14 +11,19 @@
                      src="{{ $user->userInfo->user_avatar }}"
                      alt="{{ $user->userInfo->nick_name }}">
                 <div class="card-body">
+                    <h5><strong>最近活跃</strong></h5>
+                    <p title="{{ $user->userInfo->last_actived_at }}">{{ $user->userInfo->last_actived_at }}</p>
+                    <hr>
                     <h5><strong>个人简介</strong></h5>
                     <p>{{ $user->userInfo->basic_extends['user_introduction'] }}</p>
                     <hr>
+                    @if($user->userInfo->basic_extends['location'])
+                    <h5><strong>所在城市</strong></h5>
+                    <p>{{ $user->userInfo->basic_extends['location'] }}</p>
+                    <hr>
+                    @endif
                     <h5><strong>注册于</strong></h5>
                     <p>{{ $user->userInfo->time_formatting }}</p>
-                    <hr>
-                    <h5><strong>最后活跃</strong></h5>
-                    <p title="{{ $user->userInfo->last_actived_at }}">{{ $user->userInfo->last_actived_at }}</p>
                 </div>
             </div>
         </div>

@@ -28,6 +28,10 @@
                             <label for="name-field">简介</label>
                             <textarea class="form-control" type="text" name="user_introduction">{{ old('name', $user->userInfo->basic_extends['user_introduction']) }}</textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="name-field">所在城市</label>
+                            <input class="form-control" type="text" name="location" value="{{ old('name', $user->userInfo->basic_extends['location']) }}" />
+                        </div>
                         <div class="well well-sm">
                             <button type="submit" class="btn btn-primary">保存</button>
                         </div>

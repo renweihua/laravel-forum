@@ -63,13 +63,18 @@ class UsersController extends UserModuleController
         $this->authorize('update', $user);
         $userInfo = $user->userInfo;
         $userInfo->nick_name = $request->input('nick_name');
+        $basic_extends = $userInfo->basic_extends;
         // 简介/签名
         $user_introduction = $request->input('user_introduction');
         if ($user_introduction){
-            $basic_extends = $userInfo->basic_extends;
             $basic_extends['user_introduction'] = $user_introduction;
-            $userInfo->basic_extends = $basic_extends;
         }
+        // 所在城市
+        $location = $request->input('location');
+        if ($location){
+            $basic_extends['location'] = $location;
+        }
+        $userInfo->basic_extends = $basic_extends;
         $userInfo->save();
 
         return redirect()->route('users.show', $user->user_id)->with('success', '个人资料更新成功！');
