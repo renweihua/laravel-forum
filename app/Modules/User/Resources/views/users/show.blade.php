@@ -9,7 +9,7 @@
             <div class="card ">
                 <img class="card-img-top"
                      src="{{ $user->userInfo->user_avatar }}"
-                     alt="{{ $user->userInfo->nick_name }}">
+                     alt="{{ $user->userInfo->nick_name }}" />
                 <div class="card-body">
                     <h5><strong>最近活跃</strong></h5>
                     <p title="{{ $user->userInfo->last_actived_at }}">{{ $user->userInfo->last_actived_at }}</p>
@@ -30,7 +30,14 @@
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="card ">
                 <div class="card-body">
-                    <h1 class="mb-0" style="font-size:22px;">{{ $user->user_name }} <small>{{ $user->user_email }}</small></h1>
+                    <h1 class="mb-0" style="font-size:22px;">
+                        {{ $user->userInfo->nick_name }}
+                        @if($user->userInfo->user_sex == 0)
+                            <small><i class="fa fa-mars"></i></small>
+                        @elseif($user->userInfo->user_sex == 1)
+                            <small><i class="fa fa-venus"></i></small>
+                        @endif
+                    </h1>
 
                     <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);top: 15px;position: absolute;right: 15px;">
                         <div v-if="!user.user_info.is_follow" >

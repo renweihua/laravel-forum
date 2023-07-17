@@ -63,6 +63,7 @@ class UsersController extends UserModuleController
         $this->authorize('update', $user);
         $userInfo = $user->userInfo;
         $userInfo->nick_name = $request->input('nick_name');
+        $userInfo->user_sex = $request->input('user_sex');
         $basic_extends = $userInfo->basic_extends;
         // 简介/签名
         $user_introduction = $request->input('user_introduction');

@@ -22,11 +22,19 @@
 
                         <div class="mb-3">
                             <label for="name-field">昵称</label>
-                            <input class="form-control" type="text" name="nick_name" value="{{ old('name', $user->userInfo->nick_name) }}" />
+                            <input class="form-control" type="text" name="nick_name" value="{{ old('nick_name', $user->userInfo->nick_name) }}" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="name-field">性别</label>
+                            <select class="form-control" name="user_sex">
+                                <option @if($user->userInfo->user_sex == 0) selected @endif value="0">男</option>
+                                <option @if($user->userInfo->user_sex == 1) selected @endif value="1">女</option>
+                                <option @if($user->userInfo->user_sex == 2) selected @endif value="2">保密</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="name-field">简介</label>
-                            <textarea class="form-control" type="text" name="user_introduction">{{ old('name', $user->userInfo->basic_extends['user_introduction']) }}</textarea>
+                            <textarea class="form-control" type="text" name="user_introduction">{{ old('user_introduction', $user->userInfo->basic_extends['user_introduction']) }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="name-field">所在城市</label>
