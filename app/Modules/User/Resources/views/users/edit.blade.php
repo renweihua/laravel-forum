@@ -22,7 +22,11 @@
 
                         <div class="mb-3">
                             <label for="name-field">昵称</label>
-                            <input class="form-control" type="text" name="nick_name" id="name-field" value="{{ old('name', $user->userInfo->nick_name) }}" />
+                            <input class="form-control" type="text" name="nick_name" value="{{ old('name', $user->userInfo->nick_name) }}" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="name-field">简介</label>
+                            <textarea class="form-control" type="text" name="user_introduction">{{ old('name', $user->userInfo->basic_extends['user_introduction']) }}</textarea>
                         </div>
                         <div class="well well-sm">
                             <button type="submit" class="btn btn-primary">保存</button>

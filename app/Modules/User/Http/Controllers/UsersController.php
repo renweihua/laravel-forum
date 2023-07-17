@@ -42,7 +42,7 @@ class UsersController extends UserModuleController
 
         $tab = $request->input('tab');
         if ($tab == 'replies'){
-            $comments = DynamicComment::where('user_id', $user->user_id)->with(['dynamic', 'topic'])->orderByDesc('comment_id')->paginate(10);
+            $comments = DynamicComment::where('user_id', $user->user_id)->with(['dynamic.topic'])->orderByDesc('comment_id')->paginate(10);
             View::share('comments', $comments);
         }else{
             $dynamics = Dynamic::where('user_id', $user->user_id)->with(['userInfo', 'topic'])->orderByDesc('dynamic_id')->paginate(10);
@@ -61,7 +61,17 @@ class UsersController extends UserModuleController
     public function update(UserUpdateRequest $request, UserAuth $user)
     {
         $this->authorize('update', $user);
-        $user->userInfo()->update($request->only('nick_name'));
+        $userInfo = $user->userInfo;
+        $userInfo->nick_name = $request->input('nick_name');
+        // 简介/签名
+        $user_introduction = $request->input('user_introduction');
+        if ($user_introduction){
+            $basic_extends = $userInfo->basic_extends;
+            $basic_extends['user_introduction'] = $user_introduction;
+            $userInfo->basic_extends = $basic_extends;
+        }
+        $userInfo->save();
+
         return redirect()->route('users.show', $user->user_id)->with('success', '个人资料更新成功！');
     }
 }
