@@ -27,6 +27,7 @@
     "dependencies": {
         "element-ui": "^2.15.13",
         "font-awesome": "^4.7.0",
+        "font-awesome-animation": "^1.1.1",
         "vue": "^2.7.14"
     }
 }

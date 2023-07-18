@@ -33,6 +33,8 @@
   - npm run watch-poll
 - 如遇错误`[webpack-cli] Error: Cannot find module 'laravel-mix-merge-manifest'`
   - 重新安装 `npm install laravel-mix-merge-manifest --save-dev`
+- fa 动态效果相关文档
+  - https://l-lin.github.io/font-awesome-animation/
 
 ### 功能列表
 - [X] 搜索
