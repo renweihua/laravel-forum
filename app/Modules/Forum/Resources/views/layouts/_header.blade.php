@@ -1,3 +1,6 @@
+@php
+    $user = Auth::user();
+@endphp
 <!-- fixed-top 固定导航栏  -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
     <div class="container">
@@ -55,22 +58,23 @@
                         </a>
                     </li>
                     <li class="nav-item notification-badge">
-                        <a class="nav-link mr-3 badge badge-pill badge-{{ Auth::user()->userInfo->notification_count > 0 ? 'hint' : 'secondary' }} text-white" href="{{ route('notifications.index') }}">
-                            {{ Auth::user()->userInfo->notification_count }}
+                        <a class="nav-link mr-3" href="{{ route('notifications.index') }}">
+                            <i class="fa fa-bell fa-lg faa-ring @if($user->userInfo->notification_count) animated @else animated-hover @endif"></i>
+                            <span class="badge badge-pill text-white badge-{{ $user->userInfo->notification_count > 0 ? 'hint' : 'secondary' }}">{{ $user->userInfo->notification_count }}</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a title="{{ Auth::user()->userInfo->nick_name }}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ Auth::user()->userInfo->user_avatar }}" class="img-responsive img-circle" width="30px" height="30px" />
-                            {{ Auth::user()->userInfo->nick_name }}
+                        <a title="{{ $user->userInfo->nick_name }}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ $user->userInfo->user_avatar }}" class="img-responsive img-circle" width="30px" height="30px" />
+                            {{ $user->userInfo->nick_name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
+                            <a class="dropdown-item" href="{{ route('users.show', $user->user_id) }}">
                                 <i class="fa fa-user mr-2"></i>
                                 个人中心
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
+                            <a class="dropdown-item" href="{{ route('users.edit', $user->user_id) }}">
                                 <i class="fa fa-edit mr-2"></i>
                                 编辑资料
                             </a>

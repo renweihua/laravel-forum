@@ -3,9 +3,7 @@
 namespace App\Modules\Forum\Http\Controllers;
 
 use App\Modules\Forum\Entities\Dynamic;
-use App\Modules\Forum\Entities\Friendlink;
 use App\Modules\User\Entities\User;
-use App\Modules\User\Entities\UserAuth;
 use Illuminate\Http\Request;
 
 class HomeController extends ForumController
@@ -19,8 +17,6 @@ class HomeController extends ForumController
             ->filter($request->all())
             ->with(['topic', 'userInfo'])
             ->paginate(15);
-        // var_dump($dynamics);
-        // exit;
 
         return view('forum::index', compact('dynamics', 'tab', 'search'));
     }

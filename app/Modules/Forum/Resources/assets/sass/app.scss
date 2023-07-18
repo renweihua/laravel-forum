@@ -7,6 +7,9 @@
 // font-awesome-4.7.0
 @import '~font-awesome/scss/font-awesome';
 
+// font-awesome-动画
+@import '~font-awesome-animation/font-awesome-animation.scss';
+
 // 引入 element-ui 的css
 @import url('~element-ui/lib/theme-chalk/index.css');
 
@@ -195,6 +198,23 @@ nav ul>li.search{
 
     .badge-hint {
         background-color: #d15b47 !important;
+    }
+
+    a{
+        position: relative;
+
+        i{
+            top: 15px;
+            position: absolute;
+            left: 0;
+        }
+
+        span{
+            margin-top: 0;
+            position: absolute;
+            top: -15px;
+            right: -30px;
+        }
     }
 }
 
