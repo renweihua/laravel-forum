@@ -22,7 +22,7 @@ class NotificationsController extends ForumController
         $notifications = Notify::where('user_id', $login_user_id)
             ->with('sender')
             ->orderByDesc('notify_id')
-            ->paginate(20);
+            ->paginate(10);
 
         // 格式化结构
         NotifyService::format($notifications, $set_read_nums);

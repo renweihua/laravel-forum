@@ -14,10 +14,12 @@
                     </h3>
                     <hr>
 
-                    @if ($notifications->count())
+                    @if ($notifications->total())
                         <div class="list-unstyled notification-list">
                             @foreach ($notifications as $notify)
-                                @if($notify->target_type == Notify::TARGET_TYPE['DYNAMIC'])
+                                @if($notify->target_type == Notify::TARGET_TYPE['REGISTER'])
+                                    @include('forum::notifications.types._register', compact('notify'))
+                                @elseif($notify->target_type == Notify::TARGET_TYPE['DYNAMIC'])
                                     @include('forum::notifications.types._dynamic_relation', compact('notify'))
                                 @elseif($notify->target_type == Notify::TARGET_TYPE['FOLLOW'])
                                     @include('forum::notifications.types._user_follow', compact('notify'))
@@ -27,7 +29,7 @@
                                     @endif
                                 @else
                                     <li class="media @if(!$loop->last) border-bottom @endif">
-                                        其它类型 --- {{ $notify->target_type }}
+                                        其它类型 --- {{ $notify->target_type }} --- 请反馈给管理员！
                                     </li>
                                 @endif
                             @endforeach
