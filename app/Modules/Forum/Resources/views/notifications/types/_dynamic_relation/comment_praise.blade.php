@@ -6,15 +6,22 @@
     </div>
     <div class="media-body">
         <div class="media-heading mt-0 mb-1 text-secondary">
-            @if($notify->relation->nick_name)
-                <a href="{{ route('users.show', $notify->relation->user_id) }}">{{ $notify->relation->nick_name }}</a>
+            <a href="{{ route('users.show', $notify->sender['user_id']) }}">{{ $notify->sender['nick_name'] }}</a>
+            赞了你对文章
+            @if(!$notify->relation)
+                <a href="javascript:;" class="text-danger">动态已删除</a>
+            @else
+                <a href="{{ $notify->relation->link() }}">{{ $notify->relation->dynamic_title }}</a>
             @endif
-            {{ $notify->explain }}
+            的评论```{!! $notify->comment->comment_content !!}```
 
             <span class="meta float-right" title="{{ $notify->time_formatting }}">
                 <i class="fa fa-clock-o"></i>
                 {{ $notify->time_formatting }}
             </span>
+        </div>
+        <div class="reply-content">
+            {!! $notify->comment->comment_content ?? '' !!}
         </div>
     </div>
 </li>

@@ -6,10 +6,9 @@
     </div>
     <div class="media-body">
         <div class="media-heading mt-0 mb-1 text-secondary">
-            @if($notify->relation->nick_name)
-                <a href="{{ route('users.show', $notify->relation->user_id) }}">{{ $notify->relation->nick_name }}</a>
-            @endif
-            {{ $notify->explain }}
+            <a href="{{ route('users.show', $notify->sender['user_id']) }}">{{ $notify->sender['nick_name'] }}</a>
+            订阅了你的文章
+            <a href="{{ route('dynamics.show', $notify->relation->dynamic_id) }}">《{{ $notify->relation->dynamic_title }}》</a>
 
             <span class="meta float-right" title="{{ $notify->time_formatting }}">
                 <i class="fa fa-clock-o"></i>

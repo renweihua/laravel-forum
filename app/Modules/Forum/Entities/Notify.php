@@ -48,6 +48,7 @@ class Notify extends Model
         'SHARE' => 6, // 分享动态
         'SUBSCRIBE' => 7, // 订阅动态
         'SUBSCRIBE_NOTIFY' => 8, // 订阅的动态，有新消息
+        'ADMIN_DELETE' => 100, // 管理员删除
     ];
 
     // 发送者类型:系统通知
