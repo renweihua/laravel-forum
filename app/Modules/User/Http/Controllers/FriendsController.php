@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FriendsController extends UserModuleController
 {
+    // 关注会员
     public function follow(FollowUserRequest $request, FriendService $friendService): JsonResponse
     {
         $user_id = $request->input('user_id');

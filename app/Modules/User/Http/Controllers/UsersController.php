@@ -49,7 +49,7 @@ class UsersController extends UserModuleController
             View::share('dynamics', $dynamics);
         }
 
-        return view('user::users.show', compact('user'));
+        return view('user::users.show', compact('user', 'login_user_id'));
     }
 
     public function edit(UserAuth $user)

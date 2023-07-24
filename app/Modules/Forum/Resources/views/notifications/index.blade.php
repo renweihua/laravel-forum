@@ -39,9 +39,8 @@
                                             <!-- 订阅的动态，有新消息 -->
                                             @include('forum::notifications.types._dynamic_relation.subscribed-dynamic-new-content', compact('notify'))
                                             @break
-
                                         @default
-                                            {{ $notify->dynamic_type }}
+                                            {{ $notify->dynamic_type }} --- 联系管理员处理此类型。
                                     @endswitch
                                 @elseif($notify->target_type == Notify::TARGET_TYPE['FOLLOW'])
                                     @include('forum::notifications.types._user_follow', compact('notify'))

@@ -39,16 +39,18 @@
                         @endif
                     </h1>
 
-                    <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);top: 15px;position: absolute;right: 15px;">
-                        <div v-if="!user.user_info.is_follow" >
-                            <i class="fa fa-plus mr-2"></i>
-                            关注 TA
-                        </div>
-                        <div v-else>
-                            <i class="fa fa-check mr-2"></i>
-                            已关注
-                        </div>
-                    </a>
+                    @if($login_user_id != $user->user_id)
+                        <a @click="follow" href="javascript:;" class="btn" aria-label="Left Align" style="border-radius: 0.28571429rem;box-shadow: inset 0 0 0 1px rgba(34,36,38,.15);top: 15px;position: absolute;right: 15px;">
+                            <div v-if="!user.user_info.is_follow" >
+                                <i class="fa fa-plus mr-2"></i>
+                                关注 TA
+                            </div>
+                            <div v-else>
+                                <i class="fa fa-check mr-2"></i>
+                                已关注
+                            </div>
+                        </a>
+                    @endif
                 </div>
             </div>
             <hr>
