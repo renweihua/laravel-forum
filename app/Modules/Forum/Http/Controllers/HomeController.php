@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends ForumController
 {
-    public function index(Request $request, User $user)
+    public function index(Request $request)
     {
         $tab = $request->input('tab', 'default');
         $search = $request->input('q', '');

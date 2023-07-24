@@ -14,8 +14,5 @@
                 {{ $notify->time_formatting }}
             </span>
         </div>
-        <div class="reply-content">
-            {!! $notify->comment->comment_content ?? '' !!}
-        </div>
     </div>
 </li>

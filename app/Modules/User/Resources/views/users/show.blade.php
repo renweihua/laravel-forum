@@ -1,6 +1,6 @@
 @extends('forum::layouts.app')
 
-@section('title', $user->name . ' 的个人中心')
+@section('title', $user->userInfo->nick_name . ' 的个人中心')
 
 @section('content')
 

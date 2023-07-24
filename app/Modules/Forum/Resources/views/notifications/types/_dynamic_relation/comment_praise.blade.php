@@ -13,15 +13,17 @@
             @else
                 <a href="{{ $notify->relation->link() }}">{{ $notify->relation->dynamic_title }}</a>
             @endif
-            的评论```{!! $notify->comment->comment_content !!}```
+            的评论
 
             <span class="meta float-right" title="{{ $notify->time_formatting }}">
                 <i class="fa fa-clock-o"></i>
                 {{ $notify->time_formatting }}
             </span>
         </div>
-        <div class="reply-content">
-            {!! $notify->comment->comment_content ?? '' !!}
-        </div>
+        @if($notify->comment->comment_content)
+            <div class="reply-content">
+                {!! $notify->comment->comment_content !!}
+            </div>
+        @endif
     </div>
 </li>
