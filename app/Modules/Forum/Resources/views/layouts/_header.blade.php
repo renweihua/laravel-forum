@@ -60,7 +60,9 @@
                     <li class="nav-item notification-badge">
                         <a class="nav-link mr-3" href="{{ route('notifications.index') }}">
                             <i class="fa fa-bell fa-lg faa-ring @if($user->userInfo->notification_count) animated @else animated-hover @endif"></i>
-                            <span class="badge badge-pill text-white badge-{{ $user->userInfo->notification_count > 0 ? 'hint' : 'secondary' }}">{{ $user->userInfo->notification_count }}</span>
+                            @if($user->userInfo->notification_count)
+                                <span class="badge badge-pill text-white badge-{{ $user->userInfo->notification_count > 0 ? 'hint' : 'secondary' }}">{{ $user->userInfo->notification_count }}</span>
+                            @endif
                         </a>
                     </li>
                     <li class="nav-item dropdown">
