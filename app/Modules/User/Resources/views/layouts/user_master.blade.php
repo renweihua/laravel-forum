@@ -1,5 +1,9 @@
 @extends('forum::layouts.app')
 
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+@endphp
+
 @section('title', $user->userInfo->nick_name . ' 的个人中心')
 
 @section('content')
@@ -44,6 +48,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:;">消息通知</a>
+                    </li>
+                    <li class="nav-item {{ active_class(if_route('sign.logs')) }}">
+                        <a class="nav-link {{ active_class(if_route('sign.logs')) }}" href="{{ route('sign.logs') }}">签到日志</a>
                     </li>
                 </ul>
             </nav>

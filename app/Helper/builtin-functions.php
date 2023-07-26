@@ -1,12 +1,11 @@
 <?php
 use App\Models\User;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Route;
-
-
 
     function getLoginUserId(): int
     {
-        return 402;
+        return Auth::id();
     }
 
     function route_class()

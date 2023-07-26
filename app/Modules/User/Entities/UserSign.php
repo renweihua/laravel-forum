@@ -39,6 +39,8 @@ class UserSign extends Model
 {
     protected $primaryKey = 'sign_id';
     protected $is_delete = 0; //是否开启删除（1.开启删除，就是直接删除；0.假删除）
+    // 追加属性
+    protected $appends = ['time_formatting'];
 
     /**
      * 获取会员今日签到记录
