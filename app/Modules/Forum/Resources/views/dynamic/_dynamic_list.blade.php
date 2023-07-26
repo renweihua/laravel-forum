@@ -46,13 +46,13 @@
 
                             <span> • </span>
                             <small id="praise" class="cursor-pointer" @click="praise({{$dynamic->dynamic_id}})">
-                                <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }}"></i>
+                                <i class="fa {{ $dynamic->is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up' }} faa-vertical animated-hover faa-slow"></i>
                                 <span>{{ $dynamic->cache_extends['praises_count'] }}</span>
                             </small>
 
                             <span> • </span>
                             <small id="collection" class="cursor-pointer" @click="collection({{$dynamic->dynamic_id}})">
-                                <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }}"></i>
+                                <i class="fa {{ $dynamic->is_collection ? 'fa-heartbeat' : 'fa-heart-o' }} faa-pulse animated-hover faa-slow"></i>
                                 <span>{{ $dynamic->cache_extends['collections_count'] }}</span>
                             </small>
 

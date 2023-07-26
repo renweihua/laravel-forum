@@ -34,12 +34,12 @@
                         </small>
                         ⋅
                         <small class="cursor-pointer" @click="praise">
-                            <i class="fa" :class="[dynamic.is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"></i>
+                            <i class="fa faa-vertical animated" :class="[dynamic.is_praise ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"></i>
                             ${ dynamic.cache_extends.praises_count }
                         </small>
                         ⋅
                         <small class="cursor-pointer" @click="collection">
-                            <i class="fa" :class="[dynamic.is_collection ? 'fa-heartbeat' : 'fa-heart-o']"></i>
+                            <i class="fa faa-pulse animated" :class="[dynamic.is_collection ? 'fa-heartbeat' : 'fa-heart-o']"></i>
                             ${ dynamic.cache_extends.collections_count }
                         </small>
                         ⋅
