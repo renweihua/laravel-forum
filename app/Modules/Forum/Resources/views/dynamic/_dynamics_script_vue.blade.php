@@ -5,11 +5,21 @@
                 data: {
                     dynamics: @json($dynamics),
                     topic: @json($topic ?? []),
+                    login_user: @json($login_user ?? []),
                 },
                 // 重定义解析变量，避免与PHP语法冲突
                 delimiters: ['${', '}'],
                 // 在 `methods` 对象中定义方法
                 methods: {
+                    // 签到/打卡
+                    async loginUserSign(){
+                        if(!this.login_user) return;
+                        await userSign().then(res => {
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.login_user.user_info.is_sign = res.is_sign;
+                        });
+                    },
                     // 关注话题
                     async topicFollow () {
                         if(!this.topic) return;

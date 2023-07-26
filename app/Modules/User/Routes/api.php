@@ -22,12 +22,12 @@ Route::prefix('')->middleware('auth:api')->group(function() {
     Route::prefix('user')->group(function () {
         Route::post('follow', 'FriendsController@follow')->name('user.follow');
         // 今日签到信息
-        Route::get('/getSignByToday', 'SignController@getSignByToday');
+        Route::get('getSignByToday', 'SignsController@getSignByToday');
         // 每日签到
-        Route::post('/signIn', 'SignController@signIn');
+        Route::post('sign-in', 'SignsController@signIn');
         // 指定月份的签到状态
-        Route::get('/getSignsStatusByMonth', 'SignController@getSignsStatusByMonth');
+        Route::get('getSignsStatusByMonth', 'SignsController@getSignsStatusByMonth');
         // 我的签到记录：按月筛选
-        Route::get('/getSignsByMonth', 'SignController@getSignsByMonth');
+        Route::get('getSignsByMonth', 'SignsController@getSignsByMonth');
     });
 });

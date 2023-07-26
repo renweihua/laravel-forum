@@ -5,6 +5,8 @@ namespace App\Modules\User\Http\Controllers;
 use App\Http\Controllers\ApiController;
 use App\Modules\User\Services\SignService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SignsController extends ApiController
 {
@@ -20,7 +22,7 @@ class SignsController extends ApiController
      */
     public function getSignByToday() : JsonResponse
     {
-        $result = $this->service->getSignByToday($this->getLoginUserId());
+        $result = $this->service->getSignByToday(Auth::id());
         return $this->successJson($result);
     }
 
@@ -31,8 +33,8 @@ class SignsController extends ApiController
      */
     public function signIn() : JsonResponse
     {
-        $this->service->signIn($this->getLoginUserId());
-        return $this->successJson([], $this->service->getError());
+        $is_sign = $this->service->signIn(Auth::id());
+        return $this->successJson([], $this->service->getError(), compact('is_sign'));
     }
 
     /**
@@ -46,7 +48,7 @@ class SignsController extends ApiController
     {
         $data = $request->validated();
 
-        $lists = $this->service->getSignsStatusByMonth($this->getLoginUserId(), $data['search_month']);
+        $lists = $this->service->getSignsStatusByMonth(Auth::id(), $data['search_month']);
         return $this->successJson($lists, '签到状态获取成功！');
     }
 
@@ -59,7 +61,7 @@ class SignsController extends ApiController
      */
     public function getSignsByMonth(Request $request) : JsonResponse
     {
-        $lists = $this->service->getSignsByMonth($this->getLoginUserId(), $request->input('search_month', ''));
+        $lists = $this->service->getSignsByMonth(Auth::id(), $request->input('search_month', ''));
         return $this->successJson($lists, '签到记录获取成功！');
     }
 }

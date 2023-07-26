@@ -73,9 +73,9 @@ class SignService extends Service
             DB::commit();
             $this->setError('签到成功！');
             return true;
-        }catch (FailException $e){
+        }catch (Exception $e){
             DB::rollBack();
-            throw new Exception('签到失败，请重试！');
+            throw new BadRequestException('签到失败，请重试！');
         }
     }
 
