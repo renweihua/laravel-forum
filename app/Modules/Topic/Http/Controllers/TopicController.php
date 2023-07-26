@@ -39,7 +39,15 @@ class TopicController extends TopicModuleController
      */
     public function show($topic_id, Request $request)
     {
-        $login_user_id = Auth::id();
+        $login_user = Auth::user();
+        if ($login_user){
+            // 是否已签到
+            $login_user->userInfo->is_sign = false;
+            if ($login_user->userInfo->last_sign_time > 0 && date('Y-m-d') == date('Y-m-d', $login_user->userInfo->last_sign_time)){
+                $login_user->userInfo->is_sign = true;
+            }
+        }
+        $login_user_id = $login_user->user_id ?? 0;
 
         $topic = Topic::with([
             'isFollow' => function($query) use ($login_user_id) {
@@ -78,6 +86,6 @@ class TopicController extends TopicModuleController
             $dynamic->is_collection = $login_user_id == 0 ? false : ($dynamic->isCollection ? true : false);
         }
 
-        return view('topic::detail', compact('topic', 'dynamics', 'tab'));
+        return view('topic::detail', compact('topic', 'dynamics', 'tab', 'login_user'));
     }
 }
