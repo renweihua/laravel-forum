@@ -158,3 +158,25 @@ if ( !function_exists('get_dir_files') ) {
         return $arr;
     }
 }
+
+if ( !function_exists('get_month_days') ) {
+    /**
+     * 获取某月份的所有日期列表
+     *
+     * @param  string  $time
+     * @param  string  $format
+     *
+     * @return array
+     */
+    function get_month_days($time = '', $format = 'Y-m-d')
+    {
+        $time = $time != '' ? $time : time();
+        //获取当前周几
+        $week = date('d', $time);
+        $date = [];
+        for ($i = 1; $i <= date('t', $time); $i++) {
+            $date[$i] = date($format, strtotime('+' . ($i - $week) . ' days', $time));
+        }
+        return $date;
+    }
+}

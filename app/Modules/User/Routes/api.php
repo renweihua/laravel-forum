@@ -19,5 +19,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('')->middleware('auth:api')->group(function() {
-    Route::post('user/follow', 'FriendsController@follow')->name('user.follow');
+    Route::prefix('user')->group(function () {
+        Route::post('follow', 'FriendsController@follow')->name('user.follow');
+        // 今日签到信息
+        Route::get('/getSignByToday', 'SignController@getSignByToday');
+        // 每日签到
+        Route::post('/signIn', 'SignController@signIn');
+        // 指定月份的签到状态
+        Route::get('/getSignsStatusByMonth', 'SignController@getSignsStatusByMonth');
+        // 我的签到记录：按月筛选
+        Route::get('/getSignsByMonth', 'SignController@getSignsByMonth');
+    });
 });
