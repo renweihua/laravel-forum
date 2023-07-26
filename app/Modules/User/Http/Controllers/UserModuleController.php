@@ -54,6 +54,13 @@ class UserModuleController extends ForumController
             ],
             [
                 'menu_id' => 7,
+                'menu_name' => '签到记录',
+                'menu_icon' => 'fa-newspaper-o',
+                'menu_view' => 'user::user.signs',
+                'permission' => false,
+            ],
+            [
+                'menu_id' => 8,
                 'menu_name' => '日志',
                 'menu_icon' => 'fa-newspaper-o',
                 'menu_view' => 'user::user.logs',

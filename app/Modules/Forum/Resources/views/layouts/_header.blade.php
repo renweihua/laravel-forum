@@ -73,12 +73,12 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('users.show', $user->user_id) }}">
                                 <i class="fa fa-user mr-2"></i>
-                                个人中心
+                                我的主页
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('users.edit', $user->user_id) }}">
                                 <i class="fa fa-edit mr-2"></i>
-                                编辑资料
+                                个人中心
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" id="logout" href="#">
