@@ -17,6 +17,8 @@ Route::prefix('')->group(function() {
     Route::get('/user-group', 'UserGroupController@group')->name('user-group');
     Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
     Route::prefix('user')->middleware('auth')->group(function() {
+        // 登录日志
+        Route::get('login-logs', 'IndexController@loginLogs')->name('login.logs');
         // 签到日志
         Route::get('sign-logs', 'IndexController@signs')->name('sign.logs');
     });

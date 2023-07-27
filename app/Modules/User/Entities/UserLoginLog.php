@@ -8,6 +8,7 @@ class UserLoginLog extends Model
 {
     protected $primaryKey = 'log_id';
     protected $is_delete = 0;
+    protected $appends = ['time_formatting'];
 
     public function add(int $user_id = 0, int $log_status = 1, $description = '登录成功')
     {

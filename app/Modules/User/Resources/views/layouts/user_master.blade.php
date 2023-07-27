@@ -34,6 +34,7 @@
                     <li class="nav-item {{ active_class(if_route('users.edit')) }}">
                         <a class="nav-link {{ active_class(if_route('users.edit')) }}" href="{{ route('users.edit', [$user->user_id]) }}">基本资料</a>
                     </li>
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:;">修改头像</a>
                     </li>
@@ -48,6 +49,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:;">消息通知</a>
+                    </li>
+                    -->
+                    <li class="nav-item {{ active_class(if_route('login.logs')) }}">
+                        <a class="nav-link {{ active_class(if_route('login.logs')) }}" href="{{ route('login.logs') }}">登录日志</a>
                     </li>
                     <li class="nav-item {{ active_class(if_route('sign.logs')) }}">
                         <a class="nav-link {{ active_class(if_route('sign.logs')) }}" href="{{ route('sign.logs') }}">签到日志</a>
