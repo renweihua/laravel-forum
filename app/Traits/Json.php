@@ -12,15 +12,15 @@ trait Json
 
     public function successJson($data = [], $msg = 'success', $other = [], array $header = [])
     {
-        return $this->myAjaxReturn(array_merge(['data' => $data, 'msg' => $msg], $other), $header);
+        return $this->formatStructure(array_merge(['data' => $data, 'msg' => $msg], $other), $header);
     }
 
     public function errorJson($msg = 'error', $http_status = HttpStatus::BAD_REQUEST, $data = [], $other = [], array $header = [])
     {
-        return $this->myAjaxReturn(array_merge(['msg' => $msg, 'http_status' => $http_status, 'data' => $data], $other), $header);
+        return $this->formatStructure(array_merge(['msg' => $msg, 'http_status' => $http_status, 'data' => $data], $other), $header);
     }
 
-    public function myAjaxReturn($data, array $header = [])
+    public function formatStructure($data, array $header = [])
     {
         $data['data'] = $data['data'] ?? [];
         if(!isset($data['http_status'])) $data['http_status'] = $this->http_status;

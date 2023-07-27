@@ -13,6 +13,10 @@
         <div class="card-body">
             @if ($sign_logs->total())
                 <ul class="list-group border-0">
+                    <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 border-top-0">
+                        <div class="float-left">签到IP</div>
+                        <div class="float-right">签到时间</div>
+                    </li>
                     @foreach ($sign_logs as $log)
                         <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 @if($loop->first) border-top-0 @endif">
                             <div class="float-left">{{ $log->created_ip }}</div>

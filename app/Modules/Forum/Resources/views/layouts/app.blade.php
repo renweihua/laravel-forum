@@ -38,7 +38,7 @@
 
 @if (app()->isLocal())
     <!-- 切换登录会员工具 -->
-    @include('sudosu::user-selector')
+    @includeIf('sudosu::user-selector')
 @endif
 
 <!-- Scripts -->

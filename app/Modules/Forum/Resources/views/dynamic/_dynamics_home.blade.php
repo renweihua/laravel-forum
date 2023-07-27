@@ -19,7 +19,7 @@
                 </div>
             </a>
         @endif
-        @if (isset($search))
+        @if (isset($search) && !empty($search))
             <div class="alert alert-info" role="alert">
                 检索：有{{ $dynamics->total() }}个 <b><code>{{ $search }}</code></b> 相关的内容
             </div>
@@ -59,10 +59,12 @@
             <div class="card-body">
                 {{-- 话题列表 --}}
                 @include('forum::dynamic._dynamic_list', ['dynamics' => $dynamics])
-                {{-- 分页 --}}
-                <div class="mt-5">
-                    {!! $dynamics->appends(Request::except('page'))->render() !!}
-                </div>
+                {{-- 分页：超过1页才展示页码 --}}
+                @if($dynamics->lastPage() > 1)
+                    <div class="mt-5">
+                        {!! $dynamics->appends(Request::except('page'))->render() !!}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
