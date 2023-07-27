@@ -72,7 +72,7 @@ class Dynamic extends Model
             Topic::clearTopicsCache();
 
             if ($dynamic->content_type == self::CONTENT_TYPE_MARKDOWN && $dynamic->isDirty('dynamic_markdown')) {
-                if (!isset($dynamic->dynamic_content)) $dynamic->dynamic_content = self::toHTML($dynamic->dynamic_markdown);
+                if (!isset($dynamic->dynamic_content)) $dynamic->dynamic_content = self::markdownToHtml($dynamic->dynamic_markdown);
             }
 
             if ($dynamic->content_type == self::CONTENT_TYPE_HTML && $dynamic->isDirty('dynamic_content')) {
@@ -374,9 +374,9 @@ class Dynamic extends Model
         return array_column($list, null, 'dynamic_id');
     }
 
-    public static function toHTML(string $markdown)
+    public static function markdownToHtml(string $markdown)
     {
-        $convertedHmtl = app(\ParsedownExtra::class)->setBreaksEnabled(true)->text(\emoji($markdown));
+        $convertedHmtl = app(\Parsedown::class)->setBreaksEnabled(true)->setSafeMode(true)->text(\emoji($markdown));
 
         /** XSS 防注入 */
         // $convertedHmtl = Purifier::clean($convertedHmtl, 'markdown');

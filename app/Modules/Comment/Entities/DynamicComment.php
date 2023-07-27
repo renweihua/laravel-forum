@@ -27,7 +27,7 @@ class DynamicComment extends Model
 
         static::saving(function ($content) {
             if ($content->isDirty('comment_markdown') && !empty($content->comment_markdown)) {
-                $content->comment_content = self::toHTML($content->comment_markdown);
+                $content->comment_content = self::markdownToHtml($content->comment_markdown);
             }
         });
     }
@@ -67,8 +67,9 @@ class DynamicComment extends Model
         return formatting_timestamp($this->attributes[self::CREATED_AT]);
     }
 
-    public static function toHTML(string $markdown)
+    public static function markdownToHtml(string $markdown)
     {
+        return app(\Parsedown::class)->setBreaksEnabled(true)->setSafeMode(true)->text(\emoji($markdown));;
         return app(\ParsedownExtra::class)->text(\emoji($markdown));
     }
 
