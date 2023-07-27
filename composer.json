@@ -79,12 +79,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": {
-        "cnpscy-laravel-editor.md": {
-            "type": "path",
-            "url": "./cnpscy/laravel-editormd",
-            "symlink": true
-        }
-    }
+    "prefer-stable": true
 }
