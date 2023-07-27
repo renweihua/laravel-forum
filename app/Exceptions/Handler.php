@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Constants\HttpStatus;
 use App\Traits\Json;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -25,7 +26,7 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
-        \Illuminate\Auth\AuthenticationException::class,
+        AuthenticationException::class,
         \Illuminate\Auth\Access\AuthorizationException::class,
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
         ModelNotFoundException::class,
@@ -68,6 +69,10 @@ class Handler extends ExceptionHandler
     {
         $this->request = $request;
         if ($request->isJson() || $request->is('api/*')){
+            // 401 未登录
+            if ($exception instanceof AuthenticationException){
+                return $this->errorJson($exception->getMessage(), 401);
+            }
             // 路由404异常监听
             if($exception instanceof NotFoundHttpException){
                 return $this->errorJson("路由{{$request->path()}}不存在！", 404);
