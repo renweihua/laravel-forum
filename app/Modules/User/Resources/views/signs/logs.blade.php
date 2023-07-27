@@ -11,7 +11,7 @@
         </div>
 
         <div class="card-body">
-            @if (count($sign_logs))
+            @if ($sign_logs->total())
                 <ul class="list-group border-0">
                     @foreach ($sign_logs as $log)
                         <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 @if($loop->first) border-top-0 @endif">

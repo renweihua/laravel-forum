@@ -1,4 +1,4 @@
-@if (count($dynamics))
+@if ($dynamics->total())
     <ul class="list-unstyled">
         @foreach ($dynamics as $dynamic)
             <li class="d-flex" id="dynamic-{{$dynamic->dynamic_id}}">
