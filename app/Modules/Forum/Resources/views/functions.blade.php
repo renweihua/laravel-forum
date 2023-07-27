@@ -6,10 +6,8 @@
         <div class="col-lg-9 col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <div id="layout">
-                        <div id="test-editormd-view">
-                            <textarea style="display:none;" name="test-editormd-markdown-doc"></textarea>
-                        </div>
+                    <div id="test-editormd-view">
+                        <textarea style="display:none;" name="test-editormd-markdown-doc"></textarea>
                     </div>
                 </div>
             </div>
@@ -20,7 +18,6 @@
         </div>
     </div>
 @endsection
-
 
 @section('style')
     {!! editor_css() !!}
@@ -46,5 +43,28 @@
                 });
             });
         })
+    </script>
+    <script>
+        const app = new window.vue({
+                el: '#app', //element
+                data: {
+                    login_user: @json($login_user ?? []),
+                },
+                // 重定义解析变量，避免与PHP语法冲突
+                delimiters: ['${', '}'],
+                // 在 `methods` 对象中定义方法
+                methods: {
+                    // 签到/打卡
+                    async loginUserSign(){
+                        if(!this.login_user) return;
+                        await userSign().then(res => {
+                            Element.Message.success(res.msg);
+                            // 同步渲染是否点赞标识
+                            this.login_user.user_info.is_sign = res.is_sign;
+                        });
+                    },
+                }
+            } // json格式的对象，使用大括号包裹，里面放了键值对，在js中键可以没有引号，多个键值对之间使用，分隔
+        );
     </script>
 @endsection

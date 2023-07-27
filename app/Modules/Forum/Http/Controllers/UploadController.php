@@ -3,14 +3,16 @@
 namespace App\Modules\Forum\Http\Controllers;
 
 use App\Constants\HttpStatus;
+use App\Http\Controllers\ApiController;
 use App\Models\UploadFile;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class UploadController extends ForumController
+class UploadController extends ApiController
 {
-    public function file(Request $request)
+    public function file(Request $request): JsonResponse
     {
         // 兼容`http://www.ipandao.com/editor.md/examples/image-upload.html`编辑器的结果结构
         $editor_result = [

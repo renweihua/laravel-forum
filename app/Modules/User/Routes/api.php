@@ -27,7 +27,5 @@ Route::prefix('')->middleware('auth:api')->group(function() {
         Route::post('sign-in', 'SignsController@signIn');
         // 指定月份的签到状态
         Route::get('getSignsStatusByMonth', 'SignsController@getSignsStatusByMonth');
-        // 我的签到记录：按月筛选
-        Route::get('getSignsByMonth', 'SignsController@getSignsByMonth');
     });
 });

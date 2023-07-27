@@ -50,7 +50,9 @@ class HomeController extends ForumController
     // 功能列表
     public function functions()
     {
-        return view('forum::functions');
+        $login_user = getLoginUser();
+
+        return view('forum::functions', compact('login_user'));
     }
 
     public function getFunctions()

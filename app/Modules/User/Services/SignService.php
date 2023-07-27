@@ -108,24 +108,4 @@ class SignService extends Service
         return array_values($lists);
     }
 
-    /**
-     * 指定月份的签到记录
-     *
-     * @param  int     $login_user_id
-     * @param  string  $search_month
-     *
-     * @return array
-     */
-    public function getSignsByMonth(int $login_user_id, string $search_month): array
-    {
-        $limit = $this->getLimit(request()->input('limit', 10));
-        $paginates = UserSign::getInstance()->setMonthTable($search_month)
-            ->where('user_id', $login_user_id)
-            ->orderBy('sign_id', 'DESC')
-            ->paginate($limit);
-
-        $lists = $this->getPaginateFormat($paginates);
-
-        return $lists;
-    }
 }

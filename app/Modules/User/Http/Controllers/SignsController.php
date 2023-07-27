@@ -51,17 +51,4 @@ class SignsController extends ApiController
         $lists = $this->service->getSignsStatusByMonth(getLoginUserId(), $data['search_month']);
         return $this->successJson($lists, '签到状态获取成功！');
     }
-
-    /**
-     * 我的签到记录
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getSignsByMonth(Request $request) : JsonResponse
-    {
-        $lists = $this->service->getSignsByMonth(Auth::id(), $request->input('search_month', ''));
-        return $this->successJson($lists, '签到记录获取成功！');
-    }
 }
