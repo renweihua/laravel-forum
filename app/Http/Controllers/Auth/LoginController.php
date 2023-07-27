@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Modules\User\Entities\UserLoginLog;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -58,6 +59,9 @@ class LoginController extends Controller
         );
         if ($result){
             $user = getLoginUser();
+            // 登录日志
+            UserLoginLog::getInstance()->add($user->user_id);
+
             $token = JWTAuth::fromUser($user);
             // 存储登录会员的token
             session()->put('login_token', $token);
