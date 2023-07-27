@@ -5,7 +5,12 @@ use App\Models\User;
 
     function getLoginUserId(): int
     {
-        return Auth::id() ?? 0;
+        return getLoginUser()->user_id ?? 0;
+    }
+
+    function getLoginUser()
+    {
+        return Auth::user();
     }
 
     function route_class()

@@ -1,7 +1,7 @@
 @extends('forum::layouts.app')
 
 @php
-    $user = \Illuminate\Support\Facades\Auth::user();
+    $user = getLoginUser();
 @endphp
 
 @section('title', $user->userInfo->nick_name . ' 的个人中心')

@@ -20,7 +20,7 @@ class RecordLastActivedTime
     {
         // 如果是登录用户的话
         if (Auth::check()) {
-            $user = Auth::user();
+            $user = getLoginUser();
             // 记录最后登录时间
             $user->recordLastActivedAt();
 

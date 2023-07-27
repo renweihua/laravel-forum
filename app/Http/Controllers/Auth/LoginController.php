@@ -57,7 +57,7 @@ class LoginController extends Controller
             $this->credentials($request), $request->filled('remember')
         );
         if ($result){
-            $user = Auth::user();
+            $user = getLoginUser();
             $token = JWTAuth::fromUser($user);
             // 存储登录会员的token
             session()->put('login_token', $token);

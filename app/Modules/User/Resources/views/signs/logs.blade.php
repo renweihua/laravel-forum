@@ -1,6 +1,6 @@
 @extends('user::layouts.user_master')
 
-@section('title', Auth::user()->userInfo->nick_name . ' 的签到日志')
+@section('title', getLoginUser()->userInfo->nick_name . ' 的签到日志')
 
 @section('user-content')
     <div class="card">

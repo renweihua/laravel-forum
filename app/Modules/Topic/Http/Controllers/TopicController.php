@@ -39,7 +39,7 @@ class TopicController extends TopicModuleController
      */
     public function show($topic_id, Request $request)
     {
-        $login_user = Auth::user();
+        $login_user = getLoginUser();
         if ($login_user){
             // 是否已签到
             $login_user->userInfo->is_sign = false;

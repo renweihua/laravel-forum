@@ -1,5 +1,5 @@
 @php
-    $user = Auth::user();
+    $user = getLoginUser();
 @endphp
 <!-- fixed-top 固定导航栏  -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">

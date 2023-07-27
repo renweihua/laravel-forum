@@ -13,7 +13,7 @@ class HomeController extends ForumController
         $tab = $request->input('tab', 'default');
         $search = $request->input('q', '');
 
-        $login_user = Auth::user();
+        $login_user = getLoginUser();
         $login_user_id = $login_user->user_id ?? 0;
         if ($login_user){
             // 是否已签到
