@@ -22,7 +22,7 @@ class TopicApiController extends TopicModuleController
      */
     public function follow(TopicIdRequest $request, TopicService $topicService) : JsonResponse
     {
-        $res = $topicService->setFollow(Auth::id(), (int)$request->input('topic_id'));
+        $res = $topicService->setFollow(getLoginUserId(), (int)$request->input('topic_id'));
 
         return $this->successJson([], $topicService->getError(), $res);
     }

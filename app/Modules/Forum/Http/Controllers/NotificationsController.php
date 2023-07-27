@@ -17,7 +17,7 @@ class NotificationsController extends ForumController
 
     public function index()
     {
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
         // 获取登录用户的所有通知
         $notifications = Notify::where('user_id', $login_user_id)
             ->with('sender')

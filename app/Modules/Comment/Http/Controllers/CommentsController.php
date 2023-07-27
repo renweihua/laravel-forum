@@ -40,7 +40,7 @@ class CommentsController extends CommentModuleController
             $reply_user = $detail->user_id;
         }
 
-        $comment->user_id = Auth::id();
+        $comment->user_id = getLoginUserId();
         $comment->dynamic_id = $dynamic->dynamic_id;
         $comment->content_type = Dynamic::CONTENT_TYPE_MARKDOWN;
         $comment->comment_markdown = $request->comment_markdown;
@@ -69,7 +69,7 @@ class CommentsController extends CommentModuleController
         }
         $this->authorize('destroy', $comment);
 
-        $comment_ids = $commentService->delete(Auth::id(), $comment);
+        $comment_ids = $commentService->delete(getLoginUserId(), $comment);
 
         return redirect()->to($comment->dynamic->link())->with('success', '评论删除成功！');
     }

@@ -18,7 +18,7 @@ class DynamicsApiController extends ForumController
             return $this->errorJson('动态不存在或已删除！');
         }
 
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
 
         $praise = $dynamicService->praise($login_user_id, $dynamic, $is_praise);
 
@@ -33,7 +33,7 @@ class DynamicsApiController extends ForumController
             return $this->errorJson('动态不存在或已删除！');
         }
 
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
 
         $collection = $dynamicService->collection($login_user_id, $dynamic, $is_collection);
 
@@ -48,7 +48,7 @@ class DynamicsApiController extends ForumController
             return $this->errorJson('动态不存在或已删除！');
         }
 
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
 
         $subscribe = $dynamicService->subscribe($login_user_id, $dynamic, $is_subscribe);
 

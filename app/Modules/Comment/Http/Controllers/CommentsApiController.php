@@ -18,7 +18,7 @@ class CommentsApiController extends CommentModuleController
             return $this->errorJson('动态评论不存在或已删除！');
         }
 
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
 
         $praise = $commentService->praise($login_user_id, $comment, $is_praise);
 

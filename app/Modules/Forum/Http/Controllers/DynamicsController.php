@@ -21,7 +21,7 @@ class DynamicsController extends ForumController
 
     public function show(Request $request, $dynamic_id)
     {
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
         $dynamic = Dynamic::with([
             'user',
             'userInfo' => function($query) use($login_user_id){
@@ -109,7 +109,7 @@ class DynamicsController extends ForumController
         if ($request->has('editormd_id-html-code')){
             $dynamic->dynamic_content = $request->input('editormd_id-html-code');
         }
-        $dynamic->user_id = Auth::id();
+        $dynamic->user_id = getLoginUserId();
         // 默认内容的格式
         $dynamic->content_type = Dynamic::CONTENT_TYPE_MARKDOWN;
         // 仅支持`文章`类型

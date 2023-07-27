@@ -13,7 +13,7 @@ class FriendsController extends UserModuleController
     public function follow(FollowUserRequest $request, FriendService $friendService): JsonResponse
     {
         $user_id = $request->input('user_id');
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
         if ($user_id == $login_user_id){
             return $this->errorJson('无需关注自己！');
         }

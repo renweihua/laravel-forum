@@ -22,7 +22,7 @@ class SignsController extends ApiController
      */
     public function getSignByToday() : JsonResponse
     {
-        $result = $this->service->getSignByToday(Auth::id());
+        $result = $this->service->getSignByToday(getLoginUserId());
         return $this->successJson($result);
     }
 
@@ -33,7 +33,7 @@ class SignsController extends ApiController
      */
     public function signIn() : JsonResponse
     {
-        $is_sign = $this->service->signIn(Auth::id());
+        $is_sign = $this->service->signIn(getLoginUserId());
         return $this->successJson([], $this->service->getError(), compact('is_sign'));
     }
 
@@ -48,7 +48,7 @@ class SignsController extends ApiController
     {
         $data = $request->validated();
 
-        $lists = $this->service->getSignsStatusByMonth(Auth::id(), $data['search_month']);
+        $lists = $this->service->getSignsStatusByMonth(getLoginUserId(), $data['search_month']);
         return $this->successJson($lists, '签到状态获取成功！');
     }
 

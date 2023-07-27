@@ -30,7 +30,7 @@ class UsersController extends UserModuleController
 
     public function show(User $user, Request $request)
     {
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
 
         $user->load([
             'userInfo.isFollow' => function($query) use($login_user_id){

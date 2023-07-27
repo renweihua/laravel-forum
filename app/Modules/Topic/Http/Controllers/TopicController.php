@@ -22,7 +22,7 @@ class TopicController extends TopicModuleController
     {
         $topics = $this->topics;
 
-        $login_user_id = Auth::id();
+        $login_user_id = getLoginUserId();
         // 加载是否订阅
         $topics->load([
             'isFollow' => function($query) use ($login_user_id) {
