@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('')->group(function() {
     Route::get('/', 'HomeController@index')->name('home');
+
+    // 查看已有的功能列表
+    Route::get('functions', 'HomeController@functions')->name('functions');
+    Route::get('get-functions', 'HomeController@getFunctions')->name('get-functions');
+
     Route::get('/search', 'HomeController@index')->name('search');
 
     Route::resource('dynamics', 'DynamicsController', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
