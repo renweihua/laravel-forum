@@ -5,7 +5,7 @@
     <div class="container row">
         @if($topics)
             @foreach($topics as $topic)
-                <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2 mb-3">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-3">
                     <div class="card" id="topic-{{ $topic->topic_id }}">
                         <div class="card-header">
                             <a href="{{ route('topic.show', [$topic->topic_id]) }}">
@@ -65,7 +65,7 @@
                             // 同步渲染是否点赞标识
                             topic.is_follow = res.is_follow;
                             var topic_element = $('#topic-' + topic.topic_id);
-                            var follow_count = parseInt(topic_element.find('#follow_count').html());
+                            var follow_count = parseInt(topic_element.find('#follow_count>span').html());
                             if(res.is_follow){
                                 ++follow_count;
                                 topic_element.find('i').removeClass('fa-plus');
@@ -75,7 +75,7 @@
                                 topic_element.find('i').removeClass('fa-check');
                                 topic_element.find('i').addClass('fa-plus');
                             }
-                            topic_element.find('#follow_count').html(follow_count)
+                            topic_element.find('#follow_count>span').html(follow_count)
                         });
                     },
                 }
