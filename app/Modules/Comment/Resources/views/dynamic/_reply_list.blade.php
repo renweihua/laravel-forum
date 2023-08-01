@@ -1,4 +1,4 @@
-@if(!empty($comments))
+@if($comments->count())
     <ul class="list-unstyled">
     @foreach ($comments as $index => $comment)
         <li class="media" name="reply{{ $comment->comment_id }}" id="reply{{ $comment->comment_id }}">

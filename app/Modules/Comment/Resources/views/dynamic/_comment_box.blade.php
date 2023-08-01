@@ -21,4 +21,6 @@
         </a>
     @endif
 </div>
+@if(Auth::check())
 <hr>
+@endif

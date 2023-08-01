@@ -44,10 +44,10 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            // 记录用户最后活跃时间
-            RecordLastActivedTime::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // 记录用户最后活跃时间
+            RecordLastActivedTime::class,
         ],
     ];
 

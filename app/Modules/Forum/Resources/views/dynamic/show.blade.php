@@ -74,7 +74,7 @@
             </div>
 
             {{-- 用户回复列表 --}}
-            <div class="card topic-reply mt-4">
+            <div class="card topic-reply mt-4 mb-4">
                 <div class="card-body">
                     @includeIf('comment::dynamic._comment_box', ['dynamic' => $dynamic, 'reply_id' => 0])
                     @includeIf('comment::dynamic._reply_list', [
