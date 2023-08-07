@@ -100,7 +100,8 @@ class UserInfo extends Model
 
     protected $primaryKey = 'user_id';
     // 追加属性
-    protected $appends = ['user_sex_text', 'time_formatting'];
+    protected $appends = ['user_sex_text', 'time_formatting', 'is_sign'];
+
 
     // 刷新统计数据
     public function refreshCache()

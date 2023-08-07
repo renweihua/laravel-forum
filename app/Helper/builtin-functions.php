@@ -10,7 +10,7 @@ use App\Models\User;
 
     function getLoginUser()
     {
-        return Auth::user();
+        return Auth::user()->load('userInfo');
     }
 
     function route_class()

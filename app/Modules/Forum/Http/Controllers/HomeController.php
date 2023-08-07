@@ -15,13 +15,6 @@ class HomeController extends ForumController
 
         $login_user = getLoginUser();
         $login_user_id = $login_user->user_id ?? 0;
-        if ($login_user){
-            // 是否已签到
-            $login_user->userInfo->is_sign = false;
-            if ($login_user->userInfo->last_sign_time > 0 && date('Y-m-d') == date('Y-m-d', $login_user->userInfo->last_sign_time)){
-                $login_user->userInfo->is_sign = true;
-            }
-        }
 
         $dynamics = Dynamic::public()
             ->filter($request->all())
