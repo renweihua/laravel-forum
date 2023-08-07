@@ -1,17 +1,18 @@
 <?php
-use App\Models\User;
-    use Illuminate\Support\Facades\Auth;
-    use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
     function getLoginUserId(): int
     {
         return getLoginUser()->user_id ?? 0;
     }
 
-    function getLoginUser()
-    {
-        return Auth::user()->load('userInfo');
-    }
+function getLoginUser()
+{
+    $user = Auth::user();
+    if (!$user) return $user;
+    return $user->load('userInfo');
+}
 
     function route_class()
     {
