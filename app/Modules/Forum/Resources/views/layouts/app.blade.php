@@ -133,8 +133,9 @@
                         Element.Message.error(error.response.data.msg || 'UNAUTHORIZED！');
                         let path = window.location.pathname;
                         // 401，首页也无需跳转
-                        if (path !== '/' && path !== '/auth/login') {
-                            window.location.href = '/auth/login';
+                        var login_path = "{{ route('login') }}";
+                        if (path !== '/' && path !== login_path) {
+                            window.location.href = login_path;
                         }
                         break;
                     case 500:
