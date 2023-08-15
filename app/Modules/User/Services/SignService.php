@@ -68,7 +68,7 @@ class SignService extends Service
             $user_info->setContinuousAttendance($user_info);
 
             // 分发签到奖励任务：同步立即执行
-            SigninReward::dispatch($user_info, get_client_info());
+            SigninReward::dispatch($user_info, get_client_info())->onConnection('database'); // job 存储的服务：当前存储mysql
 
             DB::commit();
             $this->setError('签到成功！');

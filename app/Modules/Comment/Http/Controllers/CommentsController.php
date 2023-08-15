@@ -57,7 +57,7 @@ class CommentsController extends CommentModuleController
         $comment->save();
 
         // 通知动态作者有新的评论/回复
-        DynamicCommentNotifyJob::dispatch($comment);
+        DynamicCommentNotifyJob::dispatch($comment)->onConnection('database'); // job 存储的服务：当前存储mysql
 
         return redirect()->to($comment->dynamic->link(['#reply' . $comment->comment_id]))->with('success', '评论创建成功！');
     }
