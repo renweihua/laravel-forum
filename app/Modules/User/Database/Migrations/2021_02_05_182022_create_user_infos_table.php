@@ -26,7 +26,7 @@ class CreateUserInfosTable extends Migration
 
 
             // user_birth：出生年月日、location：当前所在地、user_introduction：个人介绍、get_likes：获赞数
-            $table->json('base_extends')->nullable()->comment('会员的基础扩展信息');
+            $table->json('basic_extends')->nullable()->comment('会员的基础扩展信息');
             // $table->integer('user_birth')->unsigned()->default(0)->comment('出生年月日');
             // $table->string('city_info', 200)->default('')->comment('城市信息：省份,城市');
             // $table->string('user_introduction', 500)->default('')->comment('个人介绍');
